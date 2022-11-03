@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {WalletService} from "../../../../service/wallet/wallet.service";
+import {WalletService} from "../../../service/wallet/wallet.service";
 import {Subscription} from "rxjs";
-import {Wallet} from "../wallet";
+import {Wallet} from "../../../model/wallet";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 
 @Component({
