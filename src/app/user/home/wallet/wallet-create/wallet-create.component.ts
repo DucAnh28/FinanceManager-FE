@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormControlName, FormGroup, FormsModule} from "@angular/forms";
-import {WalletService} from "../../../service/wallet/wallet.service";
+import {WalletService} from "../../../service/wallet.service";
 import {finalize} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import * as url from "url";

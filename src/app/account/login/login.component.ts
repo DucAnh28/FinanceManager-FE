@@ -30,13 +30,13 @@ export class LoginComponent implements OnInit {
 
   login() {
     const form = this.loginForm.value;
-    this.accountService.login(form).pipe().subscribe(data => {
+    this.accountService.login(form).subscribe(data => {
       if (data == null) {
         alert("Sai tai khoan hay mat khau mat oi`")
       } else {
         localStorage.setItem("user",JSON.stringify(data))
         localStorage.setItem("token",JSON.stringify(data.token))
-        this.router.navigate(['/user/home'])
+        this.router.navigate(['/user/wallet'])
       }
     })
   }
