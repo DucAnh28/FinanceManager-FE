@@ -6,5 +6,5 @@ export interface Wallet {
   money?:number;
   status?:boolean;
   icon?:string;
-  user?:null;
+  user?:any;
 }
