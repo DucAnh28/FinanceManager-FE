@@ -5,6 +5,7 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {JwtResponse} from "../model/jwt-response";
 import {LoginForm} from "../model/login-form";
 import {Role} from "../model/role";
+import {AppUser} from "../../user/model/appUser";
 
 const API_URL = environment.apiUrl;
 
@@ -37,6 +38,10 @@ export class AccountService {
 
   login(loginForm: LoginForm): Observable<JwtResponse> {
     return this.http.post<LoginForm>(`${API_URL}/login`, loginForm);
+  }
+
+  register(user : AppUser): Observable<AppUser>{
+    return this.http.post<AppUser>(`${API_URL}/register`,user);
   }
 
   logout() {
