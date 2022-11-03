@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {HomeComponent} from "./home/home.component";
+import {HomeComponent} from "./home/homepage/home.component";
 import {UserRoutingModule} from "./user-routing.module";
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './home/profile/profile-detail/profile.component';
 
 @NgModule({
   declarations: [HomeComponent, ProfileComponent],
