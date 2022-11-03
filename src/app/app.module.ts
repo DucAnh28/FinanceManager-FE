@@ -7,11 +7,14 @@ import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 import { AppComponent } from './app.component';
 import { LoginComponent } from './account/login/login.component';
 import {HttpClientModule} from "@angular/common/http";
+import {ReactiveFormsModule} from "@angular/forms";
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './user/home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -19,7 +22,9 @@ import {HttpClientModule} from "@angular/common/http";
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     AngularFireDatabaseModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

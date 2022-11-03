@@ -3,6 +3,8 @@ import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, Observable} from "rxjs";
 import {JwtResponse} from "../model/jwt-response";
+import {LoginForm} from "../model/login-form";
+import {Role} from "../model/role";
 
 const API_URL = environment.apiUrl;
 
@@ -10,6 +12,17 @@ const API_URL = environment.apiUrl;
   providedIn: 'root'
 })
 export class AccountService {
+  role: Role[] = [
+    {
+      id: 1,
+      name: "ROLE_ADMIN"
+    },
+    {
+      id: 2,
+      name: "ROLE_USER"
+    }
+  ]
+
   public currentUser: Observable<JwtResponse>;
   public currentUserSubject: BehaviorSubject<JwtResponse>;
 
@@ -22,13 +35,8 @@ export class AccountService {
     return this.currentUserSubject.value;
   }
 
-
-  login(jwtResponse: JwtResponse): Observable<JwtResponse> {
-    return this.http.post<JwtResponse>(`${API_URL}/login`, ).pipe(map(user => {
-      localStorage.setItem('user', JSON.stringify(user));
-      this.currentUserSubject.next(user);
-      return user;
-    }));
+  login(loginForm: LoginForm): Observable<JwtResponse> {
+    return this.http.post<LoginForm>(`${API_URL}/login`, loginForm);
   }
 
   logout() {

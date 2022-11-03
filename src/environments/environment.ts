@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: "http://localhost:8080/",
+  apiUrl: "http://localhost:8080",
   firebaseConfig: {
     apiKey: "AIzaSyCxMsMVuuVhmW1FnziPU1cmKUSeDBixlfI",
     authDomain: "financemanager-dcae3.firebaseapp.com",
