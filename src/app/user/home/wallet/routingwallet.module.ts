@@ -7,7 +7,7 @@ import {WalletEditComponent} from './wallet-edit/wallet-edit.component';
 
 const routes: Routes = [
   {
-    path: 'list',
+    path: '',
     component: WalletListComponent
   },
   {
