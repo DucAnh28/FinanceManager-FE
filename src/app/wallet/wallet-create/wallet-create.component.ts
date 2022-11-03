@@ -44,6 +44,7 @@ export class WalletCreateComponent implements OnInit {
   }
   uploadFileImg(){
     this.selectedImage = this.avatarDom?.nativeElement.files[0];
+    console.log(this.selectedImage);
     this.submitFile();
   }
 
@@ -51,8 +52,8 @@ export class WalletCreateComponent implements OnInit {
   }
   submit(){
     const wallet=this.walletForm.value;
-    wallet.icon = this.arrayPicture;
-    console.log(wallet.icon)
+    wallet.icon = this.arrayPicture
+    console.log(this.arrayPicture)
     this.walletService.saveWallet(wallet).subscribe(()=>{
       this.walletForm.reset();
       alert('Tạo thành công ');

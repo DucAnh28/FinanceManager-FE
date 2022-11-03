@@ -19,4 +19,10 @@ export class WalletService {
   saveWallet(wallet:Wallet):Observable<Wallet>{
     return this.http.post<Wallet>(api_URL+'/wallet/create',wallet)
   }
+  findWalletById(id:number){
+    return this.http.get<Wallet>(`${api_URL}/wallet/${id}`)
+  }
+  deleteWallet(id:number| undefined):Observable<Wallet>{
+    return this.http.delete<Wallet>(`${api_URL}/wallet/${id}`);
+  }
 }
