@@ -25,4 +25,7 @@ export class WalletService {
   deleteWallet(id:number| undefined):Observable<Wallet>{
     return this.http.delete<Wallet>(`${api_URL}/wallet/${id}`);
   }
+  editWallet(id:number|undefined,wallet:Wallet):Observable<Wallet>{
+    return this.http.put<Wallet>(`${api_URL}/wallet/${id}`,wallet);
+  }
 }

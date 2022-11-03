@@ -5,6 +5,7 @@ import { WalletListComponent } from './wallet-list/wallet-list.component';
 import {RouterLink, RouterModule, Routes} from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { WalletDeleteComponent } from './wallet-delete/wallet-delete.component';
+import { WalletEditComponent } from './wallet-edit/wallet-edit.component';
 
 const routes:Routes=[{
   path:'wallet/list',
@@ -17,11 +18,15 @@ const routes:Routes=[{
   {
     path:'wallet/delete/:id',
     component:WalletDeleteComponent
+  },
+  {
+    path:'wallet/edit/:id',
+    component:WalletEditComponent
   }
 ]
 
 @NgModule({
-  declarations: [WalletListComponent,WalletCreateComponent, WalletDeleteComponent],
+  declarations: [WalletListComponent,WalletCreateComponent, WalletDeleteComponent, WalletEditComponent],
 
     imports: [
         CommonModule,
