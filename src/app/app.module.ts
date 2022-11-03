@@ -5,9 +5,9 @@ import {environment} from "../environments/environment";
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 import { AppComponent } from './app.component';
-import { HttpClientModule} from "@angular/common/http";
 import {RouterLink, RouterOutlet} from "@angular/router";
-import {RoutingwalletModule} from "./wallet/routingwallet.module";
+import {HttpClientModule} from "@angular/common/http";
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -23,8 +23,7 @@ import {RoutingwalletModule} from "./wallet/routingwallet.module";
     HttpClientModule,
     RouterOutlet,
     RouterLink,
-    RoutingwalletModule
-
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,28 @@
+<br>
+<h1 style="text-align: center">Danh sach vi</h1>
+<br>
+<table class="table table-striped container" >
+  <thead>
+  <tr>
+    <td>STT</td>
+    <td>Tên</td>
+    <td>Giá</td>
+    <td>Trang thai</td>
+    <td>Icon</td>
+    <td>User</td>
+    <td colspan="2" style="text-align: center">Hành động</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let wallets of wallet; index as i">
+    <td>{{i + 1}}</td>
+    <td>{{wallets.name}}</td>
+    <td>{{wallets.money}}</td>
+    <td>{{wallets.status}}</td>
+    <img [src]="wallets.icon" >
+    <td>{{wallets.user}}</td>
+    <td style="text-align: center"><button type="button" class="btn btn-outline-warning" [routerLink]="['edit',wallets.id]" style="width: 40%">Edit</button></td>
+    <td style="text-align: center"><button type="button" class="btn  btn-outline-danger" [routerLink]="['delete',wallets.id]" style="width: 30%">Delete</button></td>
+  </tr>
+  </tbody>
+</table>

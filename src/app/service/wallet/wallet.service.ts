@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Wallet} from "../../wallet/wallet";
+import {Wallet} from "../../user/home/wallet/wallet";
 import {environment} from "../../../environments/environment";
 
 const api_URL=`${environment.api_url}`;
