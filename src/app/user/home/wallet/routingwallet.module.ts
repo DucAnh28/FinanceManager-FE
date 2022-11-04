@@ -15,7 +15,7 @@ const routes: Routes = [
     component: WalletCreateComponent
   },
   {
-    path: 'delete/:id',
+    path: 'list/delete/:id',
     component: WalletDeleteComponent
   },
   {
