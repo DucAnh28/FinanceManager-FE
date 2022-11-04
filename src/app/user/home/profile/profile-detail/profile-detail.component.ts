@@ -11,13 +11,13 @@ import {AccountService} from "../../../../account/service/account.service";
 export class ProfileDetailComponent implements OnInit {
   appUser: AppUser
 
-  constructor(private userService: UserService, private accountService: AccountService) {
+  constructor(private userService: UserService,
+              private accountService: AccountService) {
   }
 
   ngOnInit(): void {
     this.userService.getUserById(this.accountService.currentUserValue.id).subscribe(data => {
       this.appUser = data;
-      console.log(this.appUser);
     })
   }
 
