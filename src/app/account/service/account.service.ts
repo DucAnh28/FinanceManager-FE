@@ -25,7 +25,7 @@ export class AccountService {
   ]
 
   public currentUser: Observable<JwtResponse>;
-  public currentUserSubject: BehaviorSubject<JwtResponse>;
+  public currentUserSubject: BehaviorSubject<AppUser>;
 
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<JwtResponse>(JSON.parse(localStorage.getItem('user')));
@@ -47,5 +47,14 @@ export class AccountService {
   logout() {
     localStorage.removeItem('user');
     this.currentUserSubject.next(null);
+  }
+
+  getUserById(): Observable<AppUser> {
+    let user_id = this.currentUserValue.id;
+    return this.http.get<AppUser>(`${API_URL}/user/${user_id}`);
+  }
+
+  editUserById(id: number, appUser: AppUser): Observable<AppUser> {
+    return this.http.put<AppUser>(`${API_URL}/user/${id}`,appUser)
   }
 }

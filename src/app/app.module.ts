@@ -5,7 +5,6 @@ import {environment} from "../environments/environment";
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 import { AppComponent } from './app.component';
-import {RouterLink, RouterOutlet} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 
@@ -16,13 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   imports: [
     BrowserModule,
-    AngularFireStorageModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireStorageModule,
-    AngularFireDatabaseModule,
     HttpClientModule,
-    RouterOutlet,
-    RouterLink,
     AppRoutingModule
   ],
   providers: [],

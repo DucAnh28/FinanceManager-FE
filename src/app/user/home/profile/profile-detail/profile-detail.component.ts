@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from "../../../service/user.service";
 import {AppUser} from "../../../model/appUser";
 import {AccountService} from "../../../../account/service/account.service";
 
@@ -9,16 +8,16 @@ import {AccountService} from "../../../../account/service/account.service";
   styleUrls: ['./profile-detail.component.css']
 })
 export class ProfileDetailComponent implements OnInit {
-  appUser: AppUser
+  appUser: AppUser ={}
 
-  constructor(private userService: UserService,
-              private accountService: AccountService) {
+  constructor(private accountService: AccountService) {
+    this.accountService.getUserById().subscribe(data => {
+      this.appUser = data;
+    })
   }
 
   ngOnInit(): void {
-    this.userService.getUserById(this.accountService.currentUserValue.id).subscribe(data => {
-      this.appUser = data;
-    })
+
   }
 
 
