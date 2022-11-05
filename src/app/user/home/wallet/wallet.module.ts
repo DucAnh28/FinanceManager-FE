@@ -11,8 +11,6 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../../../../environments/environment";
 import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 
-
-
 @NgModule({
   declarations: [WalletListComponent,WalletCreateComponent,WalletEditComponent,WalletDeleteComponent],
   imports: [
