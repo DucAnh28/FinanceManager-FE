@@ -6,6 +6,7 @@ import {JwtResponse} from "../model/jwt-response";
 import {LoginForm} from "../model/login-form";
 import {Role} from "../model/role";
 import {AppUser} from "../../user/model/appUser";
+import {ChangepassDTO} from "../../user/model/changepass-dto";
 
 const API_URL = environment.api_url;
 
@@ -56,5 +57,9 @@ export class AccountService {
 
   editUserById(id: number, appUser: AppUser): Observable<AppUser> {
     return this.http.put<AppUser>(`${API_URL}/user/${id}`,appUser)
+  }
+
+  changePassword(id: number,changePass : ChangepassDTO): Observable<AppUser> {
+    return this.http.post<AppUser>(`${API_URL}/user/${id}`,changePass)
   }
 }
