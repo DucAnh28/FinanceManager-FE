@@ -1,0 +1,28 @@
+<div>
+  <form [formGroup]="editForm" (ngSubmit)="editProfile()" *ngIf="editForm">
+    <table>
+      <tr>
+        <td>Username</td>
+        <td><input type="text" name="username" formControlName="username"></td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td><input type="email" name="email" formControlName="email"></td>
+      </tr>
+      <tr>
+        <td>Phone</td>
+        <td><input type="text" name="phone" formControlName="phone"></td>
+      </tr>
+      <tr>
+        <td>Ava</td>
+        <td><img [src]="editUser.ava"></td>
+        <td><input type="file" #uploadAva (change)="onFileSelected($event)" formControlName="ava"></td>
+      </tr>
+      <tr>
+        <td>
+          <button type="submit">Edit</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>

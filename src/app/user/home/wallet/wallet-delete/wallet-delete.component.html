@@ -1,0 +1,37 @@
+<div class="col-7 m-auto">
+  <br>
+  <h1>Xóa Wallet</h1>
+  <br>
+</div>
+<div  class="col-6  m-auto">
+  <form (ngSubmit)="deleteTour(id)" class="container">
+    <div class="row mt-3 form-group">
+      <div class="col-2 ">Name</div>
+      <div class="col-10"><input name="name" [(ngModel)]="wallet.name"  class="col-8  " type="text" ></div>
+    </div>
+    <div class=" row mt-3 form-group">
+      <div class="col-2">Money</div>
+      <div class="col-10"><input name="money" [(ngModel)]="wallet.money"  class="col-8" type="number" ></div>
+
+    </div>
+    <div class="row mt-3 form-group">
+      <div class="col-2">Status</div>
+      <div class="col-7"><textarea name="status" [(ngModel)]="wallet.status"  class="col-4"  class="form-control"  ></textarea></div>
+    </div>
+    <div class="row mt-3 form-group">
+      <div class="col-2">Icon</div>
+     <img [src]="wallet.icon">
+    </div>
+    <div class="row mt-3 form-group">
+      <div class="col-2">User</div>
+      <div class="col-7"><textarea name="user" [(ngModel)]="wallet.user"  class="col-4"  class="form-control"></textarea></div>
+    </div>
+    <div class="row">
+      <div class="col-2 m-auto">
+        <button type="submit" class="btn mt-4 btn-primary">Delete</button>
+      </div>
+
+    </div>
+
+  </form>
+</div>
