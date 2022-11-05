@@ -72,7 +72,7 @@ export class ProfileEditComponent implements OnInit {
     const updateUser = this.editForm.value;
     updateUser.ava = this.arrayPicture;
     this.accountService.editUserById(this.editUser.id,updateUser).subscribe(data => {
-      if (data != null) {
+      if (data !== null) {
         console.log("thanh cong");
         this.router.navigate(['/user/profile']);
       }

@@ -9,9 +9,10 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../../environments/environment";
 import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
+import {ProfilePasswordComponent} from "./home/profile/profile-password/profile-password.component";
 
 @NgModule({
-  declarations: [ProfileDetailComponent, ProfileEditComponent],
+  declarations: [ProfileDetailComponent, ProfileEditComponent, ProfilePasswordComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
