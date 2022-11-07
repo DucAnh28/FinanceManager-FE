@@ -5,6 +5,8 @@ import {HttpClientModule} from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { ShowCategoryComponent } from './category/show-category/show-category.component';
 import { AddCategoryComponent } from './category/add-category/add-category.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { AddCategoryComponent } from './category/add-category/add-category.compo
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
