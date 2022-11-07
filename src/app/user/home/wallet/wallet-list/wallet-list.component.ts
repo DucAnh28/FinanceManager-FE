@@ -1,8 +1,6 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {Wallet} from "../wallet";
-import {WalletService} from "../../../../service/wallet/wallet.service";
-import {AngularFireStorage} from "@angular/fire/compat/storage";
-import {finalize} from "rxjs";
+import {Component, OnInit} from '@angular/core';
+import {Wallet} from "../../../model/wallet";
+import {WalletService} from "../../../service/wallet.service";
 
 @Component({
   selector: 'app-wallet-list',
@@ -10,16 +8,19 @@ import {finalize} from "rxjs";
   styleUrls: ['./wallet-list.component.css']
 })
 export class WalletListComponent implements OnInit {
-  wallet:Wallet[]=[];
-  constructor(private walletService:WalletService
-              ){}
+  wallet: Wallet[] = [];
+
+  constructor(private walletService: WalletService
+  ) {
+  }
 
   ngOnInit(): void {
     this.getAll();
   }
-  getAll(){
-    this.walletService.getAll().subscribe(wallets =>{
-      this.wallet=wallets;
+
+  getAll() {
+    this.walletService.getAll().subscribe(wallets => {
+      this.wallet = wallets;
     })
   }
 

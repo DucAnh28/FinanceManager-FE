@@ -6,6 +6,7 @@ import {JwtResponse} from "../model/jwt-response";
 import {LoginForm} from "../model/login-form";
 import {Role} from "../model/role";
 import {AppUser} from "../../user/model/appUser";
+import {ChangepassDTO} from "../../user/model/changepass-dto";
 
 const API_URL = environment.api_url;
 
@@ -25,7 +26,7 @@ export class AccountService {
   ]
 
   public currentUser: Observable<JwtResponse>;
-  public currentUserSubject: BehaviorSubject<JwtResponse>;
+  public currentUserSubject: BehaviorSubject<AppUser>;
 
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<JwtResponse>(JSON.parse(localStorage.getItem('user')));
@@ -47,5 +48,18 @@ export class AccountService {
   logout() {
     localStorage.removeItem('user');
     this.currentUserSubject.next(null);
+  }
+
+  getUserById(): Observable<AppUser> {
+    let user_id = this.currentUserValue.id;
+    return this.http.get<AppUser>(`${API_URL}/user/${user_id}`);
+  }
+
+  editUserById(id: number, appUser: AppUser): Observable<AppUser> {
+    return this.http.put<AppUser>(`${API_URL}/user/${id}`,appUser)
+  }
+
+  changePassword(id: number,changePass : ChangepassDTO): Observable<AppUser> {
+    return this.http.post<AppUser>(`${API_URL}/user/${id}`,changePass)
   }
 }

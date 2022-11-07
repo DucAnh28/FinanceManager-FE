@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Subscription} from "rxjs";
-import {Wallet} from "../wallet";
+import {Wallet} from "../../../model/wallet";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
-import {WalletService} from "../../../../service/wallet/wallet.service";
+import {WalletService} from "../../../service/wallet.service";
 
 @Component({
   selector: 'app-wallet-delete',
