@@ -1,5 +1,9 @@
-<p>{{appUser.name}}</p>
+<h2>User Profile</h2>
+<p>{{appUser.username}}</p>
 <p>{{appUser.email}}</p>
 <p>{{appUser.phone}}</p>
-<img src="{{appUser.ava}}">
-
+<img [src]="appUser.ava" alt="">
+<button routerLink="/user/profile/edit">Edit Profile</button>
+<br>
+<button routerLink="/user/profile/password">Change Password</button>
+<router-outlet></router-outlet>

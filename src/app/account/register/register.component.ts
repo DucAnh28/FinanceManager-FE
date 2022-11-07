@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
     password: new FormControl("", [Validators.required, Validators.minLength(6), Validators.pattern("^([A-Z]{1})([a-z]{4,})([0-9]{1,})")]),
     confirmPassword: new FormControl("", [Validators.required, Validators.minLength(6)])
   })
+  message : string;
 
   constructor(private accountService: AccountService,
               private router: Router) {
@@ -43,7 +44,7 @@ export class RegisterComponent implements OnInit {
     const form = this.signupForm.value;
     this.accountService.register(form).pipe().subscribe(data => {
       if (data == null) {
-        alert("Tai khoan da ton tai")
+        this.message = "Tai khoan da ton tai";
       } else {
         this.router.navigate(['/login'])
       }
