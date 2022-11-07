@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Wallet} from "../model/wallet";
 import {environment} from "../../../environments/environment";
+import {AccountService} from "../../account/service/account.service";
 
 const api_URL=`${environment.api_url}`;
 
@@ -11,10 +12,13 @@ const api_URL=`${environment.api_url}`;
 })
 export class WalletService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,
+              private accountService:AccountService
+               ) { }
 
   getAll():Observable<Wallet[]>{
-    return this.http.get<Wallet[]>(api_URL + '/wallet');
+   let user_id=this.accountService.currentUserValue.id;
+    return this.http.get<Wallet[]>(api_URL + '/wallet?user_id='+user_id);
   };
   saveWallet(wallet:Wallet):Observable<Wallet>{
     return this.http.post<Wallet>(api_URL+'/wallet/create',wallet)

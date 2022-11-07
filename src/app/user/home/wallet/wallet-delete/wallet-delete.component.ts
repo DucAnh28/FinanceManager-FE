@@ -40,7 +40,7 @@ export class WalletDeleteComponent implements OnInit {
     if (confirm("Bạn chắc chắn muốn xoá ví này chứ???")){
     this.walletService.deleteWallet(id).subscribe(() => {
       alert('Đã xóa thành công !');
-      this.router.navigate(["wallet/list"]);
+      this.router.navigate(["user/wallet"]);
     }, e => {
       console.log(e);
     });

@@ -22,6 +22,7 @@ import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     AngularFireDatabaseModule,
+
   ]
 })
 export class WalletModule { }
