@@ -8,10 +8,12 @@ import { AppComponent } from './app.component';
 import {RouterLink, RouterOutlet} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    PaymentComponent,
 
   ],
   imports: [
