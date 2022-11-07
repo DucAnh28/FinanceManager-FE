@@ -54,4 +54,7 @@ export class PaymentService {
   // findAllTransactionsByCategoryID(id: any): Observable<any> {
   //   return this.httpClient.get(API + 'find-by-category/'+ id);
   // }
+  findAllPaymentByCategoryID(id: any): Observable<any> {
+    return this.httpClient.get(API + 'find-by-category/'+ id);
+  }
 }

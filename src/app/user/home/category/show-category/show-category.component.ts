@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 import firebase from "firebase/compat";
-import Transaction = firebase.firestore.Transaction;
-import {CategoryService} from 'src/app/category/service/category.service'
-import {TransactionService} from "../service/transaction.service";
+// import Transaction = firebase.firestore.Transaction;
+import {CategoryService} from 'src/app/user/service/category.service'
 import {NgToastService} from "ng-angular-popup";
 import Swal from "sweetalert2"
+import {Payment} from "../../../model/payment";
+import {PaymentService} from "../../../service/payment.service";
 
 
 class Category {
@@ -26,12 +27,12 @@ export class ShowCategoryComponent implements OnInit {
     color: new FormControl(),
   })
   categories: Category[] = [];
-  transactions: Transaction[] = [];
+  payment: Payment[] = [];
   category: any;
   categoryUpdate: any;
 
   constructor(private categoryService: CategoryService,
-              private transactionService: TransactionService,
+              private paymentService: PaymentService,
               private router: Router,
               private toast: NgToastService){
   }
@@ -40,10 +41,10 @@ export class ShowCategoryComponent implements OnInit {
     this.showCategory();
   }
 
-  findAllTransaction(id: number) {
-    this.transactionService.findAllTransactionsByCategoryID(id).subscribe(transactions => {
-      this.transactions = transactions;
-      console.log(this.transactions);
+  findAllPayment(id: number) {
+    this.paymentService.findAllPaymentByCategoryID(id).subscribe(payment => {
+      this.payment = payment;
+      console.log(this.payment);
       this.confirmDelete(id);
     })
   }
@@ -61,7 +62,7 @@ export class ShowCategoryComponent implements OnInit {
   }
 
   confirmDelete(id: number) {
-    if (this.transactions.length < 1) {
+    if (this.payment.length < 1) {
       let timerInterval: any;
       Swal.fire({
         title: '<h3 style="color: #5ec05e"><img src="https://img.pikbest.com/png-images/20190918/cartoon-snail-loading-loading-gif-animation_2734139.png!bw340" style="width: 100px;height: 100px"><\h3>',

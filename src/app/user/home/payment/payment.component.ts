@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
-import {Category} from "../user/model/category";
-import {PaymentService} from "../user/service/paymentservice";
-import {CategoryService} from "../category/service/category.service";
+import {Category} from "../../model/category";
+import {PaymentService} from "../../service/payment.service";
+import {CategoryService} from "../../service/category.service";
 import {NgToastService} from "ng-angular-popup";
 
 @Component({
@@ -31,6 +31,8 @@ export class PaymentComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.showExpenseCategory();
+    this.showIncomeCategory();
   }
   showExpenseCategory() {
     this.categoryService.findByStatus(2).subscribe((categories) => {
