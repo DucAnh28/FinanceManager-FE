@@ -10,7 +10,7 @@ import {WalletService} from "../../../service/wallet.service";
 export class WalletListComponent implements OnInit {
   wallet: Wallet[] = [];
 
-  constructor(private walletService: WalletService
+  constructor(private walletService: WalletService,
   ) {
   }
 
