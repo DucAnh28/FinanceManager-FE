@@ -1,29 +1,30 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
-import {ProfileDetailComponent} from "./home/profile/profile-detail/profile-detail.component";
-import {ProfileEditComponent} from "./home/profile/profile-edit/profile-edit.component";
-import {ProfilePasswordComponent} from "./home/profile/profile-password/profile-password.component";
 import {UserHomeComponent} from "./home/user-home/user-home.component";
+import {WalletListComponent} from "./home/wallet/wallet-list/wallet-list.component";
+import {PaymentComponent} from "./home/payment/payment.component";
+import {ProfileDetailComponent} from "./home/profile/profile-detail/profile-detail.component";
 
 let routes: Routes = [
   {
-    path: "profile",
-    component: ProfileDetailComponent
-  },
-  {
-    path: "profile/edit",
-    component: ProfileEditComponent
-  },
-  {
-    path: "profile/password",
-    component: ProfilePasswordComponent,
-  },
-  {
-    path: "home",
+    path: "",
     component: UserHomeComponent,
-    loadChildren: () => import('./home/wallet/wallet.module').then(module => module.WalletModule)
+    children: [
+      {
+        path: "wallet",
+        component: WalletListComponent
+      },
+      {
+        path: "payment",
+        component: PaymentComponent
+      },
+      {
+        path: "profile",
+        component: ProfileDetailComponent
+      },
+    ]
   }
-];
+]
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
