@@ -9,18 +9,25 @@ import {WalletService} from "../../../service/wallet.service";
 })
 export class WalletListComponent implements OnInit {
   wallet: Wallet[] = [];
-
+  money:number=null;
   constructor(private walletService: WalletService
   ) {
   }
 
   ngOnInit(): void {
+    this.getAllMoney();
     this.getAll();
   }
 
   getAll() {
     this.walletService.getAll().subscribe(wallets => {
       this.wallet = wallets;
+    })
+  }
+
+  getAllMoney(){
+    this.walletService.getAllMoneyByUser().subscribe(totalmoney =>{
+      this.money=totalmoney;
     })
   }
 

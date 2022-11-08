@@ -32,4 +32,8 @@ export class WalletService {
   editWallet(id:number|undefined,wallet:Wallet):Observable<Wallet>{
     return this.http.put<Wallet>(`${api_URL}/wallet/${id}`,wallet);
   }
+  getAllMoneyByUser():Observable<number>{
+    let user_id=this.accountService.currentUserValue.id
+    return this.http.get<number>(`${api_URL}/wallet/money/`+user_id);
+  }
 }
