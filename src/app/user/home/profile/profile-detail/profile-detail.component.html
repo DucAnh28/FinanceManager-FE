@@ -1,8 +1,103 @@
-<h2>User Profile</h2>
-<p>{{appUser.username}}</p>
-<p>{{appUser.email}}</p>
-<p>{{appUser.phone}}</p>
-<img [src]="appUser.ava" alt="">
-<button routerLink="/user/profile/edit">Edit Profile</button>
-<button routerLink="/user/profile/password">Change Password</button>
+<!--<h2>User Profile</h2>-->
+<!--<p>{{appUser.username}}</p>-->
+<!--<p>{{appUser.email}}</p>-->
+<!--<p>{{appUser.phone}}</p>-->
+<!--<img [src]="appUser.ava" alt="">-->
+<!--<button routerLink="/user/profile/edit">Edit Profile</button>-->
+<!--<button routerLink="/user/profile/password">Change Password</button>-->
 <router-outlet></router-outlet>
+<div class="content-wrapper">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-6 mb-4 mb-lg-0">
+        <div class="card mb-3" style="border-radius: .5rem;">
+          <div class="row g-0">
+            <div class="col-md-4 gradient-custom text-center text-black"
+                 style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+              <img [src]="appUser.ava"
+                   alt="Avatar" class="img-fluid my-5" style="width: 80px;"/>
+              <h5>Username</h5>
+              <p>{{appUser.username}}</p>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body p-4">
+                <h6>Information</h6>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1">
+                  <div class="col-6 mb-3">
+                    <h6>Email</h6>
+                    <p class="text-muted">{{appUser.email}}</p>
+                  </div>
+                  <div class="col-6 mb-3">
+                    <h6>Phone</h6>
+                    <p class="text-muted">{{appUser.phone}}</p>
+                  </div>
+                  <div class="col-7 mb-3">
+                    <h6>Edit Profile</h6>
+                  </div>
+                  <div class="col-7 mb-3">
+                    <h6><button class="">Change Password</button></h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content-wrapper">
+  <div class="page-header">
+    <h3 class="page-title"> Profile </h3>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Detail</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="row">
+    <div class="col-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Profile Detail</h4>
+          <form class="forms-sample">
+            <div class="form-group">
+              <label for="exampleInputName1">Username</label>
+              <input type="text" class="form-control" id="exampleInputName1" placeholder="Username">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail3">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword4">Phone</label>
+              <input type="password" class="form-control" id="exampleInputPassword4" placeholder="Phone">
+            </div>
+            <div class="form-group">
+              <label>File upload</label>
+              <input type="file" name="img[]" class="file-upload-default">
+              <div class="input-group col-xs-12">
+                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                          </span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputCity1">City</label>
+              <input type="text" class="form-control" id="exampleInputCity1" placeholder="Location">
+            </div>
+            <div class="form-group">
+              <label for="exampleTextarea1">Textarea</label>
+              <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+            <button class="btn btn-light">Cancel</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
