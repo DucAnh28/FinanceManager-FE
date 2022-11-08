@@ -36,7 +36,7 @@ export class WalletDeleteComponent implements OnInit {
     });
   }
 
-  deleteTour(id: number | undefined) {
+  deleteWallet(id: number | undefined) {
     if (confirm("Bạn chắc chắn muốn xoá ví này chứ???")){
     this.walletService.deleteWallet(id).subscribe(() => {
       alert('Đã xóa thành công !');
