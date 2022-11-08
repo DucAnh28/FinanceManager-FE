@@ -25,9 +25,11 @@
                 <input type="date" id="date" formControlName="time"/>
               </td>
               <td style="width: 20px"></td>
-              <td class="tdTbale"><input type="number" style="border: 1px solid #f1f3f5;" placeholder="Số tiền" formControlName="totalSpent"></td>
+              <td class="tdTbale"><input type="number" style="border: 1px solid #f1f3f5;" placeholder="Số tiền"
+                                         formControlName="totalSpent"></td>
               <td style="width: 20px"></td>
-              <td class="tdTbale"><input type="text" style="border: 1px solid #f1f3f5 ;" placeholder="Ghi chú" formControlName="note"></td>
+              <td class="tdTbale"><input type="text" style="border: 1px solid #f1f3f5 ;" placeholder="Ghi chú"
+                                         formControlName="note"></td>
             </tr>
           </table>
         </div>
@@ -55,12 +57,13 @@
         <div id="collect" class="tabcontent">
           <table class="table lms_table_active" style="margin-top: 20px">
             <tbody>
-            <tr *ngFor="let incomeCategory of incomeCategories; let i = index;" (click)="getCategory(incomeCategory.id)" data-bs-dismiss="modal" aria-label="Close">
+            <tr *ngFor="let incomeCategory of incomeCategories; let i = index;" (click)="getCategory(incomeCategory.id)"
+                data-bs-dismiss="modal" aria-label="Close">
               <td>
                 <div class="d-flex align-items-center">
                   <div class="flex-shrink-0">
                     <svg width="20" height="20">
-<!--                      <rect width="25" height="25" [ngStyle]="{'fill':incomeCategory.color,'stroke-width':'3px'}"/>-->
+                      <!--                      <rect width="25" height="25" [ngStyle]="{'fill':incomeCategory.color,'stroke-width':'3px'}"/>-->
                     </svg>
                   </div>
                 </div>
@@ -71,7 +74,7 @@
                 </div>
               </td>
               <td>
-<!--                <p class="nowrap">{{incomeCategory.note}}</p>-->
+                <!--                <p class="nowrap">{{incomeCategory.note}}</p>-->
               </td>
               <td>
               </td>
@@ -82,12 +85,13 @@
         <div id="spend" class="tabcontent">
           <table class="table lms_table_active" style="margin-top: 20px">
             <tbody>
-            <tr *ngFor="let expenseCategory of expenseCategories; let i = index;" (click)="getCategory(expenseCategory.id)" data-bs-dismiss="modal" aria-label="Close">
+            <tr *ngFor="let expenseCategory of expenseCategories; let i = index;"
+                (click)="getCategory(expenseCategory.id)" data-bs-dismiss="modal" aria-label="Close">
               <td>
                 <div class="d-flex align-items-center">
                   <div class="flex-shrink-0">
                     <svg width="20" height="20">
-<!--                      <rect width="25" height="25" [ngStyle]="{'fill':expenseCategory.color,'stroke-width':'3px'}"/>-->
+                      <!--                      <rect width="25" height="25" [ngStyle]="{'fill':expenseCategory.color,'stroke-width':'3px'}"/>-->
                     </svg>
                   </div>
                 </div>
@@ -98,7 +102,7 @@
                 </div>
               </td>
               <td>
-<!--                <p class="nowrap">{{expenseCategory.note}}</p>-->
+                <!--                <p class="nowrap">{{expenseCategory.note}}</p>-->
               </td>
               <td>
               </td>
