@@ -10,8 +10,7 @@ import {WalletService} from "../../../service/wallet.service";
 export class WalletListComponent implements OnInit {
   wallet: Wallet[] = [];
   money:number=null;
-  constructor(private walletService: WalletService
-  ) {
+  constructor(private walletService: WalletService){
   }
 
   ngOnInit(): void {
@@ -30,6 +29,4 @@ export class WalletListComponent implements OnInit {
       this.money=totalmoney;
     })
   }
-
-
 }

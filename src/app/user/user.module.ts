@@ -10,9 +10,11 @@ import {environment} from "../../environments/environment";
 import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import {ProfilePasswordComponent} from "./home/profile/profile-password/profile-password.component";
+import { UserHomeComponent } from './home/user-home/user-home.component';
+import {SharesModule} from "../shares/shares.module";
 
 @NgModule({
-  declarations: [ProfileDetailComponent, ProfileEditComponent, ProfilePasswordComponent],
+  declarations: [ProfileDetailComponent, ProfileEditComponent, ProfilePasswordComponent, UserHomeComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
@@ -23,6 +25,7 @@ import {ProfilePasswordComponent} from "./home/profile/profile-password/profile-
     AngularFireStorageModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    SharesModule
   ]
 })
 export class UserModule {
