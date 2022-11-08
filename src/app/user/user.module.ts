@@ -3,18 +3,17 @@ import {CommonModule} from '@angular/common';
 import {UserRoutingModule} from "./user-routing.module";
 import {ProfileDetailComponent} from './home/profile/profile-detail/profile-detail.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {ProfileEditComponent} from './home/profile/profile-edit/profile-edit.component';
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../../environments/environment";
 import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
-import {ProfilePasswordComponent} from "./home/profile/profile-password/profile-password.component";
 import { UserHomeComponent } from './home/user-home/user-home.component';
 import {SharesModule} from "../shares/shares.module";
+import {PaymentComponent} from "./home/payment/payment.component";
 
 @NgModule({
-  declarations: [ProfileDetailComponent, ProfileEditComponent, ProfilePasswordComponent, UserHomeComponent],
+  declarations: [UserHomeComponent,ProfileDetailComponent,PaymentComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
