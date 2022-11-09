@@ -26,7 +26,7 @@
               "src/styles.css",
               "src/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css"
             ],
-            "scripts": ["src/assets/vendor/bootstrap/js/bootstrap.js","src/assets/vendor/bootstrap/js/popper.js"]
+            "scripts": ["src/assets/vendor/bootstrap/js/bootstrap.js"]
           },
           "configurations": {
             "production": {
