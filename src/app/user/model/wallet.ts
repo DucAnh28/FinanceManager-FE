@@ -1,4 +1,5 @@
 import firebase from "firebase/compat";
+import {AppUser} from "./appUser";
 
 export interface Wallet {
   id?:number;

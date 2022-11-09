@@ -1,34 +1,56 @@
+
+<div class="content-wrapper"> <br>
+<h1 style="text-align: center">Wallet List</h1>
 <br>
-<h1 style="text-align: center">Danh sach vi</h1>
-<br>
-<p>Tong tien</p>
+<p>SumMoney</p>
 <p>{{money}}</p>
 <table class="table table-striped container" >
-  <thead>
   <tr>
-    <td>STT</td>
-    <td>Tên</td>
-    <td>Giá</td>
-    <td>Trang thai</td>
+    <td>Number</td>
+    <td>Name</td>
+    <td>Price</td>
     <td>Icon</td>
-    <td>User</td>
-    <td colspan="2" style="text-align: center">Hành động</td>
+    <td colspan="2" style="text-align: center">Action</td>
   </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let wallets of walletList; index as i">
+<!--  <tr>{{list}}}}</tr>-->
+  <tr *ngFor="let wallets of walletList;index as i">
     <td>{{i + 1}}</td>
     <td>{{wallets.name}}</td>
     <td>{{wallets.money}}</td>
     <img [src]="wallets.icon" >
-    <td>{{wallets.user}}</td>
-<<<<<<< HEAD
-    <td style="text-align: center"><button type="button" class="btn btn-outline-warning" [routerLink]="['list/edit',wallets.id]" style="width: 40%">Edit</button></td>
-    <td style="text-align: center"><button type="button" class="btn  btn-outline-danger" [routerLink]="['list/delete',wallets.id]" style="width: 30%">Delete</button></td>
-=======
-<!--    <td style="text-align: center"><button type="button" class="btn btn-outline-warning" [routerLink]="['edit',wallets.id]" style="width: 40%">Edit</button></td>-->
-<!--    <td style="text-align: center"><button type="button" class="btn  btn-outline-danger" [routerLink]="['delete',wallets.id]" style="width: 30%">Delete</button></td>-->
->>>>>>> dev
+<!--    <td>-->
+<!--      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >-->
+<!--      Edit -->
+<!--    </button>-->
+<!--    </td>-->
+    <td><button>Delete</button></td>
   </tr>
-  </tbody>
+
+
 </table>
+</div>
+<td>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Launch demo modal
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>

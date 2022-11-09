@@ -12,11 +12,6 @@ import {NgxPaginationModule} from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
-<<<<<<< HEAD
-
-
-=======
->>>>>>> dev
   ],
   imports: [
     BrowserModule,
