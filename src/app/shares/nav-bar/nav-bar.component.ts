@@ -8,10 +8,10 @@ import {AppUser} from "../../user/model/appUser";
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-  appUser: AppUser
+  appUser: AppUser = {}
 
   constructor(private accountService: AccountService) {
-    accountService.currentUser.subscribe(data => {
+    accountService.getUserById().subscribe(data => {
       this.appUser = data;
     })
   }

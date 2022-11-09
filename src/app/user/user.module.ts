@@ -11,6 +11,7 @@ import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import { UserHomeComponent } from './home/user-home/user-home.component';
 import {SharesModule} from "../shares/shares.module";
 import {PaymentComponent} from "./home/payment/payment.component";
+import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 
 @NgModule({
   declarations: [UserHomeComponent,ProfileDetailComponent,PaymentComponent],
@@ -24,7 +25,8 @@ import {PaymentComponent} from "./home/payment/payment.component";
     AngularFireStorageModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    SharesModule
+    SharesModule,
+    MdbModalModule
   ]
 })
 export class UserModule {

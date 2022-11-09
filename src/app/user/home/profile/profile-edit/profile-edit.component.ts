@@ -74,7 +74,6 @@ export class ProfileEditComponent implements OnInit {
     this.accountService.editUserById(this.editUser.id,updateUser).subscribe(data => {
       if (data !== null) {
         console.log("thanh cong");
-        this.router.navigate(['/user/profile']);
       }
     })
   }
