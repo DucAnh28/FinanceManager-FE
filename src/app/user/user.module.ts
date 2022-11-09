@@ -10,8 +10,7 @@ import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import { UserHomeComponent } from './home/user-home/user-home.component';
 import {SharesModule} from "../shares/shares.module";
-import {PaymentComponent} from "./home/payment/payment.component";
-import {WalletListComponent} from "./home/wallet/wallet-list/wallet-list.component";
+import {PaymentComponent} from "./home/payment/payment.component";import {WalletListComponent} from "./home/wallet/wallet-list/wallet-list.component";
 
 @NgModule({
   declarations: [UserHomeComponent,ProfileDetailComponent,PaymentComponent,WalletListComponent],
@@ -25,7 +24,8 @@ import {WalletListComponent} from "./home/wallet/wallet-list/wallet-list.compone
     AngularFireStorageModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    SharesModule
+    SharesModule,
+
   ]
 })
 export class UserModule {
