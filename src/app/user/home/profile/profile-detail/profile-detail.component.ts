@@ -3,7 +3,9 @@ import {AppUser} from "../../../model/appUser";
 import {AccountService} from "../../../../account/service/account.service";
 import {finalize} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import Swal from "sweetalert2";
+
 
 @Component({
   selector: 'app-profile-detail',
@@ -11,27 +13,29 @@ import {FormControl, FormGroup} from "@angular/forms";
   styleUrls: ['./profile-detail.component.css']
 })
 export class ProfileDetailComponent implements OnInit {
-  appUser: AppUser ={}
+  appUser: AppUser = {}
   editForm: FormGroup;
 
   constructor(private accountService: AccountService,
               private storage: AngularFireStorage) {
     this.accountService.getUserById().subscribe(data => {
       this.appUser = data;
+      this.editForm = new FormGroup({
+        id: new FormControl(this.appUser.id),
+        username: new FormControl(this.appUser.username),
+        email: new FormControl(this.appUser.email),
+        password: new FormControl(this.appUser.password),
+        phone: new FormControl(this.appUser.phone),
+        status: new FormControl(this.appUser.status),
+        ava: new FormControl(),
+        roles: new FormControl(this.appUser.roles)
+      })
+      console.log(this.editForm.value)
     })
+
   }
 
   ngOnInit(): void {
-    this.editForm = new FormGroup({
-      id: new FormControl(this.appUser.id),
-      username: new FormControl(this.appUser.username),
-      email: new FormControl(this.appUser.email),
-      password: new FormControl(this.appUser.password),
-      phone: new FormControl(this.appUser.phone),
-      status: new FormControl(this.appUser.status),
-      ava: new FormControl(),
-      roles: new FormControl(this.appUser.roles)
-    })
   }
 
   @ViewChild('uploadAva', {static: true})
@@ -66,12 +70,58 @@ export class ProfileDetailComponent implements OnInit {
   editProfile() {
     const updateUser = this.editForm.value;
     updateUser.ava = this.arrayPicture;
-    this.accountService.editUserById(this.appUser.id,updateUser).subscribe(data => {
+    this.accountService.editUserById(this.appUser.id, updateUser).subscribe(data => {
       if (data !== null) {
-        console.log("thanh cong");
+        Swal.fire('Success',
+          'You Update Your Profile Successful',
+          'success')
       }
     })
   }
 
+  // Change Pass function
+
+  changePassForm: FormGroup = new FormGroup({
+    oldPassword: new FormControl("", [Validators.required, Validators.pattern("^([A-Z]{1})([a-z]{4,})([0-9]{1,})")]),
+    newPassword: new FormControl("", [Validators.required, Validators.pattern("^([A-Z]{1})([a-z]{4,})([0-9]{1,})")]),
+    confirmPassword: new FormControl("", [Validators.required]),
+  })
+
+
+  get oldPassword() {
+    return this.editForm.get("oldPassword")
+  }
+
+  get newPassword() {
+    return this.editForm.get("newPassword")
+  }
+
+  get confirmPassword() {
+    return this.editForm.get("confirmPassword")
+  }
+
+  comparePassword() {
+    if (this.newPassword.value !== this.confirmPassword.value) {
+      this.confirmPassword.setErrors({confirmPassword: true});
+    } else {
+      this.confirmPassword.setErrors(null);
+    }
+  }
+
+  checkOldPassword() {
+    if (this.oldPassword.value !== this.appUser.password) {
+      Swal.fire("Not Good","Your Old Password Is Wrong","warning")
+    }
+  }
+
+  changePassword() {
+    this.checkOldPassword();
+    const changePass = this.editForm.value;
+    this.accountService.changePassword(this.appUser.id, changePass).subscribe(data => {
+      if (data !== null) {
+        Swal.fire("Success","Change Your Password Successful !!","success")
+      }
+    })
+  }
 
 }
