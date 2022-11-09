@@ -12,13 +12,13 @@ import {NgToastService} from "ng-angular-popup";
 })
 export class PaymentComponent implements OnInit {
   paymentForm = new FormGroup({
-    time: new FormControl(),
-    totalSpent: new FormControl(),
-    note: new FormControl(),
+    date: new FormControl(),
+    money: new FormControl(),
+    description: new FormControl(),
   })
 
   category: any;
-  color: string = '#E9E612';
+  // color: string = '#E9E612';
   nameCategory: string = 'Danh mục giao dich';
   expenseCategories: Category[] = [];
   incomeCategories: Category[] = [];
@@ -55,9 +55,9 @@ export class PaymentComponent implements OnInit {
       category: {
         id: this.category.id,
       },
-      time: this.paymentForm.value.time,
-      totalSpent: this.paymentForm.value.totalSpent,
-      note: this.paymentForm.value.note,
+      date: this.paymentForm.value.date,
+      money: this.paymentForm.value.money,
+      description: this.paymentForm.value.description,
       wallet: {
         id: localStorage.getItem('ID_WALLET')
       }
@@ -76,7 +76,7 @@ export class PaymentComponent implements OnInit {
     this.categoryService.findById(id).subscribe(category => {
       this.category = category;
       this.nameCategory = category.name;
-      this.color = category.color;
+      // this.color = category.color;
     })
   }
 

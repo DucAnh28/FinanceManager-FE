@@ -14,7 +14,7 @@
                 <a data-bs-toggle="modal" data-bs-target="#exampleModalCate" style="background: rgba(247,247,247,0.16)">
                   <div class="flex-shrink-0">
                     <svg width="20" height="20">
-                      <rect width="25" height="25" [ngStyle]="{'fill':color,'stroke-width':'3'}"/>
+<!--                      <rect width="25" height="25" [ngStyle]="{'fill':color,'stroke-width':'3'}"/>-->
                     </svg>
                     <span style="margin-left: 10px;">{{nameCategory}}</span>
                   </div>
@@ -22,14 +22,17 @@
               </td>
               <td style="width: 20px"></td>
               <td class="tdTbale">
-                <input type="date" id="date" formControlName="time"/>
+                <input type="date" id="date" formControlName="date"/>
+              </td>
+              <td class="tdTbale">
+                <select id="category" formControlName="category"/><>
               </td>
               <td style="width: 20px"></td>
               <td class="tdTbale"><input type="number" style="border: 1px solid #f1f3f5;" placeholder="Số tiền"
-                                         formControlName="totalSpent"></td>
+                                         formControlName="money"></td>
               <td style="width: 20px"></td>
               <td class="tdTbale"><input type="text" style="border: 1px solid #f1f3f5 ;" placeholder="Ghi chú"
-                                         formControlName="note"></td>
+                                         formControlName="description"></td>
             </tr>
           </table>
         </div>
@@ -74,7 +77,7 @@
                 </div>
               </td>
               <td>
-                <!--                <p class="nowrap">{{incomeCategory.note}}</p>-->
+                                <p class="nowrap">{{incomeCategory.id}}</p>
               </td>
               <td>
               </td>

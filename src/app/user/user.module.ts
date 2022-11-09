@@ -11,9 +11,10 @@ import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import { UserHomeComponent } from './home/user-home/user-home.component';
 import {SharesModule} from "../shares/shares.module";
 import {PaymentComponent} from "./home/payment/payment.component";
+import {AddCategoryComponent} from "./home/category/add-category/add-category.component";
 
 @NgModule({
-  declarations: [UserHomeComponent,ProfileDetailComponent,PaymentComponent],
+  declarations: [UserHomeComponent,ProfileDetailComponent,PaymentComponent, AddCategoryComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
@@ -24,7 +25,7 @@ import {PaymentComponent} from "./home/payment/payment.component";
     AngularFireStorageModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    SharesModule
+    SharesModule,
   ]
 })
 export class UserModule {
