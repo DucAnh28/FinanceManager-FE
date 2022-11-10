@@ -52,7 +52,6 @@
   </div>
 </div>
 
-
 <div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -86,7 +85,7 @@
                 </div>
                 <div class="form-group">
                   <label>Ava upload</label>
-                  <input type="file" name="img[]" class="file-upload-default">
+<!--                  <input type="file" name="img[]" class="file-upload-default">-->
                   <div class="input-group col-xs-12">
                     <input type="file" #uploadAva (change)="onFileSelected($event)" formControlName="ava"
                            class="file-upload-browse btn btn-gradient-primary">
@@ -121,8 +120,8 @@
               <h4 class="card-title">Edit Form</h4>
               <form class="forms-sample" [formGroup]="changePassForm" (ngSubmit)="changePassword()" *ngIf="editForm">
                 <div class="form-group">
-                  <label for="username">Old Password</label>
-                  <input type="text" class="form-control" id="oldPassword" placeholder="Old Password"
+                  <label for="oldPassword">Old Password</label>
+                  <input type="password" class="form-control" id="oldPassword" placeholder="Old Password"
                          formControlName="oldPassword">
                   <div *ngIf="!oldPassword.valid &&oldPassword?.touched">
                     <div [hidden]="!oldPassword?.errors?.['required']">
@@ -134,8 +133,8 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="email">New Password</label>
-                  <input type="email" class="form-control" id="newPassword" placeholder="New Password"
+                  <label for="newPassword">New Password</label>
+                  <input type="password" class="form-control" id="newPassword" placeholder="New Password"
                          formControlName="newPassword">
                   <div *ngIf="!newPassword.valid &&newPassword?.touched">
                     <div [hidden]="!newPassword?.errors?.['required']">
@@ -147,9 +146,8 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="phone">Confirm Password</label>
-                  <input type="text" class="form-control" id="confirmPassword" placeholder="Confirm Password"
-                         formControlName="confirmPassword">
+                  <label for="confirmPassword">Confirm Password</label>
+                  <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" formControlName="confirmPassword" (ngModelChange)="comparePassword()">
                   <div *ngIf="!confirmPassword.valid &&confirmPassword?.touched">
                     <div [hidden]="!confirmPassword?.errors?.['required']">
                       <p style="color: red"> Password is required </p>

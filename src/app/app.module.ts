@@ -4,7 +4,6 @@ import {AppComponent} from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AppRoutingModule} from './app-routing.module';
 import {ReactiveFormsModule} from "@angular/forms";
-import {NgxPaginationModule} from 'ngx-pagination';
 import {JwtInterceptor} from "./helper/jwt-interceptor";
 
 @NgModule({
@@ -16,7 +15,6 @@ import {JwtInterceptor} from "./helper/jwt-interceptor";
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    NgxPaginationModule
   ],
   providers: [
     {

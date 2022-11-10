@@ -89,15 +89,15 @@ export class ProfileDetailComponent implements OnInit {
 
 
   get oldPassword() {
-    return this.editForm.get("oldPassword")
+    return this.changePassForm.get("oldPassword")
   }
 
   get newPassword() {
-    return this.editForm.get("newPassword")
+    return this.changePassForm.get("newPassword")
   }
 
   get confirmPassword() {
-    return this.editForm.get("confirmPassword")
+    return this.changePassForm.get("confirmPassword")
   }
 
   comparePassword() {
@@ -116,9 +116,10 @@ export class ProfileDetailComponent implements OnInit {
 
   changePassword() {
     this.checkOldPassword();
-    const changePass = this.editForm.value;
+    const changePass = this.changePassForm.value;
     this.accountService.changePassword(this.appUser.id, changePass).subscribe(data => {
       if (data !== null) {
+        this.changePassForm.reset();
         Swal.fire("Success","Change Your Password Successful !!","success")
       }
     })
