@@ -35,8 +35,8 @@
                 </td>
                 <td> {{wallets.money}}</td>
                 <td>
-                  <button type="button" class="btn btn-gradient-primary me-2" style="min-width:50px" data-toggle="modal" data-target="#addWallet"
-                          (click)="submitAddMoney(wallets.id)">AddMoney
+                  <button type="button" class="btn btn-gradient-primary me-2" style="min-width:50px" data-toggle="modal" data-target="#addMoney"
+                          (click)="addMoneyForm(wallets.id)">AddMoney
                   </button>
                 </td>
                 <td>
@@ -216,22 +216,24 @@
       <div class="modal-body">
 
 
-        <form class="forms-sample" [formGroup]="formAddMoney" >
-
+        <form class="forms-sample" (ngSubmit)="addMoney()">
+          <div>
+            <label><img [src]="walletCurrent.icon"></label>
+          </div>
           <div class="form-group">
-            <label for="exampleInputUsername5">Money want add</label>
-            <input type="text" class="form-control"   formControlName="addmoney" id="exampleInputUsername5">
+            <label for="add_money">Enter the amount you want to add to your wallet</label>
+            <input type="number" class="form-control" name="money1" id="add_money" [(ngModel)]="addMoney123">
           </div>
 
-          <button type="submit" class="btn btn-gradient-primary me-2" (click)="submitAddMoney(  )">AddMoney</button>
+          <button type="submit" class="btn btn-gradient-primary me-2">Add Money</button>
+          <!--                  <button class="btn btn-light">Cancel</button>-->
           <button type="button" class="btn btn-light" data-dismiss="modal" >Cancel</button>
         </form>
-
-      </div>
       <div class="modal-footer">
         <!--        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
         <!--        <button type="button" class="btn btn-primary">Save changes</button>-->
       </div>
     </div>
   </div>
+</div>
 </div>

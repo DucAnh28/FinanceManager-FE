@@ -21,6 +21,7 @@ export class WalletListComponent implements OnInit {
   walletCurrent: Wallet = {};
   walletList: Wallet[] = [];
   Form: FormGroup
+  addMoney123: number;
   appUserWallet : AppUser ={}
 
   formCreat: FormGroup = new FormGroup({
@@ -40,12 +41,11 @@ export class WalletListComponent implements OnInit {
               private accountService : AccountService) {
     this.appUserWallet.id = accountService.currentUserValue.id
   }
-  formAddMoney:FormGroup=new FormGroup({
-    id:new FormControl(),
-    addmoney:new FormControl()
-  })
-  submitAddMoney(id:number){
+  addMoneyForm(id:number){
+    this.walletService.findWalletById(id).subscribe(dates =>{
+      this.walletCurrent=dates;
 
+    } )
   }
 
   createForm(id: number) {
@@ -59,7 +59,18 @@ export class WalletListComponent implements OnInit {
         icon: new FormControl(),
       })
     })
-
+  }
+  submitCreate() {
+    const wallet = this.formCreat.value;
+    wallet.icon = this.arrayPicture
+    wallet.appUser = this.appUserWallet;
+    console.log(this.arrayPicture)
+    this.walletService.saveWallet(wallet).subscribe(() => {
+      this.formCreat.reset();
+      alert('Create Successful !');
+      this.getAll();
+      this.getAllMoney();
+    })
   }
 
   ngOnInit(): void {
@@ -69,10 +80,23 @@ export class WalletListComponent implements OnInit {
 
   updateWallet() {
     this.walletService.editWallet(this.walletCurrent.id, this.walletCurrent).subscribe(() => {
-      alert("Cập nhật ví thành công");
+      alert("Update Successful !");
       this.getAll();
       this.getAllMoney();
     })
+  }
+  addMoney(){
+
+
+    console.log(this.addMoney123)
+    this.walletService.addMoney(this.walletCurrent.id,this.addMoney123).subscribe(data =>{
+      console.log(data)
+
+      alert("Add Money Successful !")
+      this.getAll();
+      this.getAllMoney();
+    });
+
   }
 
   deleteWallet() {
@@ -124,16 +148,5 @@ export class WalletListComponent implements OnInit {
     console.log(this.selectedImage);
     this.submitFile();
   }
-  submitCreate() {
-    const wallet = this.formCreat.value;
-    wallet.icon = this.arrayPicture
-    wallet.appUser = this.appUserWallet;
-    console.log(this.arrayPicture)
-    this.walletService.saveWallet(wallet).subscribe(() => {
-      this.formCreat.reset();
-      alert('Create Successful !');
-      this.getAll();
-      this.getAllMoney();
-    })
-  }
+
 }

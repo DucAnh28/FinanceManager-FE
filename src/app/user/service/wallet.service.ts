@@ -37,7 +37,7 @@ export class WalletService {
     let user_id=this.accountService.currentUserValue.id;
     return this.http.get<number>(`${api_URL}/wallet/money/`+user_id);
   }
-  // addMoney(id:number|undefined,money:number|undefined):Observable<number>{
-  //   return this.http.get<number>(`${api_URL}/wallet/addmoney/${id}?money=`+money);
-  // }
+  addMoney(id:number|undefined,money:number|undefined):Observable<number>{
+    return this.http.get<number>(`${api_URL}/wallet/addmoney/${id}?money=`+money);
+  }
 }
