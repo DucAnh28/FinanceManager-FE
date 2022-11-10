@@ -12,9 +12,11 @@ import { UserHomeComponent } from './home/user-home/user-home.component';
 import {SharesModule} from "../shares/shares.module";
 import {PaymentComponent} from "./home/payment/payment.component";
 import {AddCategoryComponent} from "./home/category/add-category/add-category.component";
+import {ShowCategoryComponent} from "./home/category/show-category/show-category.component";
+import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
-  declarations: [UserHomeComponent,ProfileDetailComponent,PaymentComponent, AddCategoryComponent],
+  declarations: [UserHomeComponent,ProfileDetailComponent,PaymentComponent, AddCategoryComponent, ShowCategoryComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
@@ -26,6 +28,7 @@ import {AddCategoryComponent} from "./home/category/add-category/add-category.co
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     SharesModule,
+    NgxPaginationModule,
   ]
 })
 export class UserModule {

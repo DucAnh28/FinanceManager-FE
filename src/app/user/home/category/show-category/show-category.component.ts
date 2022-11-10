@@ -23,8 +23,8 @@ export class ShowCategoryComponent implements OnInit {
   updateCategoryForm = new FormGroup({
     name: new FormControl(),
     status: new FormControl(),
-    description: new FormControl(),
-    color: new FormControl(),
+    // description: new FormControl(),
+    // color: new FormControl(),
   })
   categories: Category[] = [];
   payment: Payment[] = [];
@@ -55,8 +55,8 @@ export class ShowCategoryComponent implements OnInit {
       this.updateCategoryForm = new FormGroup({
         name: new FormControl(category.name),
         status: new FormControl(category.status + ""),
-        description: new FormControl(category.note),
-        color: new FormControl(category.color),
+        // description: new FormControl(category.note),
+        // color: new FormControl(category.color),
       })
     })
   }
@@ -117,7 +117,7 @@ export class ShowCategoryComponent implements OnInit {
     this.categoryUpdate = {
       name: this.updateCategoryForm.value.name,
       status: this.updateCategoryForm.value.status,
-      description: this.updateCategoryForm.value.description,
+      // description: this.updateCategoryForm.value.description,
       // color: this.updateCategoryForm.value.color,
       user: {
         id: localStorage.getItem('ID')
