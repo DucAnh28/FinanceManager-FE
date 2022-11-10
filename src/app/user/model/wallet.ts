@@ -1,4 +1,5 @@
 import firebase from "firebase/compat";
+import {AppUser} from "./appUser";
 
 export interface Wallet {
   id?:number;
@@ -6,5 +7,5 @@ export interface Wallet {
   money?:number;
   status?:boolean;
   icon?:string;
-  user?:any;
+  appUser?:any;
 }
