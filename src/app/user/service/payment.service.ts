@@ -13,8 +13,15 @@ export class PaymentService {
   constructor(private httpClient: HttpClient) {
   }
 
+  // findAll(): Observable<any> {
+  //   // return this.httpClient.get(API + 'find-by-wallet/' + localStorage.getItem('ID_WALLET'));
+  //   return this.httpClient.get(API , payment);
+  // }
+
   findAll(): Observable<any> {
-    return this.httpClient.get(API + 'find-by-wallet/' + localStorage.getItem('ID_WALLET'));
+    console.log(API);
+    return this.httpClient.get(API);
+
   }
 
   findById(id: number): Observable<any> {

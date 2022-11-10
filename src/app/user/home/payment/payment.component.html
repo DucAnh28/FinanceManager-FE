@@ -156,9 +156,31 @@
       <tr>
         <td>
           <button type="submit">Add Payment</button>
-          <button type="submit">Delete Payment</button>
+<!--          <button type="submit">Delete Payment</button>-->
         </td>
       </tr>
     </table>
   </form>
 </div>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Date</th>
+    <th>Money</th>
+    <th>Category</th>
+    <th>Description</th>
+    <th>Delete</th>
+  </tr>
+  <h1>{{paymentList.length}}</h1>
+  <tr *ngFor="let payment of paymentList">
+    <td>{{payment.name}}</td>
+    <td>{{payment.date}}</td>
+    <td>{{payment.money}}</td>
+    <td>{{payment.category.name}}</td>
+    <td>{{payment.description}}</td>
+    <td><button (click)="deletePayment(payment.id)">Delete</button></td>
+  </tr>
+</table>
+
+

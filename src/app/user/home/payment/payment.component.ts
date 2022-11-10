@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 import {Category} from "../../model/category";
 import {PaymentService} from "../../service/payment.service";
 import {CategoryService} from "../../service/category.service";
 import {AccountService} from "../../../account/service/account.service";
 import {Payment} from "../../model/payment";
-import {Wallet} from "../../model/wallet";
-import {WalletService} from "../../service/wallet.service";
+import {get} from "@angular/fire/database";
 
 
 @Component({
@@ -21,20 +20,20 @@ export class PaymentComponent implements OnInit {
     money: new FormControl(),
     category: new FormControl(),
     description: new FormControl(),
-
+    status: new FormControl(1),
   })
 
 
-  listCategory: Category[] =[];
+  listCategory: Category[] = [];
   // color: string = '#E9E612';
   nameCategory: string = 'Danh mục giao dich';
   expenseCategories: Category[] = [];
   incomeCategories: Category[] = [];
 
-  newCategory:Category = {
+  newCategory: Category = {
     // id: this.newCategoryId
   }
-  public newCategoryId: any =1;
+  public newCategoryId: any = 1;
 
 
   constructor(
@@ -44,10 +43,8 @@ export class PaymentComponent implements OnInit {
   ) {
     this.categoryService.findCateByUser(accountService.currentUserValue.id).subscribe(data => {
       this.listCategory = data;
-      console.log("cTWA",this.listCategory);
+      console.log("cTWA", this.listCategory);
     })
-
-
 
 
   }
@@ -55,6 +52,8 @@ export class PaymentComponent implements OnInit {
   ngOnInit(): void {
     // this.showExpenseCategory();
     // this.showIncomeCategory();
+    this.getPaymentList();
+
   }
 
   // showExpenseCategory() {
@@ -75,6 +74,7 @@ export class PaymentComponent implements OnInit {
   // }
 
   addPayment() {
+
     const data = this.paymentForm.value;
     console.log(data);
     console.log(data.category);
@@ -89,30 +89,49 @@ export class PaymentComponent implements OnInit {
       console.log(data)
       alert('Thêm giao dịch thành công');
       this.paymentForm.reset();
+      this.getPaymentList();
     });
   }
 
+  paymentList: Payment[] = [];
 
-    //
-    // const newPayment:Payment = {
-    //   name: this.paymentForm?.value.name,
-    //   date: this.paymentForm?.value.date,
-    //   money: this.paymentForm?.value.money,
-    //   category: this.newCategory,
-    //   description: this.paymentForm?.value.description
-    // }
-    // this.categoryService.findById(Number.parseInt(this.paymentForm.value.category)).subscribe(data => {
-    //   this.paymentForm.value.category = data;
-    // })
-    // const payment = this.paymentForm.value
-    // console.log(payment)
-    // this.paymentService.save(newPayment).subscribe(data => {
-    //   console.log(data);
-    //   console.log("thanh cong")
-    // })
+  getPaymentList() {
+    this.paymentService.findAll().subscribe(data => {
+      this.paymentList = data;
+      console.log("paymentList", this.paymentList);
+
+    })
 
 
+  }
 
+  deletePayment(id: number) {
+    this.paymentService.delete(id).subscribe(data => {
+      console.log(data);
+      this.getPaymentList();
+
+    })
+
+  }
+
+
+  //
+  // const newPayment:Payment = {
+  //   name: this.paymentForm?.value.name,
+  //   date: this.paymentForm?.value.date,
+  //   money: this.paymentForm?.value.money,
+  //   category: this.newCategory,
+  //   description: this.paymentForm?.value.description
+  // }
+  // this.categoryService.findById(Number.parseInt(this.paymentForm.value.category)).subscribe(data => {
+  //   this.paymentForm.value.category = data;
+  // })
+  // const payment = this.paymentForm.value
+  // console.log(payment)
+  // this.paymentService.save(newPayment).subscribe(data => {
+  //   console.log(data);
+  //   console.log("thanh cong")
+  // })
 
 
 }
