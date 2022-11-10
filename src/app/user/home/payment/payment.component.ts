@@ -114,6 +114,18 @@ export class PaymentComponent implements OnInit {
 
   }
 
+  // updatePayment(id: any) {
+  //   this.paymentService.update(id).subscribe(data => {
+  //     console.log(data);
+  //     this.getPaymentList();
+  //
+  //   })
+
+
+
+
+
+
 
   //
   // const newPayment:Payment = {
