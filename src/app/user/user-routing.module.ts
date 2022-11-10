@@ -3,6 +3,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {UserHomeComponent} from "./home/user-home/user-home.component";
 import {WalletListComponent} from "./home/wallet/wallet-list/wallet-list.component";
 import {ProfileDetailComponent} from "./home/profile/profile-detail/profile-detail.component";
+import {CommonModule} from "@angular/common";
 
 let routes: Routes = [
   {
@@ -26,7 +27,7 @@ let routes: Routes = [
 ]
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes),CommonModule],
   exports: [RouterModule]
 })
 export class UserRoutingModule {

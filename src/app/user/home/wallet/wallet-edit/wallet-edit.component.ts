@@ -32,7 +32,7 @@ export class WalletEditComponent implements OnInit {
   updateWallet(){
     this.walletService.editWallet(this.wallet.id,this.wallet).subscribe(()=>{
       alert("Cập nhật ví thành công");
-      this.router.navigate(['wallet/list']);
+      this.router.navigate(['user/wallet']);
     })
   }
 }

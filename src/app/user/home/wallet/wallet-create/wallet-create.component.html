@@ -14,18 +14,12 @@
       <div class="col-10"><input  class="col-8" type="number" formControlName="money" ></div>
 
     </div>
-    <div class="row mt-3 form-group">
-      <div class="col-2">Status</div>
-      <div class="col-7"><textarea  class="col-4" formControlName="status"  class="form-control"  ></textarea></div>
-    </div>
+
     <div class="row mt-3 form-group">
       <div class="col-2">Icon</div>
       <input type="file" #uploadFile (change)="uploadFileImg()" class="col-4" formControlName="icon" id="image" class="form-control" >
     </div>
-    <div class="row mt-3 form-group">
-      <div class="col-2">User</div>
-      <div class="col-7"><textarea  class="col-4" formControlName="user"  class="form-control"  placeholder="để null nhé"></textarea></div>
-    </div>
+
     <div class="row">
       <div class="col-2 m-auto">
         <button type="submit" class="btn mt-4 btn-primary">Create</button>
