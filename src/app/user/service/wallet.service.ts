@@ -13,7 +13,8 @@ const api_URL=`${environment.api_url}`;
 export class WalletService {
 
   constructor(private http:HttpClient,
-              private accountService:AccountService
+              private accountService:AccountService,
+              // private walletService:WalletService
                ) { }
 
   getAll():Observable<Wallet[]>{
@@ -33,7 +34,10 @@ export class WalletService {
     return this.http.put<Wallet>(`${api_URL}/wallet/${id}`,wallet);
   }
   getAllMoneyByUser():Observable<number>{
-    let user_id=this.accountService.currentUserValue.id
+    let user_id=this.accountService.currentUserValue.id;
     return this.http.get<number>(`${api_URL}/wallet/money/`+user_id);
   }
+  // addMoney(id:number|undefined,money:number|undefined):Observable<number>{
+  //   return this.http.get<number>(`${api_URL}/wallet/addmoney/${id}?money=`+money);
+  // }
 }

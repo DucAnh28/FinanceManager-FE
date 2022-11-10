@@ -1,88 +1,125 @@
+<div class="content-wrapper"><br>
+  <br>
+  <div class="sum_money">
+    <img src="https://symbols.vn/wp-content/uploads/2021/11/Goi-y-mau-icon-tien.jpg" width="50" height="50"
+         class="card-img-absolute" alt="circle-image" />
+    <h4 class="font-weight-normal mb-3">Sum Money <i class="mdi mdi-chart-line mdi-24px float-right"></i>
+    </h4>
+    <h2 class="mb-5">{{money}} VNĐ</h2>
+  </div>
+  <button type="button" class="btn btn-gradient-primary me-2" data-toggle="modal" data-target="#createWallet">Add New Wallet
+  <i class="mdi mdi-checkbox-marked-outline"></i>
+  </button>
 
-<div class="content-wrapper"> <br>
-<h1 style="text-align: center">Wallet List</h1>
-<br>
-<p>SumMoney</p>
-<p>{{money}}</p>
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createWallet" >Add New Wallet</button>
-<table class="table table-striped container" >
-  <tr>
-    <td>Number</td>
-    <td>Name</td>
-    <td>Money</td>
-    <td>Icon</td>
-    <td colspan="2" style="text-align: center">Action</td>
-  </tr>
-  <tr *ngFor="let wallets of walletList;index as i">
-    <td>{{i + 1}}</td>
-    <td>{{wallets.name}}</td>
-    <td>{{wallets.money}}</td>
-    <img [src]="wallets.icon" >
-    <td>
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editWallet"  (click)="createForm(wallets.id)">AddMoney</button>
-    </td>
-    <td>
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editWallet"  (click)="createForm(wallets.id)">Edit</button>
-    </td>
-    <td>
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteWallet" (click)="createForm(wallets.id)">Delete</button>
-    </td>
-  </tr>
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Wallet List</h4>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+              <tr>
+                <th> Number</th>
+                <th> Bank</th>
+                <th> Money</th>
+                <th colspan="3" style="text-align: center"> Action</th>
 
-
-</table>
-</div>
-
-
-  <!-- Modal -->
-  <div class="modal fade" id="editWallet" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="Edit">Edit Wallet</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form (ngSubmit)="updateWallet()"  class="container">
-            <div class="row mt-3 form-group">
-              <div class="col-2">Icon</div>
-              <img [src]="walletCurrent.icon">
-            </div>
-            <div class="row mt-3 form-group" >
-              <div class="col-2 ">Name</div>
-              <div class="col-10"><input name="name" [(ngModel)]="walletCurrent.name"   class="col-8  " type="text" ></div>
-            </div>
-            <div class=" row mt-3 form-group">
-              <div class="col-2">Money</div>
-              <div class="col-10"><input name="money" [(ngModel)]="walletCurrent.money"  class="col-8" type="number" ></div>
-
-            </div>
-
-            <div class="row mt-3 form-group">
-              <div class="col-2">User</div>
-              <div class="col-7"><textarea name="user" [(ngModel)]="walletCurrent.appUser"  class="col-4"  class="form-control"  ></textarea></div>
-            </div>
-            <div class="row">
-              <div class="col-2 m-auto">
-                <button type="submit" class="btn mt-4 btn-primary">Update</button>
-              </div>
-
-            </div>
-
-          </form>
-
-        </div>
-        <div class="modal-footer">
-<!--          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-<!--          <button type="submit" class="btn btn-primary">Save changes</button>-->
+              </tr>
+              </thead>
+              <tbody *ngFor="let wallets of walletList;index as i">
+              <tr>
+                <td>{{i + 1}}</td>
+                <td>
+                  <img [src]="wallets.icon" class="me-2" alt="image">{{wallets.name}}
+                </td>
+                <td> {{wallets.money}}</td>
+                <td>
+                  <button type="button" class="btn btn-gradient-primary me-2" style="min-width:50px" data-toggle="modal" data-target="#addWallet"
+                          (click)="submitAddMoney(wallets.id)">AddMoney
+                  </button>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-gradient-primary me-2" style="min-width:50px " data-toggle="modal" data-target="#editWallet"
+                          (click)="createForm(wallets.id)">Edit
+                    <i class="mdi mdi-wrench"></i>
+                  </button>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-gradient-primary me-2" style="min-width:50px" data-toggle="modal" data-target="#deleteWallet"
+                          (click)="createForm(wallets.id)">Delete
+                    <i class="mdi mdi-bookmark-remove"></i>
+                  </button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="editWallet" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+                  <h5 class="modal-title" id="Edit">Edit Wallet</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+        <div class="modal-body">
+
+<!--                    <div class="col-md-6 grid-margin stretch-card">-->
+<!--                      <div class="card">-->
+<!--                        <div class="card-body">-->
+
+
+                          <form class="forms-sample" (ngSubmit)="updateWallet()">
+                            <div>
+                              <label><img [src]="walletCurrent.icon"></label>
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleInputUsername1">Name</label>
+                              <input type="text" class="form-control" [(ngModel)]="walletCurrent.name" placeholder="name" name="name" id="exampleInputUsername1">
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Money</label>
+                              <input type="text" class="form-control" [(ngModel)]="walletCurrent.money" placeholder="money" name="money" id="exampleInputEmail1">
+                            </div>
+                            <button type="submit" class="btn btn-gradient-primary me-2">Update</button>
+          <!--                  <button class="btn btn-light">Cancel</button>-->
+                            <button type="button" class="btn btn-light" data-dismiss="modal" >Cancel</button>
+                          </form>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--          </form>-->
+
+
+
+<div class="modal-footer">
+  <!--          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+  <!--          <button type="submit" class="btn btn-primary">Save changes</button>-->
+</div>
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
 <!---->
-<div class="modal fade" id="deleteWallet" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+<div class="modal fade" id="deleteWallet" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -93,45 +130,38 @@
       </div>
       <div class="modal-body">
 
-          <form (ngSubmit)="deleteWallet()"  class="container">
-            <div class="row mt-3 form-group">
-              <div class="col-2">Icon</div>
-              <img [src]="walletCurrent.icon">
-            </div>
-            <div class="row mt-3 form-group" >
-              <div class="col-2 ">Name</div>
-              <div class="col-10"><input name="name" [(ngModel)]="walletCurrent.name"   class="col-8  " type="text" ></div>
-            </div>
-            <div class=" row mt-3 form-group">
-              <div class="col-2">Money</div>
-              <div class="col-10"><input name="money" [(ngModel)]="walletCurrent.money"  class="col-8" type="number" ></div>
 
-            </div>
+        <form class="forms-sample" (ngSubmit)="deleteWallet()">
+          <div>
+            <label><img [src]="walletCurrent.icon"></label>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputUsername2">Name</label>
+            <input type="text" class="form-control" [(ngModel)]="walletCurrent.name" id="exampleInputUsername2"
+                   placeholder="name" name="name">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail2">Money</label>
+            <input type="text" class="form-control" [(ngModel)]="walletCurrent.money" id="exampleInputEmail2"
+                   placeholder="money" name="money">
+          </div>
+          <button type="submit" class="btn btn-gradient-primary me-2">Delete</button>
+          <!--                  <button class="btn btn-light">Cancel</button>-->
+          <button type="button" class="btn btn-light" data-dismiss="modal" >Cancel</button>
+        </form>
 
-            <div class="row mt-3 form-group">
-              <div class="col-2">User</div>
-              <div class="col-7"><textarea name="user" [(ngModel)]="walletCurrent.appUser"  class="col-4"  class="form-control"  ></textarea></div>
-            </div>
-            <div class="row">
-              <div class="col-2 m-auto">
-                <button type="submit" class="btn mt-4 btn-primary">Delete</button>
-              </div>
-
-            </div>
-
-          </form>
-
-        </div>
-      </div>
-      <div class="modal-footer">
-<!--        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-<!--        <button type="button" class="btn btn-primary">Save changes</button>-->
       </div>
     </div>
+    <div class="modal-footer">
+      <!--        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+      <!--        <button type="button" class="btn btn-primary">Save changes</button>-->
+    </div>
   </div>
+</div>
 
 <!---->
-<div class="modal fade" id="createWallet" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="createWallet" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -141,22 +171,63 @@
         </button>
       </div>
       <div class="modal-body">
-         <form [formGroup]="formCreat" >
-          <div>Name
-           <input type="text" formControlName="name" >
-          </div>
-           <div>Money
-             <input type="text" formControlName="money" >
-           </div>
-           <div>Icon
-             <input type="file" formControlName="icon" #uploadFile (change)="uploadFileImg()" >
-           </div>
-           <div>
-             <button type="submit" (click)="submitCreate()">Add</button>
-           </div>
-         </form>
 
-        </div>
+
+        <form class="forms-sample" [formGroup]="formCreat" >
+
+          <div class="form-group">
+            <label for="exampleInputUsername3">Name</label>
+            <input type="text" class="form-control"  placeholder="name" formControlName="name" id="exampleInputUsername3">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail3">Money</label>
+            <input type="text" class="form-control"  placeholder="money" formControlName="money" id="exampleInputEmail3">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail4">Icon</label>
+            <input type="file" class="form-control"   formControlName="icon" #uploadFile  (change)="uploadFileImg()" id="exampleInputEmail4">
+
+          </div>
+
+          <button type="submit" class="btn btn-gradient-primary me-2" (click)="submitCreate()">Create</button>
+          <button type="button" class="btn btn-light" data-dismiss="modal" >Cancel</button>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <!--        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+        <!--        <button type="button" class="btn btn-primary">Save changes</button>-->
+      </div>
+  </div>
+</div>
+  </div>
+<!---->
+
+<div class="modal fade" id="addMoney" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="Add">Add Money</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+
+        <form class="forms-sample" [formGroup]="formAddMoney" >
+
+          <div class="form-group">
+            <label for="exampleInputUsername5">Money want add</label>
+            <input type="text" class="form-control"   formControlName="addmoney" id="exampleInputUsername5">
+          </div>
+
+          <button type="submit" class="btn btn-gradient-primary me-2" (click)="submitAddMoney(  )">AddMoney</button>
+          <button type="button" class="btn btn-light" data-dismiss="modal" >Cancel</button>
+        </form>
+
+      </div>
       <div class="modal-footer">
         <!--        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
         <!--        <button type="button" class="btn btn-primary">Save changes</button>-->

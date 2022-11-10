@@ -40,6 +40,13 @@ export class WalletListComponent implements OnInit {
               private accountService : AccountService) {
     this.appUserWallet.id = accountService.currentUserValue.id
   }
+  formAddMoney:FormGroup=new FormGroup({
+    id:new FormControl(),
+    addmoney:new FormControl()
+  })
+  submitAddMoney(id:number){
+
+  }
 
   createForm(id: number) {
     this.walletService.findWalletById(id).subscribe(data => {
