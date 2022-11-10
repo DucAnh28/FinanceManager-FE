@@ -10,10 +10,10 @@ import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import { UserHomeComponent } from './home/user-home/user-home.component';
 import {SharesModule} from "../shares/shares.module";
-import {PaymentComponent} from "./home/payment/payment.component";import {WalletListComponent} from "./home/wallet/wallet-list/wallet-list.component";
+import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 
 @NgModule({
-  declarations: [UserHomeComponent,ProfileDetailComponent,PaymentComponent,WalletListComponent],
+  declarations: [UserHomeComponent,ProfileDetailComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
@@ -25,7 +25,7 @@ import {PaymentComponent} from "./home/payment/payment.component";import {Wallet
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     SharesModule,
-
+    MdbModalModule
   ]
 })
 export class UserModule {
