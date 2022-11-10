@@ -7,8 +7,9 @@
     </h4>
     <h2 class="mb-5">{{money}} VNĐ</h2>
   </div>
-  <button type="button" class="btn btn-gradient-primary me-2" data-toggle="modal" data-target="#createWallet">Add New Wallet
-  <i class="mdi mdi-checkbox-marked-outline"></i>
+
+  <button type="button" class="btn btn-gradient-primary me-2" data-toggle="modal" data-target="#createWallet">
+  <i class="mdi mdi-checkbox-marked-outline"></i>  Add New Wallet
   </button>
 
   <div class="row">
@@ -36,19 +37,20 @@
                 <td> {{wallets.money}}</td>
                 <td>
                   <button type="button" class="btn btn-gradient-primary me-2" style="min-width:50px" data-toggle="modal" data-target="#addMoney"
-                          (click)="addMoneyForm(wallets.id)">AddMoney
+                          (click)="addMoneyForm(wallets.id)">
+                    <i class="mdi mdi-loupe"></i>  AddMoney
                   </button>
                 </td>
                 <td>
                   <button type="button" class="btn btn-gradient-primary me-2" style="min-width:50px " data-toggle="modal" data-target="#editWallet"
-                          (click)="createForm(wallets.id)">Edit
-                    <i class="mdi mdi-wrench"></i>
+                          (click)="createForm(wallets.id)">
+                    <i class="mdi mdi-wrench"></i>  Edit
                   </button>
                 </td>
                 <td>
                   <button type="button" class="btn btn-gradient-primary me-2" style="min-width:50px" data-toggle="modal" data-target="#deleteWallet"
-                          (click)="createForm(wallets.id)">Delete
-                    <i class="mdi mdi-bookmark-remove"></i>
+                          (click)="createForm(wallets.id)">
+                    <i class="mdi mdi-bookmark-remove"></i>  Delete
                   </button>
                 </td>
               </tr>
