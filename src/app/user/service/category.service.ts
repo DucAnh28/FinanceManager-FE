@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {Category} from "../model/category";
 
 const API = 'http://localhost:8080/categories'
 
@@ -33,5 +34,9 @@ export class CategoryService {
 
   delete(id: any):Observable<any>{
     return this.httpClient.delete(API + `/${id}`);
+  }
+
+  findCateByUser(id: number):Observable<Category[]>{
+    return this.httpClient.get<Category[]>(API+"/list/"+id);
   }
 }

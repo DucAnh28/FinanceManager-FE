@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {Payment} from "../model/payment";
 
 const API = 'http://localhost:8080/payment/';
 
@@ -12,16 +13,24 @@ export class PaymentService {
   constructor(private httpClient: HttpClient) {
   }
 
+  // findAll(): Observable<any> {
+  //   // return this.httpClient.get(API + 'find-by-wallet/' + localStorage.getItem('ID_WALLET'));
+  //   return this.httpClient.get(API , payment);
+  // }
+
   findAll(): Observable<any> {
-    return this.httpClient.get(API + 'find-by-wallet/' + localStorage.getItem('ID_WALLET'));
+    console.log(API);
+    return this.httpClient.get(API);
+
   }
 
   findById(id: number): Observable<any> {
     return this.httpClient.get(API + id);
   }
 
-  save(payment: any): Observable<any> {
-    return this.httpClient.post(API + 'create', payment);
+  save(payment: any): Observable<any>
+  {
+    return this.httpClient.post(API , payment);
   }
 
   update(id: number, payment: any): Observable<any> {
