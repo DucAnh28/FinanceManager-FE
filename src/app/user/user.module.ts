@@ -11,9 +11,10 @@ import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import { UserHomeComponent } from './home/user-home/user-home.component';
 import {SharesModule} from "../shares/shares.module";
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
+import {WalletListComponent} from "./home/wallet/wallet-list/wallet-list.component";
 
 @NgModule({
-  declarations: [UserHomeComponent,ProfileDetailComponent],
+  declarations: [UserHomeComponent,ProfileDetailComponent,WalletListComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
