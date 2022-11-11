@@ -22,14 +22,14 @@ export class WalletListComponent implements OnInit {
   walletList: Wallet[] = [];
   Form: FormGroup
   addMoney123: number;
-  appUserWallet : AppUser ={}
+  appUserWallet: AppUser = {}
 
   formCreat: FormGroup = new FormGroup({
     id: new FormControl(),
     name: new FormControl(),
     money: new FormControl(),
     icon: new FormControl(),
-    appUser : new FormControl()
+    appUser: new FormControl()
   });
 
   money: number = null;
@@ -38,14 +38,15 @@ export class WalletListComponent implements OnInit {
               private router: Router,
               private activatedRoute: ActivatedRoute,
               private storage: AngularFireStorage,
-              private accountService : AccountService) {
+              private accountService: AccountService) {
     this.appUserWallet.id = accountService.currentUserValue.id
   }
-  addMoneyForm(id:number){
-    this.walletService.findWalletById(id).subscribe(dates =>{
-      this.walletCurrent=dates;
 
-    } )
+  addMoneyForm(id: number) {
+    this.walletService.findWalletById(id).subscribe(dates => {
+      this.walletCurrent = dates;
+
+    })
   }
 
   createForm(id: number) {
@@ -60,6 +61,7 @@ export class WalletListComponent implements OnInit {
       })
     })
   }
+
   submitCreate() {
     const wallet = this.formCreat.value;
     wallet.icon = this.arrayPicture
@@ -85,11 +87,10 @@ export class WalletListComponent implements OnInit {
       this.getAllMoney();
     })
   }
-  addMoney(){
 
-
+  addMoney() {
     console.log(this.addMoney123)
-    this.walletService.addMoney(this.walletCurrent.id,this.addMoney123).subscribe(data =>{
+    this.walletService.addMoney(this.walletCurrent.id, this.addMoney123).subscribe(data => {
       console.log(data)
 
       alert("Add Money Successful !")
@@ -100,7 +101,7 @@ export class WalletListComponent implements OnInit {
   }
 
   deleteWallet() {
-    if (confirm("Do you sure about that action???")){
+    if (confirm("Do you sure about that action???")) {
       this.walletService.deleteWallet(this.walletCurrent.id).subscribe(() => {
         alert('Delete Successful !');
         this.getAll();
@@ -143,6 +144,7 @@ export class WalletListComponent implements OnInit {
       ).subscribe();
     }
   }
+
   uploadFileImg() {
     this.selectedImage = this.avatarDom?.nativeElement.files[0];
     console.log(this.selectedImage);
