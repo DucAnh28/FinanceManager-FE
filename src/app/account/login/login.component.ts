@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(private accountService: AccountService,
               private router: Router) {
     if (localStorage.getItem("user") !== null) {
-      this.router.navigate(["/user"])
+      this.router.navigate(["/user/wallet"])
     }
   }
 
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
       } else {
         localStorage.setItem("user", JSON.stringify(data))
         localStorage.setItem("token", JSON.stringify(data.token))
-        this.router.navigate(['/user'])
+        this.router.navigate(['/user/wallet'])
       }
     })
   }

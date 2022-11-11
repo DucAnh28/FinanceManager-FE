@@ -59,13 +59,6 @@
               </tbody>
             </table>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>
-
 
 <!-- Modal -->
 <div class="modal fade" id="editWallet" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -74,6 +67,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="Edit">Edit Form</h5>
+
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -113,19 +107,6 @@
 </div>
 </div>
 
-<!--          </form>-->
-
-
-<div class="modal-footer">
-  <!--          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-  <!--          <button type="submit" class="btn btn-primary">Save changes</button>-->
-</div>
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-<!---->
-
-
 <div class="modal fade" id="deleteWallet" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -158,10 +139,8 @@
                          placeholder="money" name="money">
                 </div>
               </form>
-
             </div>
           </div>
-
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -172,7 +151,6 @@
   </div>
 </div>
 
-<!---->
 <div class="modal fade" id="createWallet" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -210,15 +188,18 @@
               </form>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="modal-footer">
+
+
+    </div>
+        <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary" (click)="submitCreate()" data-dismiss="modal">Create</button>
       </div>
-    </div>
   </div>
 </div>
+  </div>
+  </div>
+  </div>
 <!---->
 
 <div class="modal fade" id="addMoney" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -263,8 +244,12 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary"  (click)="addMoney(addFrom)" [disabled]="!addFrom.valid" data-dismiss="modal">Add Money</button>
-        </div>
       </div>
     </div>
   </div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>

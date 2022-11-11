@@ -104,6 +104,13 @@ export class WalletListComponent implements OnInit {
         Swal.fire('Success',
           'You Have Successfully Added Money To Your Wallet',
           'success')
+
+      }
+      if (this.addMoney123==0){
+        Swal.fire("Fail",
+          "Some Thing Wrong",
+          "error")
+
       }
       this.getAll();
       this.getAllMoney();
@@ -111,26 +118,27 @@ export class WalletListComponent implements OnInit {
 
   }
 
-  deleteWallet() {
+  deleteWallet() {Swal.fire({
+    title: 'Are You Sure?',
+    text: "You Won't Be Able To Revert This!",
+    icon: 'warning',
+    showCancelButton: false,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, Delete It!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+        'Deleted!',
+        'Your Wallet Has Been Deleted.',
+        'success'
+      )
+    }
+  })
+
     this.walletService.deleteWallet(this.walletCurrent.id).subscribe(data => {
 
-      Swal.fire({
-        title: 'Are You Sure?',
-        text: "You Won't Be Able To Revert This!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, Delete It!'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire(
-            'Deleted!',
-            'Your Wallet Has Been Deleted.',
-            'success'
-          )
-        }
-      })
+
       this.getAll();
       this.getAllMoney();
     }, e => {

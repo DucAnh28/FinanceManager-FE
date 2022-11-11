@@ -12,9 +12,11 @@ import { UserHomeComponent } from './home/user-home/user-home.component';
 import {SharesModule} from "../shares/shares.module";
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 import {WalletListComponent} from "./home/wallet/wallet-list/wallet-list.component";
+import {PaymentComponent} from "./home/payment/payment.component";
+
 
 @NgModule({
-  declarations: [UserHomeComponent,ProfileDetailComponent,WalletListComponent],
+  declarations: [UserHomeComponent,ProfileDetailComponent,WalletListComponent,PaymentComponent],
   imports: [
     CommonModule,
     UserRoutingModule,

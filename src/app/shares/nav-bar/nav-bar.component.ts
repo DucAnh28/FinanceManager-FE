@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AccountService} from "../../account/service/account.service";
 import {AppUser} from "../../user/model/appUser";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,7 +11,8 @@ import {AppUser} from "../../user/model/appUser";
 export class NavBarComponent implements OnInit {
   appUser: AppUser = {}
 
-  constructor(private accountService: AccountService) {
+  constructor(private accountService: AccountService,
+              private router :Router) {
     accountService.getUserById().subscribe(data => {
       this.appUser = data;
     })
@@ -21,5 +23,6 @@ export class NavBarComponent implements OnInit {
 
   logout() {
     this.accountService.logout();
+    this.router.navigate([""]);
   }
 }

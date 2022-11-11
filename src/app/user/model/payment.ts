@@ -7,6 +7,6 @@ export interface Payment {
   date?: Date;
   money?: number;
   description?: string;
-  category?: Category;
-  wallet?: Wallet;
+  category?: any;
+  wallet?: any;
 }
