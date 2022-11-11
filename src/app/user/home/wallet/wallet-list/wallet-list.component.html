@@ -105,7 +105,7 @@
   </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary" (click)="updateWallet()" >Update</button>
+          <button type="submit" class="btn btn-primary" (click)="updateWallet()" data-dismiss="modal">Update</button>
         </div>
 
 </div>
@@ -165,7 +165,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary" (click)="deleteWallet()">Delete</button>
+          <button type="submit" class="btn btn-primary" (click)="deleteWallet()" data-dismiss="modal">Delete</button>
         </div>
       </div>
     </div>
@@ -205,7 +205,7 @@
                   <label for="exampleInputEmail4"></label>
                   <input type="file"
                          class="file-upload-browse btn btn-gradient-primary ng-untouched ng-pristine ng-valid"
-                         formControlName="icon" #uploadFile (change)="uploadFileImg()" id="exampleInputEmail4">
+                         formControlName="icon" #uploadFile (change)="uploadFileImg()"  id="exampleInputEmail4">
                 </div>
               </form>
             </div>
@@ -214,7 +214,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" (click)="submitCreate()">Create</button>
+        <button type="submit" class="btn btn-primary" (click)="submitCreate()" data-dismiss="modal">Create</button>
       </div>
     </div>
   </div>
@@ -262,7 +262,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary"  (click)="addMoney(addFrom)" [disabled]="!addFrom.valid">Add Money</button>
+          <button type="button" class="btn btn-primary"  (click)="addMoney(addFrom)" [disabled]="!addFrom.valid" data-dismiss="modal">Add Money</button>
         </div>
       </div>
     </div>
