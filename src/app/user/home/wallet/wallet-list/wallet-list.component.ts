@@ -122,12 +122,19 @@ export class WalletListComponent implements OnInit {
     title: 'Are You Sure?',
     text: "You Won't Be Able To Revert This!",
     icon: 'warning',
-    showCancelButton: false,
+    showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, Delete It!'
+    cancelButtonText:'No Keep It',
+    confirmButtonText: 'Yes, Delete It!',
   }).then((result) => {
     if (result.isConfirmed) {
+      this.walletService.deleteWallet(this.walletCurrent.id).subscribe(data => {
+      this.getAll();
+      this.getAllMoney();
+    }, e => {
+      console.log(e);
+    });
       Swal.fire(
         'Deleted!',
         'Your Wallet Has Been Deleted.',
@@ -136,14 +143,7 @@ export class WalletListComponent implements OnInit {
     }
   })
 
-    this.walletService.deleteWallet(this.walletCurrent.id).subscribe(data => {
 
-
-      this.getAll();
-      this.getAllMoney();
-    }, e => {
-      console.log(e);
-    });
 
   }
 
