@@ -113,37 +113,50 @@ export class PaymentComponent implements OnInit {
     })
 
   }
+  // Update payment
+  updatePaymentForm : FormGroup;
+  updatePayment(id: number) {
+    this.paymentService.findById(id).subscribe(data => {
+      this.updatePaymentForm = new FormGroup({
+        id: new FormControl(data.id),
+        name: new FormControl(data.name),
+        date: new FormControl(data.date),
+        money: new FormControl(data.money),
+        category: new FormControl(data.category),
+        description: new FormControl(data.description),
+        status: new FormControl(data.status),
+      })
+    })
 
-  // updatePayment(id: any) {
-  //   this.paymentService.update(id).subscribe(data => {
-  //     console.log(data);
-  //     this.getPaymentList();
-  //
-  //   })
+  }
+  updatePaymentSubmit() {
+    const data = this.updatePaymentForm.value;
+    console.log(data);
+    // console.log(data.category);
+    // if (data.date == null) {
+    //   data.date = new Date();
+    //   console.log(data.date);
+    // }
+    // data.category = {
+    //   id: data.category
+    // };
+    this.paymentService.update(data.id, data).subscribe(data => {
+      console.log(data)
+      alert('Cập nhật giao dịch thành công');
+      this.updatePaymentForm.reset();
+      this.getPaymentList();
+    });
+  }
 
-
-
-
-
-
-
-  //
-  // const newPayment:Payment = {
-  //   name: this.paymentForm?.value.name,
-  //   date: this.paymentForm?.value.date,
-  //   money: this.paymentForm?.value.money,
-  //   category: this.newCategory,
-  //   description: this.paymentForm?.value.description
-  // }
-  // this.categoryService.findById(Number.parseInt(this.paymentForm.value.category)).subscribe(data => {
-  //   this.paymentForm.value.category = data;
-  // })
-  // const payment = this.paymentForm.value
-  // console.log(payment)
-  // this.paymentService.save(newPayment).subscribe(data => {
-  //   console.log(data);
-  //   console.log("thanh cong")
-  // })
 
 
 }
+
+
+
+
+
+
+
+
+
