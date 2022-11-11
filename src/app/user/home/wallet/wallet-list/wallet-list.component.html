@@ -105,8 +105,9 @@
   </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary" (click)="updateWallet()">Update</button>
+          <button type="submit" class="btn btn-primary" (click)="updateWallet()" >Update</button>
         </div>
+
 </div>
 </div>
 </div>
@@ -236,14 +237,22 @@
             <div class="card-body">
               <h4 class="card-title">Add Money Form</h4>
 
-              <form class="forms-sample">
+              <form class="forms-sample" #addFrom="ngForm" >
                 <div>
                   <label><img [src]="walletCurrent.icon" height="100px" width="130px"></label>
                 </div>
                 <div></div>
                 <div class="form-group">
                   <label for="add_money"></label>
-                  <input type="number" class="form-control" name="money1" id="add_money" [(ngModel)]="addMoney123" placeholder="Enter the amount you want to add to your wallet">
+                  <input type="number" class="form-control form-group" name="money1" id="add_money" [(ngModel)]="addMoney123"
+                         placeholder="Enter the amount you want to add to your wallet"
+                         name="recruitNumber"
+                         #recruitNumber = "ngModel"
+                         required
+                  >
+                </div>
+                <div class="text-danger" *ngIf="!recruitNumber?.valid && (recruitNumber?.dirty ||recruitNumber?.touched)">
+                  <p style="color: red"> Please Enter The Amount You Want To Add </p> <br>
                 </div>
 
               </form>
@@ -253,7 +262,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary" (click)="addMoney()">Add Money</button>
+          <button type="button" class="btn btn-primary"  (click)="addMoney(addFrom)" [disabled]="!addFrom.valid">Add Money</button>
         </div>
       </div>
     </div>

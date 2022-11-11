@@ -1,13 +1,10 @@
 import {Component, ElementRef, NgModule, OnInit, ViewChild} from '@angular/core';
 import {Wallet} from "../../../model/wallet";
 import {WalletService} from "../../../service/wallet.service";
-import {ActivatedRoute, ParamMap, Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {finalize, Subscription} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
-import {FormControl, FormGroup, NgModel} from "@angular/forms";
-// import {CommonModule, NgIf} from "@angular/common"
-import {NgFor} from "@angular/common";
-import {getAll} from "@angular/fire/remote-config";
+import {FormControl, FormGroup, NgForm, NgModel} from "@angular/forms";
 import {AppUser} from "../../../model/appUser";
 import {AccountService} from "../../../../account/service/account.service";
 import Swal from "sweetalert2";
@@ -22,7 +19,7 @@ export class WalletListComponent implements OnInit {
   walletCurrent: Wallet = {};
   walletList: Wallet[] = [];
   Form: FormGroup
-  addMoney123: number;
+  addMoney123: number | undefined;
   appUserWallet: AppUser = {}
 
   formCreat: FormGroup = new FormGroup({
@@ -94,21 +91,20 @@ export class WalletListComponent implements OnInit {
       }
       this.getAll();
       this.getAllMoney();
+
     })
   }
 
-  addMoney() {
+  addMoney(addFrom: NgForm) {
+    console.log(addFrom)
     console.log(this.addMoney123)
     this.walletService.addMoney(this.walletCurrent.id, this.addMoney123).subscribe(data => {
+      console.log(data)
       if (data !== null) {
         Swal.fire('Success',
           'You Have Successfully Added Money To Your Wallet',
           'success')
       }
-      else
-        Swal.fire("fail",
-        'Please Enter The Amount You Want To Add'
-          )
       this.getAll();
       this.getAllMoney();
     });
@@ -116,30 +112,30 @@ export class WalletListComponent implements OnInit {
   }
 
   deleteWallet() {
-      this.walletService.deleteWallet(this.walletCurrent.id).subscribe(data => {
+    this.walletService.deleteWallet(this.walletCurrent.id).subscribe(data => {
 
-        Swal.fire({
-          title: 'Are You Sure?',
-          text: "You Won't Be Able To Revert This!",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, Delete It!'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            Swal.fire(
-              'Deleted!',
-              'Your Wallet Has Been Deleted.',
-              'success'
-            )
-          }
-        })
-        this.getAll();
-        this.getAllMoney();
-      }, e => {
-        console.log(e);
-      });
+      Swal.fire({
+        title: 'Are You Sure?',
+        text: "You Won't Be Able To Revert This!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Delete It!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Deleted!',
+            'Your Wallet Has Been Deleted.',
+            'success'
+          )
+        }
+      })
+      this.getAll();
+      this.getAllMoney();
+    }, e => {
+      console.log(e);
+    });
 
   }
 
