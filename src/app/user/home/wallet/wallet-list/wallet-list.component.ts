@@ -10,6 +10,7 @@ import {NgFor} from "@angular/common";
 import {getAll} from "@angular/fire/remote-config";
 import {AppUser} from "../../../model/appUser";
 import {AccountService} from "../../../../account/service/account.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-wallet-list',
@@ -67,9 +68,13 @@ export class WalletListComponent implements OnInit {
     wallet.icon = this.arrayPicture
     wallet.appUser = this.appUserWallet;
     console.log(this.arrayPicture)
-    this.walletService.saveWallet(wallet).subscribe(() => {
+    this.walletService.saveWallet(wallet).subscribe(data => {
       this.formCreat.reset();
-      alert('Create Successful !');
+      if (data !== null) {
+        Swal.fire('Success',
+          'You Have Successfully Added A New Wallet',
+          'success')
+      }
       this.getAll();
       this.getAllMoney();
     })
@@ -81,8 +86,12 @@ export class WalletListComponent implements OnInit {
   }
 
   updateWallet() {
-    this.walletService.editWallet(this.walletCurrent.id, this.walletCurrent).subscribe(() => {
-      alert("Update Successful !");
+    this.walletService.editWallet(this.walletCurrent.id, this.walletCurrent).subscribe(data => {
+      if (data !== null) {
+        Swal.fire('Success',
+          'You Update Your Wallet Successful',
+          'success')
+      }
       this.getAll();
       this.getAllMoney();
     })
@@ -91,9 +100,15 @@ export class WalletListComponent implements OnInit {
   addMoney() {
     console.log(this.addMoney123)
     this.walletService.addMoney(this.walletCurrent.id, this.addMoney123).subscribe(data => {
-      console.log(data)
-
-      alert("Add Money Successful !")
+      if (data !== null) {
+        Swal.fire('Success',
+          'You Have Successfully Added Money To Your Wallet',
+          'success')
+      }
+      else
+        Swal.fire("fail",
+        'Please Enter The Amount You Want To Add'
+          )
       this.getAll();
       this.getAllMoney();
     });
@@ -101,15 +116,31 @@ export class WalletListComponent implements OnInit {
   }
 
   deleteWallet() {
-    if (confirm("Do you sure about that action???")) {
-      this.walletService.deleteWallet(this.walletCurrent.id).subscribe(() => {
-        alert('Delete Successful !');
+      this.walletService.deleteWallet(this.walletCurrent.id).subscribe(data => {
+
+        Swal.fire({
+          title: 'Are You Sure?',
+          text: "You Won't Be Able To Revert This!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, Delete It!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire(
+              'Deleted!',
+              'Your Wallet Has Been Deleted.',
+              'success'
+            )
+          }
+        })
         this.getAll();
         this.getAllMoney();
       }, e => {
         console.log(e);
       });
-    }
+
   }
 
   getAll() {

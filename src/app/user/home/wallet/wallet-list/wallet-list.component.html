@@ -16,13 +16,12 @@
     <div class="col-12 grid-margin">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Wallet List</h4>
           <div class="table-responsive">
             <table class="table">
               <thead>
               <tr>
                 <th> Number</th>
-                <th> Bank</th>
+                <th> Wallet</th>
                 <th> Money</th>
                 <th colspan="3" style="text-align: center"> Action</th>
 
@@ -86,7 +85,7 @@
               <h4 class="card-title">Edit Form</h4>
         <form class="forms-sample" >
           <div>
-            <label><img [src]="walletCurrent.icon"></label>
+            <label><img [src]="walletCurrent.icon" height="100px" width="130px"></label>
           </div>
           <div class="form-group">
             <label for="exampleInputUsername1">Name</label>
@@ -106,7 +105,7 @@
   </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary" (click)="deleteWallet()">Delete</button>
+          <button type="submit" class="btn btn-primary" (click)="updateWallet()">Update</button>
         </div>
 </div>
 </div>
@@ -144,8 +143,9 @@
 
               <form class="forms-sample">
                 <div>
-                  <label><img [src]="walletCurrent.icon"></label>
+                  <label><img [src]="walletCurrent.icon" height="100px" width="130px"></label>
                 </div>
+
                 <div class="form-group">
                   <label for="exampleInputUsername2">Name</label>
                   <input type="text" class="form-control" [(ngModel)]="walletCurrent.name" id="exampleInputUsername2"
@@ -225,7 +225,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="Add">Add Money</h5>
+        <h5 class="modal-title" id="Add">Add Money Form</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -238,11 +238,12 @@
 
               <form class="forms-sample">
                 <div>
-                  <label><img [src]="walletCurrent.icon"></label>
+                  <label><img [src]="walletCurrent.icon" height="100px" width="130px"></label>
                 </div>
+                <div></div>
                 <div class="form-group">
-                  <label for="add_money">Enter the amount you want to add to your wallet</label>
-                  <input type="number" class="form-control" name="money1" id="add_money" [(ngModel)]="addMoney123">
+                  <label for="add_money"></label>
+                  <input type="number" class="form-control" name="money1" id="add_money" [(ngModel)]="addMoney123" placeholder="Enter the amount you want to add to your wallet">
                 </div>
 
               </form>
