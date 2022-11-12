@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AccountService} from "../service/account.service";
 import {Router} from "@angular/router";
 import {FacebookLoginProvider, SocialAuthService, SocialUser} from "@abacritt/angularx-social-login";
+import {TokenDto} from "../model/token-dto";
 
 @Component({
   selector: 'app-login',
@@ -15,11 +16,12 @@ export class LoginComponent implements OnInit {
     password: new FormControl("", [Validators.required, Validators.minLength(6), Validators.pattern("^([A-Z]{1})([a-z]{4,})([0-9]{1,})")])
   })
   message: string = "";
-  socialUser : SocialUser;
+  socialUser: SocialUser;
 
   constructor(private accountService: AccountService,
               private router: Router,
-              private socialService : SocialAuthService) {
+              private socialService: SocialAuthService) {
+    // this.logOutFB();
     if (localStorage.getItem("user") !== null) {
       this.router.navigate(["/user/wallet"])
     }
@@ -28,7 +30,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.socialService.authState.subscribe((user) => {
       this.socialUser = user;
-      console.log(user)
+      console.log(user);
     });
   }
 
@@ -40,14 +42,17 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get("password")
   }
 
-  logOut(){
-    this.socialService.signOut();
-  }
-
-  loginWithFB(){
+  loginWithFB() {
     this.socialService.signIn(FacebookLoginProvider.PROVIDER_ID).then(
-      data =>{
+      data => {
         console.log(data);
+        this.socialUser = data;
+        const tokenFace = new TokenDto(this.socialUser.authToken);
+        this.accountService.facebook(tokenFace).subscribe(data => {
+          localStorage.setItem("user", JSON.stringify(data))
+          localStorage.setItem("token", JSON.stringify(data.token));
+          location.reload();
+        })
       }
     )
   }
@@ -60,8 +65,16 @@ export class LoginComponent implements OnInit {
       } else {
         localStorage.setItem("user", JSON.stringify(data))
         localStorage.setItem("token", JSON.stringify(data.token));
-        location.reload()
+        location.reload();
       }
     })
+  }
+
+  logOutFB(): void {
+    this.socialService.signOut().then(
+      data => {
+        console.log("logouthanhcong")
+      }
+    );
   }
 }
