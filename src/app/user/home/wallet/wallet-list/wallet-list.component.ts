@@ -1,15 +1,13 @@
 import {Component, ElementRef, NgModule, OnInit, ViewChild} from '@angular/core';
 import {Wallet} from "../../../model/wallet";
 import {WalletService} from "../../../service/wallet.service";
-import {ActivatedRoute, ParamMap, Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {finalize, Subscription} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
-import {FormControl, FormGroup, NgModel} from "@angular/forms";
-// import {CommonModule, NgIf} from "@angular/common"
-import {NgFor} from "@angular/common";
-import {getAll} from "@angular/fire/remote-config";
+import {FormControl, FormGroup, NgForm, NgModel} from "@angular/forms";
 import {AppUser} from "../../../model/appUser";
 import {AccountService} from "../../../../account/service/account.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-wallet-list',
@@ -21,15 +19,15 @@ export class WalletListComponent implements OnInit {
   walletCurrent: Wallet = {};
   walletList: Wallet[] = [];
   Form: FormGroup
-  addMoney123: number;
-  appUserWallet : AppUser ={}
+  addMoney123: number | undefined;
+  appUserWallet: AppUser = {}
 
   formCreat: FormGroup = new FormGroup({
     id: new FormControl(),
     name: new FormControl(),
     money: new FormControl(),
     icon: new FormControl(),
-    appUser : new FormControl()
+    appUser: new FormControl()
   });
 
   money: number = null;
@@ -38,14 +36,15 @@ export class WalletListComponent implements OnInit {
               private router: Router,
               private activatedRoute: ActivatedRoute,
               private storage: AngularFireStorage,
-              private accountService : AccountService) {
+              private accountService: AccountService) {
     this.appUserWallet.id = accountService.currentUserValue.id
   }
-  addMoneyForm(id:number){
-    this.walletService.findWalletById(id).subscribe(dates =>{
-      this.walletCurrent=dates;
 
-    } )
+  addMoneyForm(id: number) {
+    this.walletService.findWalletById(id).subscribe(dates => {
+      this.walletCurrent = dates;
+
+    })
   }
 
   createForm(id: number) {
@@ -60,14 +59,19 @@ export class WalletListComponent implements OnInit {
       })
     })
   }
+
   submitCreate() {
     const wallet = this.formCreat.value;
     wallet.icon = this.arrayPicture
     wallet.appUser = this.appUserWallet;
     console.log(this.arrayPicture)
-    this.walletService.saveWallet(wallet).subscribe(() => {
+    this.walletService.saveWallet(wallet).subscribe(data => {
       this.formCreat.reset();
-      alert('Create Successful !');
+      if (data !== null) {
+        Swal.fire('Success',
+          'You Have Successfully Added A New Wallet',
+          'success')
+      }
       this.getAll();
       this.getAllMoney();
     })
@@ -79,36 +83,68 @@ export class WalletListComponent implements OnInit {
   }
 
   updateWallet() {
-    this.walletService.editWallet(this.walletCurrent.id, this.walletCurrent).subscribe(() => {
-      alert("Update Successful !");
+    this.walletService.editWallet(this.walletCurrent.id, this.walletCurrent).subscribe(data => {
+      if (data !== null) {
+        Swal.fire('Success',
+          'You Update Your Wallet Successful',
+          'success')
+      }
       this.getAll();
       this.getAllMoney();
+
     })
   }
-  addMoney(){
 
-
+  addMoney(addFrom: NgForm) {
+    console.log(addFrom)
     console.log(this.addMoney123)
-    this.walletService.addMoney(this.walletCurrent.id,this.addMoney123).subscribe(data =>{
+    this.walletService.addMoney(this.walletCurrent.id, this.addMoney123).subscribe(data => {
       console.log(data)
+      if (data !== null) {
+        Swal.fire('Success',
+          'You Have Successfully Added Money To Your Wallet',
+          'success')
 
-      alert("Add Money Successful !")
+      }
+      if (this.addMoney123==0){
+        Swal.fire("Fail",
+          "Some Thing Wrong",
+          "error")
+
+      }
       this.getAll();
       this.getAllMoney();
     });
 
   }
 
-  deleteWallet() {
-    if (confirm("Do you sure about that action???")){
-      this.walletService.deleteWallet(this.walletCurrent.id).subscribe(() => {
-        alert('Delete Successful !');
-        this.getAll();
-        this.getAllMoney();
-      }, e => {
-        console.log(e);
-      });
+  deleteWallet() {Swal.fire({
+    title: 'Are You Sure?',
+    text: "You Won't Be Able To Revert This!",
+    icon: 'warning',
+    showCancelButton: false,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, Delete It!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+        'Deleted!',
+        'Your Wallet Has Been Deleted.',
+        'success'
+      )
     }
+  })
+
+    this.walletService.deleteWallet(this.walletCurrent.id).subscribe(data => {
+
+
+      this.getAll();
+      this.getAllMoney();
+    }, e => {
+      console.log(e);
+    });
+
   }
 
   getAll() {
@@ -143,6 +179,7 @@ export class WalletListComponent implements OnInit {
       ).subscribe();
     }
   }
+
   uploadFileImg() {
     this.selectedImage = this.avatarDom?.nativeElement.files[0];
     console.log(this.selectedImage);
