@@ -7,6 +7,7 @@ import {LoginForm} from "../model/login-form";
 import {Role} from "../model/role";
 import {AppUser} from "../../user/model/appUser";
 import {ChangepassDTO} from "../../user/model/changepass-dto";
+import {TokenDto} from "../model/token-dto";
 
 const API_URL = environment.api_url;
 
@@ -41,8 +42,8 @@ export class AccountService {
     return this.http.post<LoginForm>(`${API_URL}/login`, loginForm);
   }
 
-  register(user : AppUser): Observable<AppUser>{
-    return this.http.post<AppUser>(`${API_URL}/register`,user);
+  register(user: AppUser): Observable<AppUser> {
+    return this.http.post<AppUser>(`${API_URL}/register`, user);
   }
 
   logout() {
@@ -57,10 +58,14 @@ export class AccountService {
   }
 
   editUserById(id: number, appUser: AppUser): Observable<AppUser> {
-    return this.http.put<AppUser>(`${API_URL}/user/${id}`,appUser)
+    return this.http.put<AppUser>(`${API_URL}/user/${id}`, appUser)
   }
 
-  changePassword(id: number,changePass : ChangepassDTO): Observable<AppUser> {
-    return this.http.post<AppUser>(`${API_URL}/user/${id}`,changePass)
+  changePassword(id: number, changePass: ChangepassDTO): Observable<AppUser> {
+    return this.http.post<AppUser>(`${API_URL}/user/${id}`, changePass)
+  }
+
+  facebook(tokenDto: TokenDto): Observable<JwtResponse> {
+    return this.http.post<JwtResponse>(`${API_URL}/oauth/fb`, tokenDto);
   }
 }

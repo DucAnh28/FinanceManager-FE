@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AccountService} from "../service/account.service";
 import {Router} from "@angular/router";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,7 @@ export class RegisterComponent implements OnInit {
     password: new FormControl("", [Validators.required, Validators.minLength(6), Validators.pattern("^([A-Z]{1})([a-z]{4,})([0-9]{1,})")]),
     confirmPassword: new FormControl("", [Validators.required, Validators.minLength(6)])
   })
-  message : string;
+  message: string;
 
   constructor(private accountService: AccountService,
               private router: Router) {
