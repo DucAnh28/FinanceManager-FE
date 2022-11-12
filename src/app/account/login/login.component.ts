@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AccountService} from "../service/account.service";
 import {Router} from "@angular/router";
+import {window} from "rxjs";
 
 @Component({
   selector: 'app-login',
@@ -33,6 +34,7 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get("password")
   }
 
+
   login() {
     const form = this.loginForm.value;
     this.accountService.login(form).subscribe(data => {
@@ -40,8 +42,8 @@ export class LoginComponent implements OnInit {
         this.message = "Nguoi dung khong ton tai hoac sai mat khau mat oi`"
       } else {
         localStorage.setItem("user", JSON.stringify(data))
-        localStorage.setItem("token", JSON.stringify(data.token))
-        this.router.navigate(['/user/wallet'])
+        localStorage.setItem("token", JSON.stringify(data.token));
+        location.reload()
       }
     })
   }

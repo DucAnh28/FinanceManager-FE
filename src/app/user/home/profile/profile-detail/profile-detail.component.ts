@@ -75,6 +75,7 @@ export class ProfileDetailComponent implements OnInit {
         Swal.fire('Success',
           'You Update Your Profile Successful',
           'success')
+        location.reload();
       }
     })
   }

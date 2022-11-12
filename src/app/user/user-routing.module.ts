@@ -5,6 +5,7 @@ import {WalletListComponent} from "./home/wallet/wallet-list/wallet-list.compone
 import {ProfileDetailComponent} from "./home/profile/profile-detail/profile-detail.component";
 import {CommonModule} from "@angular/common";
 import {PaymentComponent} from "./home/payment/payment.component";
+import {AuthGuard} from "../helper/auth-guard";
 
 let routes: Routes = [
   {
