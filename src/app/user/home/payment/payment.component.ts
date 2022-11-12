@@ -6,6 +6,7 @@ import {CategoryService} from "../../service/category.service";
 import {AccountService} from "../../../account/service/account.service";
 import {Payment} from "../../model/payment";
 import {get} from "@angular/fire/database";
+// import {SweetAlertService} from '../../service/sweetAlert/sweet-alert.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ import {get} from "@angular/fire/database";
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
-  paymentForm = new FormGroup({
+  paymentForm: FormGroup<{ date: FormControl<any>; money: FormControl<any>; name: FormControl<any>; description: FormControl<any>; category: FormControl<any>; status: FormControl<number | null> }> = new FormGroup({
     name: new FormControl(),
     date: new FormControl(),
     money: new FormControl(),
@@ -40,6 +41,7 @@ export class PaymentComponent implements OnInit {
     private paymentService: PaymentService,
     private categoryService: CategoryService,
     private accountService: AccountService,
+    // private sweetAlertService: SweetAlertService,
   ) {
     this.categoryService.findCateByUser(accountService.currentUserValue.id).subscribe(data => {
       this.listCategory = data;
@@ -50,28 +52,10 @@ export class PaymentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.showExpenseCategory();
-    // this.showIncomeCategory();
     this.getPaymentList();
 
   }
 
-  // showExpenseCategory() {
-  //   this.categoryService.findByStatus(2).subscribe((categories) => {
-  //     console.log("cats",categories);
-  //     this.expenseCategories = categories;
-  //   }, e => {
-  //     console.log(e);
-  //   })
-  // }
-  //
-  // showIncomeCategory() {
-  //   this.categoryService.findByStatus(1).subscribe((categories) => {
-  //     this.incomeCategories = categories;
-  //   }, e => {
-  //     console.log(e);
-  //   })
-  // }
 
   addPayment() {
 
@@ -151,6 +135,7 @@ export class PaymentComponent implements OnInit {
 
 
 }
+
 
 
 
