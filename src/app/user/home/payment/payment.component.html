@@ -1,124 +1,4 @@
-<!--&lt;!&ndash; Modal &ndash;&gt;-->
-<!--<div class="content-wrapper" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-<!--  <div class="modal-dialog modal-lg">-->
-<!--    <div class="modal-content">-->
-<!--      <div class="modal-header">-->
-<!--        <h5 class="modal-title" id="exampleModalLabel">Thêm mới giao dịch</h5>-->
-<!--        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-<!--      </div>-->
-<!--      <form [formGroup]="paymentForm" (ngSubmit)="addPayment()">-->
-<!--        <div class="modal-body">-->
-<!--          <table style="width: 100%; border-spacing: 30px">-->
-<!--            <tr>-->
-<!--              <td class="tdTbale" style="width: 23%">-->
-<!--                <a data-bs-toggle="modal" data-bs-target="#exampleModalCate" style="background: rgba(247,247,247,0.16)">-->
-<!--                  <div class="flex-shrink-0">-->
-<!--                    <svg width="20" height="20">-->
-<!--&lt;!&ndash;                      <rect width="25" height="25" [ngStyle]="{'fill':color,'stroke-width':'3'}"/>&ndash;&gt;-->
-<!--                    </svg>-->
-<!--                    <span style="margin-left: 10px;">{{nameCategory}}</span>-->
-<!--                  </div>-->
-<!--                </a>-->
-<!--              </td>-->
-<!--              <td style="width: 20px"></td>-->
-<!--              <td class="tdTbale">-->
-<!--                <input type="date" id="date" formControlName="date"/>-->
-<!--              </td>-->
-<!--&lt;!&ndash;              <td class="tdTbale">&ndash;&gt;-->
-<!--&lt;!&ndash;                <select id="category" formControlName="category"/><>&ndash;&gt;-->
-<!--&lt;!&ndash;              </td>&ndash;&gt;-->
-<!--              <td style="width: 20px"></td>-->
-<!--              <td class="tdTbale"><input type="number" style="border: 1px solid #f1f3f5;" placeholder="Số tiền"-->
-<!--                                         formControlName="money"></td>-->
-<!--              <td style="width: 20px"></td>-->
-<!--              <td class="tdTbale"><input type="text" style="border: 1px solid #f1f3f5 ;" placeholder="Ghi chú"-->
-<!--                                         formControlName="description"></td>-->
-<!--            </tr>-->
-<!--          </table>-->
-<!--        </div>-->
-<!--        <button type="submit" class="btn btn-primary"-->
-<!--                style="width: 20%; margin-left: 77%;margin-bottom: 10px ;background: #3b76ef">Thêm-->
-<!--        </button>-->
-<!--      </form>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-
-<!--<div class="modal fade" id="exampleModalCate" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">-->
-<!--&lt;!&ndash;  // tabindex là thuộc tính của thẻ div, nó sẽ xác định thứ tự của các phần tử khi người dùng nhấn phím tab&ndash;&gt;-->
-<!--  <div class="modal-dialog">-->
-<!--    <div class="modal-content">-->
-<!--      <div class="modal-header">-->
-<!--        <h5 class="modal-title" id="exampleModalLabel1">Loại chi tiêu</h5>-->
-<!--        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-<!--      </div>-->
-<!--      <div class="modal-body">-->
-<!--        <div class="tab">-->
-<!--          <button class="tablinks active" onclick="openCity(event, 'collect')" style="width: 50%">Thu</button>-->
-<!--          <button class="tablinks" onclick="openCity(event, 'spend')" style="width: 50%">Chi</button>-->
-<!--        </div>-->
-<!--        <div id="collect" class="tabcontent">-->
-<!--          <table class="table lms_table_active" style="margin-top: 20px">-->
-<!--            <tbody>-->
-<!--            <tr *ngFor="let incomeCategory of incomeCategories; let i = index;" (click)="getCategory(incomeCategory.id)"-->
-<!--                data-bs-dismiss="modal" aria-label="Close">-->
-<!--              <td>-->
-<!--                <div class="d-flex align-items-center">-->
-<!--                  <div class="flex-shrink-0">-->
-<!--                    <svg width="20" height="20">-->
-<!--                      &lt;!&ndash;                      <rect width="25" height="25" [ngStyle]="{'fill':incomeCategory.color,'stroke-width':'3px'}"/>&ndash;&gt;-->
-<!--                    </svg>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </td>-->
-<!--              <td>-->
-<!--                <div class="flex-grow-1 ms-3">-->
-<!--                  <p>{{incomeCategory.name}}</p>-->
-<!--                </div>-->
-<!--              </td>-->
-<!--              <td>-->
-<!--                                <p class="nowrap">{{incomeCategory.id}}</p>-->
-<!--              </td>-->
-<!--              <td>-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--            </tbody>-->
-<!--          </table>-->
-<!--        </div>-->
-<!--        <div id="spend" class="tabcontent">-->
-<!--          <table class="table lms_table_active" style="margin-top: 20px">-->
-<!--            <tbody>-->
-<!--            <tr *ngFor="let expenseCategory of expenseCategories; let i = index;"-->
-<!--                (click)="getCategory(expenseCategory.id)" data-bs-dismiss="modal" aria-label="Close">-->
-<!--              <td>-->
-<!--                <div class="d-flex align-items-center">-->
-<!--                  <div class="flex-shrink-0">-->
-<!--                    <svg width="20" height="20">-->
-<!--                      &lt;!&ndash;                      <rect width="25" height="25" [ngStyle]="{'fill':expenseCategory.color,'stroke-width':'3px'}"/>&ndash;&gt;-->
-<!--                    </svg>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </td>-->
-<!--              <td>-->
-<!--                <div class="flex-grow-1 ms-3">-->
-<!--                  <p>{{expenseCategory.name}}</p>-->
-<!--                </div>-->
-<!--              </td>-->
-<!--              <td>-->
-<!--                &lt;!&ndash;                <p class="nowrap">{{expenseCategory.note}}</p>&ndash;&gt;-->
-<!--              </td>-->
-<!--              <td>-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--            </tbody>-->
-<!--          </table>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-
-
+<!-- Add Payment-->
 <div class="content-wrapper">
   <form [formGroup]="paymentForm" (ngSubmit)="addPayment()">
     <table>
@@ -190,7 +70,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Update Payment</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
       </div>
       <div class="modal-body">
         <form [formGroup]="paymentForm" (ngSubmit)="updatePaymentSubmit()">
@@ -199,7 +81,6 @@
               <td>Name</td>
               <td>
                 <input type="text" formControlName="name">
-<!--                <input type="text" [(ngModel)]="payment.name" formControlName="name">-->
               </td>
 
             </tr>
@@ -207,14 +88,12 @@
               <td>Date</td>
               <td>
                 <input type="date" formControlName="date">
-<!--                <input type="date" [(ngModel)]="payment.date" formControlName="date">-->
               </td>
             </tr>
             <tr>
               <td>Money</td>
               <td>
                 <input type="number" formControlName="money">
-<!--                <input type="number" [(ngModel)]="payment.money" formControlName="money">-->
               </td>
             </tr>
             <tr>
@@ -229,7 +108,6 @@
               <td>Description</td>
               <td>
                 <input formControlName="description" type="text">
-<!--                <input type="text" [(ngModel)]="payment.description" formControlName="description">-->
               </td>
             </tr>
             <tr>

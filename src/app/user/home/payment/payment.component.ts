@@ -26,7 +26,6 @@ export class PaymentComponent implements OnInit {
 
 
   listCategory: Category[] = [];
-  // color: string = '#E9E612';
   nameCategory: string = 'Danh mục giao dich';
   expenseCategories: Category[] = [];
   incomeCategories: Category[] = [];
@@ -41,7 +40,6 @@ export class PaymentComponent implements OnInit {
     private paymentService: PaymentService,
     private categoryService: CategoryService,
     private accountService: AccountService,
-    // private sweetAlertService: SweetAlertService,
   ) {
     this.categoryService.findCateByUser(accountService.currentUserValue.id).subscribe(data => {
       this.listCategory = data;
