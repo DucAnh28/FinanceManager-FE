@@ -1,0 +1,49 @@
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">Category List</h4>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th colspan="2" style="marker-mid: none">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let category of categoryList, index as i">
+        <td>{{category.id}}</td>
+        <td>{{category.name}}</td>
+        <td>
+          <button class="btn btn-gradient-primary">Edit</button>
+        </td>
+        <td>
+          <button class="btn btn-gradient-primary" data-toggle="modal" data-target="#delete" (click)="getDeleteCateId(category.id)">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="mdi mdi-alert btn-icon-prepend"> Are You Sure You Want To Delete This Category</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="deleteCategory(deleteID)" data-dismiss="modal">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
