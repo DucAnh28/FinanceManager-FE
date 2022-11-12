@@ -193,37 +193,43 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="updatePaymentForm" (ngSubmit)="updatePaymentSubmit()">
+        <form [formGroup]="paymentForm" (ngSubmit)="updatePaymentSubmit()">
           <table>
             <tr>
               <td>Name</td>
               <td>
                 <input type="text" formControlName="name">
+<!--                <input type="text" [(ngModel)]="payment.name" formControlName="name">-->
               </td>
+
             </tr>
             <tr>
               <td>Date</td>
               <td>
                 <input type="date" formControlName="date">
+<!--                <input type="date" [(ngModel)]="payment.date" formControlName="date">-->
               </td>
             </tr>
             <tr>
               <td>Money</td>
               <td>
                 <input type="number" formControlName="money">
+<!--                <input type="number" [(ngModel)]="payment.money" formControlName="money">-->
               </td>
             </tr>
             <tr>
               <td>Category</td>
               <td>
-                <select [(ngModel)]="newCategoryId" name="Category" formControlName="category">
-                  <option [value]="category.id" *ngFor="let category of listCategory,index as i">{{category.name}}</option>
-                </select>
+              <select [(ngModel)]="newCategoryId" name="Category" formControlName="category">
+                <option [value]="category.id" *ngFor="let category of listCategory,index as i">{{category.name}}</option>
+              </select>
               </td>
+
             <tr>
               <td>Description</td>
               <td>
                 <input formControlName="description" type="text">
+<!--                <input type="text" [(ngModel)]="payment.description" formControlName="description">-->
               </td>
             </tr>
             <tr>

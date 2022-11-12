@@ -5,8 +5,6 @@ import {PaymentService} from "../../service/payment.service";
 import {CategoryService} from "../../service/category.service";
 import {AccountService} from "../../../account/service/account.service";
 import {Payment} from "../../model/payment";
-import {get} from "@angular/fire/database";
-// import {SweetAlertService} from '../../service/sweetAlert/sweet-alert.service';
 
 
 @Component({
@@ -15,13 +13,15 @@ import {get} from "@angular/fire/database";
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
-  paymentForm: FormGroup<{ date: FormControl<any>; money: FormControl<any>; name: FormControl<any>; description: FormControl<any>; category: FormControl<any>; status: FormControl<number | null> }> = new FormGroup({
+  paymentForm: FormGroup = new FormGroup({
+    id: new FormControl(),
     name: new FormControl(),
     date: new FormControl(),
     money: new FormControl(),
     category: new FormControl(),
     description: new FormControl(),
     status: new FormControl(1),
+    wallet: new FormControl(),
   })
 
 
@@ -98,23 +98,23 @@ export class PaymentComponent implements OnInit {
 
   }
   // Update payment
-  updatePaymentForm : FormGroup;
   updatePayment(id: number) {
-    this.paymentService.findById(id).subscribe(data => {
-      this.updatePaymentForm = new FormGroup({
-        id: new FormControl(data.id),
-        name: new FormControl(data.name),
-        date: new FormControl(data.date),
-        money: new FormControl(data.money),
-        category: new FormControl(data.category),
-        description: new FormControl(data.description),
-        status: new FormControl(data.status),
+    this.paymentService.findById(id).subscribe(payment => {
+      this.paymentForm = new FormGroup({
+        id: new FormControl(payment.id),
+        name: new FormControl(payment.name),
+        date: new FormControl(payment.date),
+        money: new FormControl(payment.money),
+        category: new FormControl(payment.category),
+        description: new FormControl(payment.description),
+        status: new FormControl(payment.status),
+        wallet: new FormControl(payment.wallet),
       })
     })
 
   }
   updatePaymentSubmit() {
-    const data = this.updatePaymentForm.value;
+    const data = this.paymentForm.value;
     console.log(data);
     // console.log(data.category);
     // if (data.date == null) {
@@ -126,8 +126,8 @@ export class PaymentComponent implements OnInit {
     // };
     this.paymentService.update(data.id, data).subscribe(data => {
       console.log(data)
-      alert('Cập nhật giao dịch thành công');
-      this.updatePaymentForm.reset();
+      // alert('Cập nhật giao dịch thành công');
+      this.paymentForm.reset();
       this.getPaymentList();
     });
   }
