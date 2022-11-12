@@ -62,9 +62,9 @@ export class WalletListComponent implements OnInit {
 
   submitCreate() {
     const wallet = this.formCreat.value;
-    wallet.icon = this.arrayPicture
+    wallet.icon = this.arrayPicture1
     wallet.appUser = this.appUserWallet;
-    console.log(this.arrayPicture)
+    console.log(this.arrayPicture1)
     this.walletService.saveWallet(wallet).subscribe(data => {
       this.formCreat.reset();
       if (data !== null) {
@@ -83,6 +83,7 @@ export class WalletListComponent implements OnInit {
   }
 
   updateWallet() {
+    this.walletCurrent.icon=this.arrayPicture2
     this.walletService.editWallet(this.walletCurrent.id, this.walletCurrent).subscribe(data => {
       if (data !== null) {
         Swal.fire('Success',
@@ -160,30 +161,57 @@ export class WalletListComponent implements OnInit {
     })
   }
 
-  @ViewChild('uploadFile', {static: true})
-  public avatarDom: ElementRef | undefined;
-  selectedImage: any = null;
-  arrayPicture = '';
+  @ViewChild('uploadFileCreat', {static: true})
+  public avatarDom1: ElementRef | undefined;
+  selectedImage1: any = null;
+  arrayPicture1 = '';
 
-  submitFile() {
-    if (this.selectedImage != null) {
-      const filePath = "wallet/" + this.selectedImage.name;
+  submitFileCreat() {
+    if (this.selectedImage1 != null) {
+      const filePath = "wallet/" + this.selectedImage1.name;
       const fileRef = this.storage.ref(filePath);
       console.log("fp", filePath)
       console.log("fr", fileRef)
-      this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
+      this.storage.upload(filePath, this.selectedImage1).snapshotChanges().pipe(
         finalize(() => (fileRef.getDownloadURL().subscribe(url => {
-          this.arrayPicture = url;
+          this.arrayPicture1 = url;
           console.log(url)
         })))
       ).subscribe();
     }
   }
 
-  uploadFileImg() {
-    this.selectedImage = this.avatarDom?.nativeElement.files[0];
-    console.log(this.selectedImage);
-    this.submitFile();
+  uploadFileImgCreate() {
+    this.selectedImage1 = this.avatarDom1?.nativeElement.files[0];
+    console.log(this.selectedImage1);
+    this.submitFileCreat();
+  }
+
+
+  @ViewChild('uploadFileEdit', {static: true})
+  public avatarDom2: ElementRef | undefined;
+  selectedImage2: any = null;
+  arrayPicture2 = '';
+
+  submitFileEdit() {
+    if (this.selectedImage2 != null) {
+      const filePath = "wallet/" + this.selectedImage2.name;
+      const fileRef = this.storage.ref(filePath);
+      console.log("fp", filePath)
+      console.log("fr", fileRef)
+      this.storage.upload(filePath, this.selectedImage2).snapshotChanges().pipe(
+        finalize(() => (fileRef.getDownloadURL().subscribe(url => {
+          this.arrayPicture2 = url;
+          console.log(url)
+        })))
+      ).subscribe();
+    }
+  }
+
+  uploadFileImgEdit() {
+    this.selectedImage2 = this.avatarDom2?.nativeElement.files[0];
+    console.log(this.selectedImage2);
+    this.submitFileEdit();
   }
 
 }
