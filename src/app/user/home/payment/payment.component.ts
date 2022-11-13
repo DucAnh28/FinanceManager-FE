@@ -39,9 +39,9 @@ export class PaymentComponent implements OnInit {
   constructor(
     private paymentService: PaymentService,
     private categoryService: CategoryService,
-    private accountService: AccountService,
+    // private accountService: AccountService,
   ) {
-    this.categoryService.findCateByUser(accountService.currentUserValue.id).subscribe(data => {
+    this.categoryService.findAll().subscribe(data => {
       this.listCategory = data;
       console.log("cTWA", this.listCategory);
     })
@@ -87,6 +87,7 @@ export class PaymentComponent implements OnInit {
 
   }
 
+
   deletePayment(id: number) {
     this.paymentService.delete(id).subscribe(data => {
       console.log(data);
@@ -113,14 +114,14 @@ export class PaymentComponent implements OnInit {
   }
   updatePaymentSubmit() {
     const data = this.paymentForm.value;
-    console.log(data.category);
-    if (data.date == null) {
-      data.date = new Date();
-      console.log(data.date);
-    }
-    data.category = {
-      id: data.category
-    };
+    // console.log(data.category);
+    // if (data.date == null) {
+    //   data.date = new Date();
+    //   console.log(data.date);
+    // }
+    // data.category = {
+    //   id: data.category
+    // };
     this.paymentService.update(data.id, data).subscribe(data => {
       console.log(data)
       alert('Cập nhật giao dịch thành công');
