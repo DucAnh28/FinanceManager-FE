@@ -5,7 +5,7 @@
          class="card-img-absolute" alt="circle-image"/>
     <h4 class="font-weight-normal mb-3">Sum Money <i class="mdi mdi-chart-line mdi-24px float-right"></i>
     </h4>
-    <h2 class="mb-5">{{money}} VNĐ</h2>
+    <h2 class="mb-5">{{numberWithCommas(money)}}.00 đ</h2>
   </div>
 
   <button type="button" class="btn btn-gradient-primary me-2" data-toggle="modal" data-target="#createWallet">
@@ -33,7 +33,7 @@
                 <td>
                   <img [src]="wallets.icon" class="me-2" alt="image">{{wallets.name}}
                 </td>
-                <td> {{wallets.money}}</td>
+                <td>{{numberWithCommas(wallets.money)}}.00 đ</td>
                 <td>
                   <button type="button" class="btn btn-gradient-primary me-2" style="min-width:50px" data-toggle="modal"
                           data-target="#addMoney"
@@ -252,7 +252,7 @@
 
 
   </div>
-<!---->
+        <!---->
 
 
 </div>

@@ -83,7 +83,7 @@ export class WalletListComponent implements OnInit {
   }
 
   updateWallet() {
-    this.walletCurrent.icon=this.arrayPicture2
+    this.walletCurrent.icon = this.arrayPicture2
     this.walletService.editWallet(this.walletCurrent.id, this.walletCurrent).subscribe(data => {
       if (data !== null) {
         Swal.fire('Success',
@@ -107,7 +107,7 @@ export class WalletListComponent implements OnInit {
           'success')
 
       }
-      if (this.addMoney123==0){
+      if (this.addMoney123 == 0) {
         Swal.fire("Fail",
           "Some Thing Wrong",
           "error")
@@ -119,31 +119,31 @@ export class WalletListComponent implements OnInit {
 
   }
 
-  deleteWallet() {Swal.fire({
-    title: 'Are You Sure?',
-    text: "You Won't Be Able To Revert This!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    cancelButtonText:'No Keep It',
-    confirmButtonText: 'Yes, Delete It!',
-  }).then((result) => {
-    if (result.isConfirmed) {
-      this.walletService.deleteWallet(this.walletCurrent.id).subscribe(data => {
-      this.getAll();
-      this.getAllMoney();
-    }, e => {
-      console.log(e);
-    });
-      Swal.fire(
-        'Deleted!',
-        'Your Wallet Has Been Deleted.',
-        'success'
-      )
-    }
-  })
-
+  deleteWallet() {
+    Swal.fire({
+      title: 'Are You Sure?',
+      text: "You Won't Be Able To Revert This!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'No Keep It',
+      confirmButtonText: 'Yes, Delete It!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.walletService.deleteWallet(this.walletCurrent.id).subscribe(data => {
+          this.getAll();
+          this.getAllMoney();
+        }, e => {
+          console.log(e);
+        });
+        Swal.fire(
+          'Deleted!',
+          'Your Wallet Has Been Deleted.',
+          'success'
+        )
+      }
+    })
 
 
   }
@@ -212,6 +212,12 @@ export class WalletListComponent implements OnInit {
     this.selectedImage2 = this.avatarDom2?.nativeElement.files[0];
     console.log(this.selectedImage2);
     this.submitFileEdit();
+  }
+
+  numberWithCommas(x: number): string {
+    let parts = x.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
   }
 
 }
