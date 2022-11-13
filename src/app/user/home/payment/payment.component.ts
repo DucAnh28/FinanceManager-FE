@@ -114,14 +114,14 @@ export class PaymentComponent implements OnInit {
   }
   updatePaymentSubmit() {
     const data = this.paymentForm.value;
-    // console.log(data.category);
-    // if (data.date == null) {
-    //   data.date = new Date();
-    //   console.log(data.date);
-    // }
-    // data.category = {
-    //   id: data.category
-    // };
+    console.log(data.category);
+    if (data.date == null) {
+      data.date = new Date();
+      console.log(data.date);
+    }
+    data.category = {
+      id: data.category
+    };
     this.paymentService.update(data.id, data).subscribe(data => {
       console.log(data)
       alert('Cập nhật giao dịch thành công');
