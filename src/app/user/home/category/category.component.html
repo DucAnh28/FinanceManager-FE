@@ -1,6 +1,9 @@
 <div class="card">
   <div class="card-body">
     <h4 class="card-title">Category List</h4>
+    <button type="button" class="btn btn-gradient-primary me-2" data-toggle="modal" data-target="#createCategory">
+      <i class="mdi mdi-checkbox-marked-outline"></i> Add New Category
+    </button>
     <table class="table table-hover">
       <thead>
       <tr>
@@ -17,7 +20,9 @@
           <button class="btn btn-gradient-primary">Edit</button>
         </td>
         <td>
-          <button class="btn btn-gradient-primary" data-toggle="modal" data-target="#delete" (click)="getDeleteCateId(category.id)">Delete</button>
+          <button class="btn btn-gradient-primary" data-toggle="modal" data-target="#delete"
+                  (click)="getDeleteCateId(category.id)">Delete
+          </button>
         </td>
       </tr>
       </tbody>
@@ -26,6 +31,42 @@
 </div>
 
 
+<div class="modal fade" id="createCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Create New Category</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form class="forms-sample" [formGroup]="createForm" (ngSubmit)="createCategory()" *ngIf="createForm">
+        <div class="modal-body">
+          <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Edit Form</h4>
+
+                <div class="form-group">
+                  <label for="oldPassword">name</label>
+                  <input type="text" class="form-control" id="oldPassword" placeholder="Name"
+                         formControlName="name">
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" >Create
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -41,7 +82,8 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="deleteCategory(deleteID)" data-dismiss="modal">Delete</button>
+        <button type="button" class="btn btn-primary" (click)="deleteCategory(deleteID)" data-dismiss="modal">Delete
+        </button>
       </div>
     </div>
   </div>

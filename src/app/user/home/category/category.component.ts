@@ -1,7 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {CategoryService} from "../../service/category.service";
 import {Category} from "../../model/category";
+import {AccountService} from "../../../account/service/account.service";
+import {AppUser} from "../../model/appUser";
+import {FormControl, FormGroup} from "@angular/forms";
 import Swal from "sweetalert2";
+
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
@@ -9,9 +13,31 @@ import Swal from "sweetalert2";
 })
 export class CategoryComponent implements OnInit {
   categoryList: Category[];
-  deleteID : number;
+  deleteID: number;
+  appUser: AppUser;
+  createForm: FormGroup;
 
-  constructor(private categoryService: CategoryService) {
+  constructor(private categoryService: CategoryService,
+              private accountService: AccountService) {
+    accountService.getUserById().subscribe(data => {
+      this.appUser = data;
+      console.log(data);
+      this.createForm = new FormGroup({
+        id: new FormControl(),
+        name: new FormControl(),
+        status: new FormControl(1),
+        appUser: new FormControl(data),
+      })
+    })
+  }
+
+  createCategory() {
+    const temp = this.createForm.value;
+    this.categoryService.save(temp).subscribe(data => {
+      console.log(data);
+      this.getAllCate();
+      Swal.fire("Successful","Create OK","success")
+    })
   }
 
   ngOnInit(): void {
@@ -24,13 +50,13 @@ export class CategoryComponent implements OnInit {
     })
   }
 
-  getDeleteCateId(id :number){
+  getDeleteCateId(id: number) {
     this.deleteID = id;
   }
 
-  deleteCategory(id:number){
-    this.categoryService.delete(id).subscribe(data=>{
-      Swal.fire("Succes","Delete Successful","success");
+  deleteCategory(id: number) {
+    this.categoryService.delete(id).subscribe(data => {
+      Swal.fire("Succes", "Delete Successful", "success");
       this.getAllCate();
     })
   }
