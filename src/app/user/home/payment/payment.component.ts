@@ -69,7 +69,6 @@ export class PaymentComponent implements OnInit {
     };
     this.paymentService.save(data).subscribe(data => {
       console.log(data)
-      alert('Thêm giao dịch thành công');
       this.paymentForm.reset();
       this.getPaymentList();
     });
@@ -92,7 +91,6 @@ export class PaymentComponent implements OnInit {
 
   deletePayment(id: number) {
     this.paymentService.delete(id).subscribe(data => {
-      alert('Xóa giao dịch thành công');
       this.getPaymentList();
     })
   }
@@ -126,9 +124,9 @@ export class PaymentComponent implements OnInit {
     };
     this.paymentService.update(data.id, data).subscribe(data => {
       console.log(data)
-      alert('Cập nhật giao dịch thành công');
       this.paymentForm.reset();
       this.getPaymentList();
+
     });
   }
 
