@@ -88,14 +88,16 @@ export class PaymentComponent implements OnInit {
   }
 
 
+
+
   deletePayment(id: number) {
     this.paymentService.delete(id).subscribe(data => {
-      console.log(data);
+      alert('Xóa giao dịch thành công');
       this.getPaymentList();
-
     })
-
   }
+
+
   // Update payment
   updatePayment(id: number) {
     this.paymentService.findById(id).subscribe(payment => {
