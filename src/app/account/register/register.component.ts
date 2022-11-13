@@ -47,7 +47,8 @@ export class RegisterComponent implements OnInit {
       if (data == null) {
         this.message = "Tai khoan da ton tai";
       } else {
-        this.router.navigate(['/login'])
+        Swal.fire("Welcome","Let Login","success");
+        this.router.navigate(['/login']);
       }
     })
   }
