@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AccountService} from "../../account/service/account.service";
 import {AppUser} from "../../user/model/appUser";
 import {Router} from "@angular/router";
+import {LoginComponent} from "../../account/login/login.component";
 
 @Component({
   selector: 'app-nav-bar',

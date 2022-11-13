@@ -5,6 +5,7 @@ import {WalletListComponent} from "./home/wallet/wallet-list/wallet-list.compone
 import {ProfileDetailComponent} from "./home/profile/profile-detail/profile-detail.component";
 import {CommonModule} from "@angular/common";
 import {PaymentComponent} from "./home/payment/payment.component";
+import {CategoryComponent} from "./home/category/category.component";
 
 let routes: Routes = [
   {
@@ -22,6 +23,10 @@ let routes: Routes = [
       {
         path: "profile",
         component: ProfileDetailComponent
+      },
+      {
+        path: "category",
+        component: CategoryComponent
       },
     ]
   }

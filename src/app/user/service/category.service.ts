@@ -2,27 +2,26 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Category} from "../model/category";
+import {AccountService} from "../../account/service/account.service";
 
-const API = 'http://localhost:8080/categories'
+const API = 'http://localhost:8080/categories/'
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient,
+              private accountService : AccountService) {}
 
-  findAll(): Observable<any> {
-    return this.httpClient.get(API + '/find-by-user/' + localStorage.getItem('ID'));
+  findAll(): Observable<Category[]> {
+    return this.httpClient.get<Category[]>(API + this.accountService.currentUserValue.id);
   }
 
   findById(id: number): Observable<any> {
-    return this.httpClient.get(API + '/' + id);
+    return this.httpClient.get(API + 'find?cate_id=' + id);
   }
 
-  findByStatus(num: number): Observable<any> {
-    return this.httpClient.get(API + `/find-by-status/${num}/${localStorage.getItem('ID')}`);
-  }
 
   save(category: any): Observable<any> {
     return this.httpClient.post(API, category);
@@ -32,8 +31,8 @@ export class CategoryService {
     return this.httpClient.put(API + `/${id}`, category);
   }
 
-  delete(id: any):Observable<any>{
-    return this.httpClient.delete(API + `/${id}`);
+  delete(id: number):Observable<any>{
+    return this.httpClient.delete(API + `${id}`);
   }
 
   findCateByUser(id: number):Observable<Category[]>{
