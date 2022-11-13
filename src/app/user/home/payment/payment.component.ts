@@ -5,7 +5,6 @@ import {PaymentService} from "../../service/payment.service";
 import {CategoryService} from "../../service/category.service";
 import {AccountService} from "../../../account/service/account.service";
 import {Payment} from "../../model/payment";
-import {get} from "@angular/fire/database";
 
 
 @Component({
@@ -14,18 +13,19 @@ import {get} from "@angular/fire/database";
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
-  paymentForm = new FormGroup({
+  paymentForm: FormGroup = new FormGroup({
+    id: new FormControl(),
     name: new FormControl(),
     date: new FormControl(),
     money: new FormControl(),
     category: new FormControl(),
     description: new FormControl(),
     status: new FormControl(1),
+    wallet: new FormControl(),
   })
 
 
   listCategory: Category[] = [];
-  // color: string = '#E9E612';
   nameCategory: string = 'Danh mục giao dich';
   expenseCategories: Category[] = [];
   incomeCategories: Category[] = [];
@@ -39,9 +39,9 @@ export class PaymentComponent implements OnInit {
   constructor(
     private paymentService: PaymentService,
     private categoryService: CategoryService,
-    private accountService: AccountService,
+    // private accountService: AccountService,
   ) {
-    this.categoryService.findCateByUser(accountService.currentUserValue.id).subscribe(data => {
+    this.categoryService.findAll().subscribe(data => {
       this.listCategory = data;
       console.log("cTWA", this.listCategory);
     })
@@ -50,28 +50,10 @@ export class PaymentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.showExpenseCategory();
-    // this.showIncomeCategory();
     this.getPaymentList();
 
   }
 
-  // showExpenseCategory() {
-  //   this.categoryService.findByStatus(2).subscribe((categories) => {
-  //     console.log("cats",categories);
-  //     this.expenseCategories = categories;
-  //   }, e => {
-  //     console.log(e);
-  //   })
-  // }
-  //
-  // showIncomeCategory() {
-  //   this.categoryService.findByStatus(1).subscribe((categories) => {
-  //     this.incomeCategories = categories;
-  //   }, e => {
-  //     console.log(e);
-  //   })
-  // }
 
   addPayment() {
 
@@ -105,45 +87,61 @@ export class PaymentComponent implements OnInit {
 
   }
 
+
+
+
   deletePayment(id: number) {
     this.paymentService.delete(id).subscribe(data => {
-      console.log(data);
+      alert('Xóa giao dịch thành công');
       this.getPaymentList();
+    })
+  }
 
+
+  // Update payment
+  updatePayment(id: number) {
+    this.paymentService.findById(id).subscribe(payment => {
+      this.paymentForm = new FormGroup({
+        id: new FormControl(payment.id),
+        name: new FormControl(payment.name),
+        date: new FormControl(payment.date),
+        money: new FormControl(payment.money),
+        category: new FormControl(payment.category),
+        description: new FormControl(payment.description),
+        status: new FormControl(payment.status),
+        wallet: new FormControl(payment.wallet),
+      })
     })
 
   }
+  updatePaymentSubmit() {
+    const data = this.paymentForm.value;
+    console.log(data.category);
+    if (data.date == null) {
+      data.date = new Date();
+      console.log(data.date);
+    }
+    data.category = {
+      id: data.category
+    };
+    this.paymentService.update(data.id, data).subscribe(data => {
+      console.log(data)
+      alert('Cập nhật giao dịch thành công');
+      this.paymentForm.reset();
+      this.getPaymentList();
+    });
+  }
 
-  // updatePayment(id: any) {
-  //   this.paymentService.update(id).subscribe(data => {
-  //     console.log(data);
-  //     this.getPaymentList();
-  //
-  //   })
-
-
-
-
-
-
-
-  //
-  // const newPayment:Payment = {
-  //   name: this.paymentForm?.value.name,
-  //   date: this.paymentForm?.value.date,
-  //   money: this.paymentForm?.value.money,
-  //   category: this.newCategory,
-  //   description: this.paymentForm?.value.description
-  // }
-  // this.categoryService.findById(Number.parseInt(this.paymentForm.value.category)).subscribe(data => {
-  //   this.paymentForm.value.category = data;
-  // })
-  // const payment = this.paymentForm.value
-  // console.log(payment)
-  // this.paymentService.save(newPayment).subscribe(data => {
-  //   console.log(data);
-  //   console.log("thanh cong")
-  // })
 
 
 }
+
+
+
+
+
+
+
+
+
+
