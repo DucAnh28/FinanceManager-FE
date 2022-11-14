@@ -7,6 +7,7 @@ import {AccountService} from "../../../account/service/account.service";
 import {Payment} from "../../model/payment";
 import {WalletService} from "../../service/wallet.service";
 import Swal from "sweetalert2";
+import {Wallet} from "../../model/wallet";
 
 @Component({
   selector: 'app-payment',
@@ -30,32 +31,38 @@ export class PaymentComponent implements OnInit {
   nameCategory: string = 'Danh mục giao dich';
   expenseCategories: Category[] = [];
   incomeCategories: Category[] = [];
-
-  newCategory: Category = {
-    // id: this.newCategoryId
-  }
-  public newCategoryId: any = 1;
-
+  listWallet: Wallet[] = [];
+  wallet_id: number = 0;
 
   constructor(
     private paymentService: PaymentService,
     private categoryService: CategoryService,
-    // private accountService: AccountService,
     private walletService: WalletService,
   ) {
     this.categoryService.findAll().subscribe(data => {
       this.listCategory = data;
       console.log("cTWA", this.listCategory);
     })
-
+    this.walletService.getAll().subscribe(data => {
+      this.listWallet = data;
+      console.log("wallet", this.listWallet);
+      this.wallet_id = this.listWallet[0].id;
+      console.log("wallet_id", this.wallet_id);
+      this.getPaymentList();
+    })
 
   }
 
   ngOnInit(): void {
-    this.getPaymentList();
-
   }
 
+  getWalletid(id: any) {
+    this.wallet_id  = id;
+    console.log(this.wallet_id);
+  }
+
+  getAllByWallet() {
+  }
 
   addPayment() {
 
@@ -71,6 +78,10 @@ export class PaymentComponent implements OnInit {
     data.category = {
       id: data.category
     };
+
+    data.wallet = {
+      id: this.wallet_id
+    }
     this.paymentService.save(data).subscribe(data => {
       Swal.fire('Sucess',
         'Please choose date',
@@ -84,7 +95,7 @@ export class PaymentComponent implements OnInit {
   paymentList: Payment[] = [];
 
   getPaymentList() {
-    this.paymentService.findAll().subscribe(data => {
+    this.paymentService.findAllByWallet(this.wallet_id).subscribe(data => {
       this.paymentList = data;
       console.log("paymentList", this.paymentList);
 

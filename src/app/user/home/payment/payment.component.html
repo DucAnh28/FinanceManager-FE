@@ -1,5 +1,9 @@
 <!-- Add Payment-->
-
+<label for="select">Select Your Wallet</label>
+<select class="form-control" id="select" #wallet_id (change)="getWalletid(wallet_id.value);getPaymentList()" >
+  <option [value]="wallet.id"
+          *ngFor="let wallet of listWallet,index as i">{{wallet.name}}</option>
+</select>
 <div class="content-wrapper"><br>
   <br>
   <button type="button" class="btn btn-gradient-primary me-2" data-toggle="modal" data-target="#createPayment">
