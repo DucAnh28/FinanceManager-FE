@@ -3,7 +3,6 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {Category} from "../../model/category";
 import {PaymentService} from "../../service/payment.service";
 import {CategoryService} from "../../service/category.service";
-import {AccountService} from "../../../account/service/account.service";
 import {Payment} from "../../model/payment";
 import {WalletService} from "../../service/wallet.service";
 import Swal from "sweetalert2";
@@ -25,7 +24,14 @@ export class PaymentComponent implements OnInit {
     status: new FormControl(1),
     wallet: new FormControl(),
   })
+  showpayment: Payment[] = [];
+  startDate: Date
+  endDate: Date
 
+  dateForm = new FormGroup({
+    startDate: new FormControl(),
+    endDate: new FormControl()
+  })
 
   listCategory: Category[] = [];
   nameCategory: string = 'Danh mục giao dich';
@@ -57,15 +63,12 @@ export class PaymentComponent implements OnInit {
   }
 
   getWalletid(id: any) {
-    this.wallet_id  = id;
+    this.wallet_id = id;
     console.log(this.wallet_id);
   }
 
-  getAllByWallet() {
-  }
 
   addPayment() {
-
     const data = this.paymentForm.value;
     console.log(data);
     console.log(data.category);
@@ -98,10 +101,7 @@ export class PaymentComponent implements OnInit {
     this.paymentService.findAllByWallet(this.wallet_id).subscribe(data => {
       this.paymentList = data;
       console.log("paymentList", this.paymentList);
-
     })
-
-
   }
 
 
@@ -169,11 +169,18 @@ export class PaymentComponent implements OnInit {
         'success');
       this.paymentForm.reset();
       this.getPaymentList();
-
     });
   }
 
-
+  showlistpayment() {
+    this.startDate = this.dateForm.value.startDate;
+    this.endDate = this.dateForm.value.endDate;
+    console.log(this.startDate)
+    console.log(this.endDate)
+    this.paymentService.showpaymentintime(this.startDate, this.endDate).subscribe(date => {
+      this.showpayment = date;
+    })
+  }
 }
 
 

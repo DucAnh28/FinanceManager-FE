@@ -117,7 +117,86 @@
           </div>
 
 
-<!--          modal update payment-->
+
+
+
+
+
+
+
+
+<!--          <div class="content-wrapper">-->
+<!--            <form [formGroup]="paymentForm" (ngSubmit)="addPayment()">-->
+<!--              <table>-->
+<!--                <tr>-->
+<!--                  <td>Name</td>-->
+<!--                  <td>-->
+<!--                    <input type="text" formControlName="name">-->
+<!--                  </td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                  <td>Date</td>-->
+<!--                  <td>-->
+<!--                    <input type="date" formControlName="date">-->
+<!--                  </td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                  <td>Money</td>-->
+<!--                  <td>-->
+<!--                    <input type="number" formControlName="money">-->
+<!--                  </td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                  <td>Category</td>-->
+<!--                  <td>-->
+<!--                    <select [(ngModel)]="newCategoryId" name="Category" formControlName="category">-->
+<!--                      <option [value]="category.id"-->
+<!--                              *ngFor="let category of listCategory,index as i">{{category.name}}</option>-->
+<!--                    </select>-->
+<!--                  </td>-->
+<!--                <tr>-->
+<!--                  <td>Description</td>-->
+<!--                  <td>-->
+<!--                    <input formControlName="description" type="text">-->
+<!--                  </td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                  <td>-->
+<!--                    <button type="submit">Add Payment</button>-->
+<!--                    &lt;!&ndash;          <button type="submit">Delete Payment</button>&ndash;&gt;-->
+<!--                  </td>-->
+<!--                </tr>-->
+<!--              </table>-->
+<!--            </form>-->
+<!--          </div>-->
+
+<!--          <table>-->
+<!--            <tr>-->
+<!--              <th>Name</th>-->
+<!--              <th>Date</th>-->
+<!--              <th>Money</th>-->
+<!--              <th>Category</th>-->
+<!--              <th>Description</th>-->
+<!--              <th>Delete</th>-->
+<!--              <th>Update</th>-->
+<!--            </tr>-->
+<!--            <h1>{{paymentList.length}}</h1>-->
+<!--            <tr *ngFor="let payment of paymentList">-->
+<!--              <td>{{payment.name}}</td>-->
+<!--              <td>{{payment.date}}</td>-->
+<!--              <td>{{payment.money}}</td>-->
+<!--              <td>{{payment.category.name}}</td>-->
+<!--              <td>{{payment.description}}</td>-->
+<!--              <td>-->
+<!--                <button (click)="deletePayment(payment.id)" class="btn btn-gradient-success btn-fw" >Delete</button>-->
+<!--              </td>-->
+<!--              <td>-->
+<!--                <button (click)="updatePayment(payment.id)" class="btn btn-gradient-success btn-fw" data-toggle="modal"-->
+<!--                        data-target="#updateModal">Update-->
+<!--                </button>-->
+<!--              </td>-->
+<!--            </tr>-->
+<!--          </table>-->
 
           <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -167,9 +246,44 @@
                 </div>
               </div>
             </div>
+          </div>
         </div>
       </div>
     </div>
+  </div>
+  <form [formGroup]="dateForm">
+  <tr><input type="date" formControlName="startDate"></tr>
+
+  <input type="date" formControlName="endDate">
+  <button type="submit" (click)="showlistpayment()">show</button>
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Transactions</h4>
+          <div class="table-responsive">
+            <table class="table">
+              <form [formGroup]="dateForm">
+                <tr><input type="date" formControlName="startDate"></tr>
+
+                <input type="date" formControlName="endDate">
+                <button type="submit" (click)="showlistpayment()">show</button>
+              </form>
+              <tbody *ngFor="let payment of showpayment">
+              <td>Transaction name: {{payment.name}}</td>
+              <br>
+              <td>Amount: {{payment.money}}</td>
+              <br>
+              <td>Transaction date: {{payment.date}}</td>
+              <br>
+              <td>Description: {{payment.description}}</td>
+              <br>
+              <!--            <tr>{{payment.category}}</tr>-->
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
-    </div>
-    </div>
+  </div>
+</form>
+</div>
