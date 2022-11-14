@@ -43,13 +43,11 @@ export class RegisterComponent implements OnInit {
 
   signUp() {
     const form = this.signupForm.value;
-    this.accountService.register(form).pipe().subscribe(data => {
-      if (data == null) {
-        this.message = "Tai khoan da ton tai";
-      } else {
-        Swal.fire("Welcome","Let Login","success");
-        this.router.navigate(['/login']);
-      }
+    this.accountService.register(form).pipe().subscribe(() => {
+      Swal.fire("Welcome", "Let Login", "success");
+      this.router.navigate(['/login']);
+    }, error => {
+      Swal.fire("Warning", "Username or Email has been used")
     })
   }
 
