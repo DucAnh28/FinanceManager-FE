@@ -4,6 +4,7 @@ import {AccountService} from "../service/account.service";
 import {Router} from "@angular/router";
 import {FacebookLoginProvider, SocialAuthService, SocialUser} from "@abacritt/angularx-social-login";
 import {TokenDto} from "../model/token-dto";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-login',
@@ -61,7 +62,7 @@ export class LoginComponent implements OnInit {
     const form = this.loginForm.value;
     this.accountService.login(form).subscribe(data => {
       if (data == null) {
-        this.message = "Nguoi dung khong ton tai hoac sai mat khau mat oi`"
+        Swal.fire("Warning","Wrong user or password !","warning");
       } else {
         localStorage.setItem("user", JSON.stringify(data))
         localStorage.setItem("token", JSON.stringify(data.token));

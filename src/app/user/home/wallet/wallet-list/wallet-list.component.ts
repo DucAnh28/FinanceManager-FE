@@ -214,8 +214,8 @@ export class WalletListComponent implements OnInit {
     this.submitFileEdit();
   }
 
-  numberWithCommas(x: number): string {
-    let parts = x.toString().split(".");
+  numberWithCommas(money: any): string {
+    let parts = money.toString().split(".");
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return parts.join(".");
   }
