@@ -60,7 +60,7 @@
     <td>{{payment.money}}</td>
     <td>{{payment.category.name}}</td>
     <td>{{payment.description}}</td>
-    <td><button (click)="deletePayment(payment.id)" class="btn btn-gradient-success btn-fw">Delete</button></td>
+    <td><button (click)="deletePayment(payment.id)" class="btn btn-gradient-danger btn-fw">Delete</button></td>
     <td><button (click)="updatePayment(payment.id)" class="btn btn-gradient-success btn-fw" data-toggle="modal" data-target="#updateModal">Update</button></td>
   </tr>
 </table>

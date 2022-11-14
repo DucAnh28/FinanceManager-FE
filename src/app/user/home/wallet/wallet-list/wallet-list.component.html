@@ -1,11 +1,24 @@
 <div class="content-wrapper"><br>
-  <br>
-  <div class="sum_money">
-    <img src="https://symbols.vn/wp-content/uploads/2021/11/Goi-y-mau-icon-tien.jpg" width="50" height="50"
-         class="card-img-absolute" alt="circle-image"/>
-    <h4 class="font-weight-normal mb-3">Sum Money <i class="mdi mdi-chart-line mdi-24px float-right"></i>
-    </h4>
-    <h2 class="mb-5">{{numberWithCommas(money)}}.00 đ</h2>
+
+  <div class="col-md-6 stretch-card grid-margin">
+    <div class="card bg-gradient-danger card-img-holder text-white">
+      <div class="card-body">
+        <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+        <h4 class="font-weight-normal mb-3">Sum Money <i class="mdi mdi-chart-line mdi-24px  float-right"></i>
+        </h4>
+        <h2 class="mb-5">{{numberWithCommas(money)}} đ</h2>
+        <h6 class="card-text"></h6>
+      </div>
+    </div>
+<!--    <div class="card bg-gradient-danger card-img-holder text-white">-->
+<!--      <div class="card-body">-->
+<!--        <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />-->
+<!--        <h4 class="font-weight-normal mb-3">Time <i class="mdi mdi-chart-line mdi-24px  float-right"></i>-->
+<!--        </h4>-->
+<!--        <h2 class="mb-5"> </h2>-->
+<!--        <h6 class="card-text"></h6>-->
+<!--      </div>-->
+<!--    </div>-->
   </div>
 
   <button type="button" class="btn btn-gradient-primary me-2" data-toggle="modal" data-target="#createWallet">
@@ -33,7 +46,7 @@
                 <td>
                   <img [src]="wallets.icon" class="me-2" alt="image">{{wallets.name}}
                 </td>
-                <td>{{numberWithCommas(wallets.money)}}.00 đ</td>
+                <td>{{numberWithCommas(wallets.money)}} đ</td>
                 <td>
                   <button type="button" class="btn btn-gradient-primary me-2" style="min-width:50px" data-toggle="modal"
                           data-target="#addMoney"
@@ -84,15 +97,20 @@
                           <div class="form-group">
                             <label for="add_money"></label>
                             <input type="number" class="form-control form-group" name="money1" id="add_money" [(ngModel)]="addMoney123"
-                                   placeholder="Enter the amount you want to add to your wallet"
                                    name="recruitNumber"
                                    #recruitNumber = "ngModel"
                                    required
+                                   min="1"
+
+
                             >
                           </div>
-                          <div class="text-danger" *ngIf="!recruitNumber?.valid && (recruitNumber?.dirty ||recruitNumber?.touched)">
-                            <p style="color: red"> Please Enter The Amount You Want To Add </p> <br>
+                          <div class="text-danger" *ngIf="!recruitNumber?.valid   && (recruitNumber?.dirty ||recruitNumber?.touched)">
+                            <p style="color: red"> Please Enter The Amount You Want To Add Or Number Wrong </p> <br>
                           </div>
+<!--                          <div class="text-danger" *ngIf="!recruitNumber?.valid  && (recruitNumber?.dirty ||recruitNumber?.touched)">-->
+<!--                            <p style="color: red"> Wrong number </p> <br>-->
+<!--                          </div>-->
 
                         </form>
                       </div>
@@ -101,7 +119,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary"  (click)="addMoney(addFrom)" [disabled]="!addFrom.valid" data-dismiss="modal" >Add Money</button>
+                    <button type="button" class="btn btn-primary"  (click)="addMoney(addFrom)" [disabled]="!addFrom.valid " data-dismiss="modal"  >Add Money</button>
                   </div>
                 </div>
               </div>
