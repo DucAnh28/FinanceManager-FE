@@ -3,7 +3,6 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {Category} from "../../model/category";
 import {PaymentService} from "../../service/payment.service";
 import {CategoryService} from "../../service/category.service";
-import {AccountService} from "../../../account/service/account.service";
 import {Payment} from "../../model/payment";
 
 
@@ -23,30 +22,28 @@ export class PaymentComponent implements OnInit {
     status: new FormControl(1),
     wallet: new FormControl(),
   })
+  showpayment: Payment[] = [];
+  startDate: Date
+  endDate: Date
 
+  dateForm = new FormGroup({
+    startDate: new FormControl(),
+    endDate: new FormControl()
+  })
 
   listCategory: Category[] = [];
   nameCategory: string = 'Danh mục giao dich';
   expenseCategories: Category[] = [];
   incomeCategories: Category[] = [];
 
-  newCategory: Category = {
-    // id: this.newCategoryId
-  }
-  public newCategoryId: any = 1;
-
-
   constructor(
     private paymentService: PaymentService,
-    private categoryService: CategoryService,
-    // private accountService: AccountService,
+    private categoryService: CategoryService
   ) {
     this.categoryService.findAll().subscribe(data => {
       this.listCategory = data;
       console.log("cTWA", this.listCategory);
     })
-
-
   }
 
   ngOnInit(): void {
@@ -56,7 +53,6 @@ export class PaymentComponent implements OnInit {
 
 
   addPayment() {
-
     const data = this.paymentForm.value;
     console.log(data);
     console.log(data.category);
@@ -80,21 +76,14 @@ export class PaymentComponent implements OnInit {
     this.paymentService.findAll().subscribe(data => {
       this.paymentList = data;
       console.log("paymentList", this.paymentList);
-
     })
-
-
   }
-
-
-
 
   deletePayment(id: number) {
     this.paymentService.delete(id).subscribe(data => {
       this.getPaymentList();
     })
   }
-
 
   // Update payment
   updatePayment(id: number) {
@@ -112,6 +101,7 @@ export class PaymentComponent implements OnInit {
     })
 
   }
+
   updatePaymentSubmit() {
     const data = this.paymentForm.value;
     console.log(data.category);
@@ -126,20 +116,16 @@ export class PaymentComponent implements OnInit {
       console.log(data)
       this.paymentForm.reset();
       this.getPaymentList();
-
     });
   }
 
-
-
+  showlistpayment() {
+    this.startDate = this.dateForm.value.startDate;
+    this.endDate = this.dateForm.value.endDate;
+    console.log(this.startDate)
+    console.log(this.endDate)
+    this.paymentService.showpaymentintime(this.startDate, this.endDate).subscribe(date => {
+      this.showpayment = date;
+    })
+  }
 }
-
-
-
-
-
-
-
-
-
-
