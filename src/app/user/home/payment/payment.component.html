@@ -173,6 +173,7 @@
     <th>Delete</th>
     <th>Update</th>
   </tr>
+
   <h1>{{paymentList.length}}</h1>
   <tr *ngFor="let payment of paymentList">
     <td>{{payment.name}}</td>
@@ -211,4 +212,40 @@
   </div>
 </div>
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<form [formGroup]="dateForm">
+  <tr> <input type="date" formControlName="startDate"></tr>
+
+  <input type="date" formControlName="endDate">
+  <button type="submit" (click)="showlistpayment()">show</button>
+<div class="row">
+  <div class="col-12 grid-margin">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Transactions</h4>
+        <div class="table-responsive">
+          <table class="table">
+            <form [formGroup]="dateForm">
+              <tr> <input type="date" formControlName="startDate"></tr>
+
+              <input type="date" formControlName="endDate">
+              <button type="submit" (click)="showlistpayment()">show</button>
+            </form>
+            <tbody *ngFor="let payment of showpayment">
+            <td>Transaction name: {{payment.name}}</td>  <br>
+            <td>Amount: {{payment.money}}</td> <br>
+            <td>Transaction date: {{payment.date}}</td> <br>
+            <td>Description: {{payment.description}}</td> <br>
+<!--            <tr>{{payment.category}}</tr>-->
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
 

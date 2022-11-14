@@ -22,7 +22,14 @@ export class PaymentComponent implements OnInit {
     description: new FormControl(),
     status: new FormControl(1),
   })
+showpayment:Payment[]=[];
+  startDate:Date
+  endDate:Date
 
+  dateForm=new FormGroup({
+    startDate:new FormControl(),
+    endDate:new FormControl()
+  })
 
   listCategory: Category[] = [];
   // color: string = '#E9E612';
@@ -145,5 +152,13 @@ export class PaymentComponent implements OnInit {
   //   console.log("thanh cong")
   // })
 
-
+showlistpayment(){
+    this.startDate=this.dateForm.value.startDate;
+    this.endDate=this.dateForm.value.endDate;
+  console.log(this.startDate)
+  console.log(this.endDate)
+    this.paymentService.showpaymentintime(this.startDate,this.endDate).subscribe(date=>{
+      this.showpayment=date;
+    })
+}
 }
