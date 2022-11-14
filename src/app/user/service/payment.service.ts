@@ -66,4 +66,11 @@ export class PaymentService {
   findAllPaymentByCategoryID(id: any): Observable<any> {
     return this.httpClient.get(API + 'find-by-category/'+ id);
   }
+showpaymentintime(startDate:Date,endDate:Date):Observable<Payment[]>{
+    return this.httpClient.get<Payment[]>(API+'find-All-Transactions-during-time?startDate='+startDate+'&endDate='+endDate)
+}
+
+// showPaymentInTimeByWallet(startDate:Date, endDate:Date):Observable<Payment[]>{
+//     return this.httpClient.get<Payment[]>(API + 'find-All-Transactions-during-time-by-wallet?startDate=' + startDate + '&endDate=' + endDate + '$walletid=' + en)
+// }
 }
