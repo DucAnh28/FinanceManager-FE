@@ -5,7 +5,8 @@ import {PaymentService} from "../../service/payment.service";
 import {CategoryService} from "../../service/category.service";
 import {AccountService} from "../../../account/service/account.service";
 import {Payment} from "../../model/payment";
-
+import {WalletService} from "../../service/wallet.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-payment',
@@ -40,6 +41,8 @@ export class PaymentComponent implements OnInit {
     private paymentService: PaymentService,
     private categoryService: CategoryService,
     // private accountService: AccountService,
+    private walletService: WalletService,
+
   ) {
     this.categoryService.findAll().subscribe(data => {
       this.listCategory = data;
@@ -61,6 +64,9 @@ export class PaymentComponent implements OnInit {
     console.log(data);
     console.log(data.category);
     if (data.date == null) {
+      Swal.fire('Sucess',
+        'Please choose date',
+        'success');
       data.date = new Date();
       console.log(data.date);
     }
