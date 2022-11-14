@@ -42,7 +42,6 @@ export class PaymentComponent implements OnInit {
     private categoryService: CategoryService,
     // private accountService: AccountService,
     private walletService: WalletService,
-
   ) {
     this.categoryService.findAll().subscribe(data => {
       this.listCategory = data;
@@ -64,9 +63,8 @@ export class PaymentComponent implements OnInit {
     console.log(data);
     console.log(data.category);
     if (data.date == null) {
-      Swal.fire('Sucess',
-        'Please choose date',
-        'success');
+      Swal.fire('Fail', 'Please do not blank', 'error');
+
       data.date = new Date();
       console.log(data.date);
     }
@@ -74,6 +72,9 @@ export class PaymentComponent implements OnInit {
       id: data.category
     };
     this.paymentService.save(data).subscribe(data => {
+      Swal.fire('Sucess',
+        'Please choose date',
+        'success');
       console.log(data)
       this.paymentForm.reset();
       this.getPaymentList();
@@ -93,12 +94,33 @@ export class PaymentComponent implements OnInit {
   }
 
 
-
-
   deletePayment(id: number) {
-    this.paymentService.delete(id).subscribe(data => {
-      this.getPaymentList();
+    Swal.fire({
+      title: 'Are You Sure?',
+      text: "You Won't Be Able To Revert This!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'No Keep It',
+      confirmButtonText: 'Yes, Delete It!',
     })
+      .then((result) => {
+        if (result.isConfirmed) {
+          this.paymentService.delete(id).subscribe(data => {
+            this.getPaymentList();
+          }, e => {
+            console.log(e);
+          });
+          Swal.fire(
+            'Deleted!',
+            'Your Payment Has Been Deleted.',
+            'success'
+          )
+        }
+      })
+
+
   }
 
 
@@ -118,6 +140,7 @@ export class PaymentComponent implements OnInit {
     })
 
   }
+
   updatePaymentSubmit() {
     const data = this.paymentForm.value;
     console.log(data.category);
@@ -130,12 +153,14 @@ export class PaymentComponent implements OnInit {
     };
     this.paymentService.update(data.id, data).subscribe(data => {
       console.log(data)
+      Swal.fire('Success',
+        'You Update Your Wallet Successful',
+        'success');
       this.paymentForm.reset();
       this.getPaymentList();
 
     });
   }
-
 
 
 }

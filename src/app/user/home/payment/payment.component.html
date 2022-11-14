@@ -15,7 +15,7 @@
             <table class="table">
               <thead>
               <tr>
-                <th>Payment ID</th>
+<!--                <th>Payment ID</th>-->
                 <th> Name</th>
                 <th> Date</th>
                 <th> Money</th>
@@ -29,14 +29,14 @@
               </thead>
               <!--              <tbody *ngFor="let wallets of walletList;index as i">-->
               <tbody *ngFor="let payment of paymentList">
-              <td>{{payment.id}}</td>
+<!--              <td>{{payment.id}}</td>-->
               <td>{{payment.name}}</td>
               <td>{{payment.date}}</td>
               <td>{{payment.money}}</td>
               <td>{{payment.category.name}}</td>
               <td>{{payment.description}}</td>
               <td>
-                <button (click)="deletePayment(payment.id)" class="btn btn-gradient-success btn-fw">Delete</button>
+                <button (click)="deletePayment(payment.id)" class="btn btn-gradient-success btn-fw" >Delete</button>
               </td>
               <td>
                 <button (click)="updatePayment(payment.id)" class="btn btn-gradient-success btn-fw" data-toggle="modal"
