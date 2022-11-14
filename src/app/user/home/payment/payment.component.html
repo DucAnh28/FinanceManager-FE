@@ -1,9 +1,11 @@
 <!-- Add Payment-->
+<div class="form-group">
 <label for="select">Select Your Wallet</label>
 <select class="form-control" id="select" #wallet_id (change)="getWalletid(wallet_id.value);getPaymentList()" >
   <option [value]="wallet.id"
           *ngFor="let wallet of listWallet,index as i">{{wallet.name}}</option>
 </select>
+</div>
 <div class="content-wrapper"><br>
   <br>
   <button type="button" class="btn btn-gradient-primary me-2" data-toggle="modal" data-target="#createPayment">
@@ -117,86 +119,6 @@
           </div>
 
 
-
-
-
-
-
-
-
-
-<!--          <div class="content-wrapper">-->
-<!--            <form [formGroup]="paymentForm" (ngSubmit)="addPayment()">-->
-<!--              <table>-->
-<!--                <tr>-->
-<!--                  <td>Name</td>-->
-<!--                  <td>-->
-<!--                    <input type="text" formControlName="name">-->
-<!--                  </td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                  <td>Date</td>-->
-<!--                  <td>-->
-<!--                    <input type="date" formControlName="date">-->
-<!--                  </td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                  <td>Money</td>-->
-<!--                  <td>-->
-<!--                    <input type="number" formControlName="money">-->
-<!--                  </td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                  <td>Category</td>-->
-<!--                  <td>-->
-<!--                    <select [(ngModel)]="newCategoryId" name="Category" formControlName="category">-->
-<!--                      <option [value]="category.id"-->
-<!--                              *ngFor="let category of listCategory,index as i">{{category.name}}</option>-->
-<!--                    </select>-->
-<!--                  </td>-->
-<!--                <tr>-->
-<!--                  <td>Description</td>-->
-<!--                  <td>-->
-<!--                    <input formControlName="description" type="text">-->
-<!--                  </td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                  <td>-->
-<!--                    <button type="submit">Add Payment</button>-->
-<!--                    &lt;!&ndash;          <button type="submit">Delete Payment</button>&ndash;&gt;-->
-<!--                  </td>-->
-<!--                </tr>-->
-<!--              </table>-->
-<!--            </form>-->
-<!--          </div>-->
-
-<!--          <table>-->
-<!--            <tr>-->
-<!--              <th>Name</th>-->
-<!--              <th>Date</th>-->
-<!--              <th>Money</th>-->
-<!--              <th>Category</th>-->
-<!--              <th>Description</th>-->
-<!--              <th>Delete</th>-->
-<!--              <th>Update</th>-->
-<!--            </tr>-->
-<!--            <h1>{{paymentList.length}}</h1>-->
-<!--            <tr *ngFor="let payment of paymentList">-->
-<!--              <td>{{payment.name}}</td>-->
-<!--              <td>{{payment.date}}</td>-->
-<!--              <td>{{payment.money}}</td>-->
-<!--              <td>{{payment.category.name}}</td>-->
-<!--              <td>{{payment.description}}</td>-->
-<!--              <td>-->
-<!--                <button (click)="deletePayment(payment.id)" class="btn btn-gradient-success btn-fw" >Delete</button>-->
-<!--              </td>-->
-<!--              <td>-->
-<!--                <button (click)="updatePayment(payment.id)" class="btn btn-gradient-success btn-fw" data-toggle="modal"-->
-<!--                        data-target="#updateModal">Update-->
-<!--                </button>-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--          </table>-->
 
           <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
