@@ -27,10 +27,12 @@ export class PaymentComponent implements OnInit {
   showpayment: Payment[] = [];
   startDate: Date
   endDate: Date
+  id:number
 
   dateForm = new FormGroup({
     startDate: new FormControl(),
-    endDate: new FormControl()
+    endDate: new FormControl(),
+    wallet_id:new FormControl
   })
 
   listCategory: Category[] = [];
@@ -175,10 +177,14 @@ export class PaymentComponent implements OnInit {
   showlistpayment() {
     this.startDate = this.dateForm.value.startDate;
     this.endDate = this.dateForm.value.endDate;
+    this.id=this.wallet_id
     console.log(this.startDate)
     console.log(this.endDate)
-    this.paymentService.showpaymentintime(this.startDate, this.endDate).subscribe(date => {
-      this.showpayment = date;
+    console.log(this.wallet_id)
+    this.paymentService.showpaymentintime(this.startDate, this.endDate,this.wallet_id).subscribe(date => {
+      this.paymentList = date;
+      console.log(this.wallet_id)
+      console.log(date)
     })
   }
 }

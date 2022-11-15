@@ -1,11 +1,29 @@
 <!-- Add Payment-->
 <div class="form-group">
-<label for="select">Select Your Wallet</label>
-<select class="form-control" id="select" #wallet_id (change)="getWalletid(wallet_id.value);getPaymentList()" >
-  <option [value]="wallet.id"
-          *ngFor="let wallet of listWallet,index as i">{{wallet.name}}</option>
-</select>
+<label >Select Your Wallet</label>
+  <div class="col-sm-1">
+    <select class="form-control"  #wallet_id (change)="getWalletid(wallet_id.value);getPaymentList()" >
+      <option [value]="wallet.id"
+              *ngFor="let wallet of listWallet,index as i">{{wallet.name}}</option>
+    </select>
+  </div>
+  <form [formGroup]="dateForm">
+    <tr><input type="date" formControlName="startDate"></tr>
+
+    <input type="date" formControlName="endDate">
+    <button type="submit" class="btn btn-gradient-info btn-fw" (click)="showlistpayment()">show</button>
+  </form>
+
+
 </div>
+
+<select class="selectpicker" multiple>
+  <option>Mustard</option>
+  <option>Ketchup</option>
+  <option>Relish</option>
+</select>
+
+
 <div class="content-wrapper"><br>
   <br>
   <button type="button" class="btn btn-gradient-primary me-2" data-toggle="modal" data-target="#createPayment">
@@ -29,13 +47,9 @@
                 <th> Description</th>
                 <th> Delete</th>
                 <th> Update</th>
-                <!--                <th colspan="3" style="text-align: center"> Action</th>-->
-
               </tr>
               </thead>
-              <!--              <tbody *ngFor="let wallets of walletList;index as i">-->
               <tbody *ngFor="let payment of paymentList">
-<!--              <td>{{payment.id}}</td>-->
               <td>{{payment.name}}</td>
               <td>{{payment.date}}</td>
               <td>{{payment.money}}</td>
@@ -173,39 +187,5 @@
       </div>
     </div>
   </div>
-  <form [formGroup]="dateForm">
-  <tr><input type="date" formControlName="startDate"></tr>
 
-  <input type="date" formControlName="endDate">
-  <button type="submit" (click)="showlistpayment()">show</button>
-  <div class="row">
-    <div class="col-12 grid-margin">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">Transactions</h4>
-          <div class="table-responsive">
-            <table class="table">
-              <form [formGroup]="dateForm">
-                <tr><input type="date" formControlName="startDate"></tr>
-
-                <input type="date" formControlName="endDate">
-                <button type="submit" (click)="showlistpayment()">show</button>
-              </form>
-              <tbody *ngFor="let payment of showpayment">
-              <td>Transaction name: {{payment.name}}</td>
-              <br>
-              <td>Amount: {{payment.money}}</td>
-              <br>
-              <td>Transaction date: {{payment.date}}</td>
-              <br>
-              <td>Description: {{payment.description}}</td>
-              <br>
-              <!--            <tr>{{payment.category}}</tr>-->
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</form>
 </div>
