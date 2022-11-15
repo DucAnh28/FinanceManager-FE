@@ -73,7 +73,7 @@ showpaymentToday():Observable<Payment[]>{
     return this.httpClient.get<Payment[]>(API + 'find-All-Transactions-Today')
 }
 
-// showPaymentInTimeByWallet(startDate:Date, endDate:Date):Observable<Payment[]>{
+// showPaymentInTimeByWalet(startDate:Date, endDate:Date):Observable<Payment[]>{
 //     return this.httpClient.get<Payment[]>(API + 'find-All-Transactions-during-time-by-wallet?startDate=' + startDate + '&endDate=' + endDate + '$walletid=' + en)
 // }
 }
