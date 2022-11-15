@@ -48,9 +48,7 @@ export class PaymentComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPaymentList();
-
   }
-
 
   addPayment() {
     const data = this.paymentForm.value;
@@ -99,7 +97,6 @@ export class PaymentComponent implements OnInit {
         wallet: new FormControl(payment.wallet),
       })
     })
-
   }
 
   updatePaymentSubmit() {
