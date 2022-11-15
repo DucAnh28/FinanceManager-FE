@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-body">
-    <button type="button" class="btn btn-gradient-primary me-2" data-toggle="modal" data-target="#createCategory">
-      <i class="mdi mdi-checkbox-marked-outline" style="width: 210px;height: 50px"></i> Add New Category
+    <button type="button" class="btn btn-gradient-danger" style="width: 200px;height: 50px" data-toggle="modal" data-target="#createCategory">
+      <i class="mdi mdi-checkbox-marked-outline" ></i> Add Category
     </button>
     <table class="table table-hover">
       <thead>
@@ -17,10 +17,10 @@
         <td>{{i+1}}</td>
         <td>{{category.name}}</td>
         <td>
-          <button class="btn btn-gradient-primary" style="width: 120px;height: 50px">Edit</button>
+          <button class="btn btn-gradient-danger" style="width: 120px;height: 50px">Edit</button>
         </td>
         <td>
-          <button class="btn btn-gradient-primary" data-toggle="modal" data-target="#delete" style="width: 120px;height: 50px"
+          <button class="btn btn-gradient-danger" data-toggle="modal" data-target="#delete" style="width: 120px;height: 50px"
                   (click)="getDeleteCateId(category.id)">Delete
           </button>
         </td>
@@ -49,7 +49,7 @@
 
                 <div class="form-group">
                   <label for="oldPassword">Name</label>
-                  <input type="text" class="form-control" id="oldPassword" placeholder="Name"
+                  <input type="text" class="form-control" id="oldPassword" placeholder="name"
                          formControlName="name">
                 </div>
 

@@ -1,22 +1,24 @@
 <div class="content-wrapper"><br>
   <div class="form-group">
     <form [formGroup]="dateForm">
-      <label>Select Your Wallet</label>
       <div class="col-sm-1">
-        <select id="select" class="selectpicker" #wallet_id (change)="getWalletid(wallet_id.value);getPaymentList()" >
+        <select id="select" class="selectpicker" #wallet_id (change)="getWalletid(wallet_id.value);getPaymentList()">
           <option [value]="wallet.id"
                   *ngFor="let wallet of listWallet,index as i">{{wallet.name}}</option>
         </select>
       </div>
-      <tr><input  class="date" type="date" formControlName="startDate"></tr>
+      <tr><input class="date" type="date" formControlName="startDate"></tr>
 
-      <tr><input  class="date" type="date" formControlName="endDate"></tr>
+      <tr><input class="date" type="date" formControlName="endDate"></tr>
       <tr>
-        <button type="submit" class="btn btn-gradient-success btn-fw" style="width: 150px;height: 40px" (click)="showlistpayment()">Show</button>
+        <button type="submit" class="btn btn-gradient-success btn-fw" style="width: 150px;height: 40px"
+                (click)="showlistpayment()">Show
+        </button>
       </tr>
     </form>
     <br>
-    <button type="button" class="btn btn-gradient-success btn-fw" data-toggle="modal" style="width: 210px;height: 50px" data-target="#createPayment">
+    <button type="button" class="btn btn-gradient-success btn-fw" data-toggle="modal" style="width: 200px;height: 50px"
+            data-target="#createPayment">
       <i class="mdi mdi-checkbox-marked-outline"></i> Add Payment
     </button>
 
@@ -45,10 +47,13 @@
                 <td>{{payment.category.name}}</td>
                 <td>{{payment.description}}</td>
                 <td>
-                  <button (click)="deletePayment(payment.id)" class="btn btn-gradient-success btn-fw" style="min-width: 100px">Delete</button>
+                  <button (click)="deletePayment(payment.id)" class="btn btn-gradient-success btn-fw"
+                          style="min-width: 100px">Delete
+                  </button>
                 </td>
                 <td>
-                  <button (click)="updatePayment(payment.id)" class="btn btn-gradient-success btn-fw" style="min-width: 100px"
+                  <button (click)="updatePayment(payment.id)" class="btn btn-gradient-success btn-fw"
+                          style="min-width: 100px"
                           data-toggle="modal"
                           data-target="#updateModal">Update
                   </button>
@@ -56,13 +61,12 @@
                 </tbody>
               </table>
               <!---->
-              <!--            modal add payment-->
               <div class="modal fade" id="createPayment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                    aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="Add">Add Payment Form</h5>
+                      <h5 class="modal-title" id="Add">Add Payment </h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -71,9 +75,7 @@
                       <div class="col-12 grid-margin stretch-card">
                         <div class="card">
                           <div class="card-body">
-                            <h4 class="card-title">Add Payment Form</h4>
                             <form class="forms-sample" [formGroup]="paymentForm" (ngSubmit)="addPayment()">
-
                               <div class="form-group">
                                 <label for="exampleInputUsername1">Name</label>
                                 <input type="text" class="form-control" placeholder="name" formControlName="name"
@@ -89,7 +91,6 @@
                                 <input type="number" class="form-control" placeholder="name" formControlName="money"
                                        id="exampleInputUsername3">
                               </div>
-
                               <div class="form-group">
                                 <label for="exampleInputUsername4">Description</label>
                                 <input type="text" class="form-control" placeholder="name" formControlName="description"
@@ -102,12 +103,8 @@
                                           *ngFor="let category of listCategory,index as i">{{category.name}}</option>
                                 </select>
                               </div>
-
                             </form>
-
-
                           </div>
-
                         </div>
                       </div>
                       <div class="modal-footer">
@@ -121,8 +118,7 @@
                 </div>
               </div>
             </div>
-
-
+<!---->
             <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
               <div class="modal-dialog">
@@ -134,40 +130,45 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    <form [formGroup]="paymentForm" (ngSubmit)="updatePaymentSubmit()">
-                      <div class="form-group">
-                        <label for="exampleInputUser1">Name</label>
-                        <input type="text" class="form-control" placeholder="name" formControlName="name"
-                               id="exampleInputUser1">
+                    <div class="col-12 grid-margin stretch-card">
+                      <div class="card">
+                        <div class="card-body">
+                          <form [formGroup]="paymentForm" (ngSubmit)="updatePaymentSubmit()">
+                            <div class="form-group">
+                              <label for="exampleInputUser1">Name</label>
+                              <input type="text" class="form-control" placeholder="name" formControlName="name"
+                                     id="exampleInputUser1">
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleInputUser2">Date</label>
+                              <input type="date" class="form-control" placeholder="name" formControlName="date"
+                                     id="exampleInputUser2">
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleInputUser3">Money</label>
+                              <input type="number" class="form-control" placeholder="name" formControlName="money"
+                                     id="exampleInputUser3">
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleInputUser4">Description</label>
+                              <input type="text" class="form-control" placeholder="name" formControlName="description"
+                                     id="exampleInputUser4">
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleInputUser5">Category</label>
+                              <select class="form-control" formControlName="category" id="exampleInputUser5">
+                                <option [value]="category.id"
+                                        *ngFor="let category of listCategory,index as i">{{category.name}}</option>
+                              </select>
+                            </div>
+                          </form>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" (click)="updatePaymentSubmit()">Update Payment
+                            </button>
+                          </div>
+                        </div>
                       </div>
-                      <div class="form-group">
-                        <label for="exampleInputUser2">Date</label>
-                        <input type="date" class="form-control" placeholder="name" formControlName="date"
-                               id="exampleInputUser2">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputUser3">Money</label>
-                        <input type="number" class="form-control" placeholder="name" formControlName="money"
-                               id="exampleInputUser3">
-                      </div>
-
-                      <div class="form-group">
-                        <label for="exampleInputUser4">Description</label>
-                        <input type="text" class="form-control" placeholder="name" formControlName="description"
-                               id="exampleInputUser4">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputUser5">Category</label>
-                        <select class="form-control" formControlName="category" id="exampleInputUser5">
-                          <option [value]="category.id"
-                                  *ngFor="let category of listCategory,index as i">{{category.name}}</option>
-                        </select>
-                      </div>
-                    </form>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary" (click)="updatePaymentSubmit()">Update Payment
-                      </button>
                     </div>
                   </div>
                 </div>
@@ -177,7 +178,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
