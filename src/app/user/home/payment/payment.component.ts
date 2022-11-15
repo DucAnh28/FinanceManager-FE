@@ -23,8 +23,8 @@ export class PaymentComponent implements OnInit {
     description: new FormControl(),
     status: new FormControl(1),
     wallet: new FormControl(),
+    appUser: new FormControl()
   })
-  showpayment: Payment[] = [];
   startDate: Date
   endDate: Date
   id:number
@@ -36,11 +36,9 @@ export class PaymentComponent implements OnInit {
   })
 
   listCategory: Category[] = [];
-  nameCategory: string = 'Danh mục giao dich';
-  expenseCategories: Category[] = [];
-  incomeCategories: Category[] = [];
   listWallet: Wallet[] = [];
   wallet_id: number = 0;
+  appUser_id: number = 0;
 
   constructor(
     private paymentService: PaymentService,
@@ -56,6 +54,7 @@ export class PaymentComponent implements OnInit {
       console.log("wallet", this.listWallet);
       this.wallet_id = this.listWallet[0].id;
       console.log("wallet_id", this.wallet_id);
+      this.appUser_id = this.listWallet[0].appUser.id
       this.getPaymentList();
     })
 
@@ -87,6 +86,11 @@ export class PaymentComponent implements OnInit {
     data.wallet = {
       id: this.wallet_id
     }
+
+    data.appUser={
+      id: this.appUser_id
+    }
+
     this.paymentService.save(data).subscribe(data => {
       Swal.fire('Sucess',
         'Please choose date',
@@ -187,6 +191,9 @@ export class PaymentComponent implements OnInit {
       console.log(date)
     })
   }
+
+
+
 }
 
 

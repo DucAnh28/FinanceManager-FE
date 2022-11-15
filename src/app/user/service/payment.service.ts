@@ -17,12 +17,6 @@ export class PaymentService {
     return this.httpClient.get(API + 'find-by-wallet/' + id);
   }
 
-  findAll(): Observable<any> {
-    console.log(API);
-    return this.httpClient.get(API);
-
-  }
-
   findById(id: number): Observable<any> {
     return this.httpClient.get(API + id);
   }
@@ -39,31 +33,8 @@ export class PaymentService {
     return this.httpClient.delete(API + id);
   }
 
-  // findAllByMonth(status: any): Observable<any> {
-  //   const id = localStorage.getItem("ID_WALLET");
-  //   return this.httpClient.get(API + `find-all-by-time?status=${status}&id=${id}`);
-  // }
 
-  // findAllTransactionsIncomeFor6Months(): Observable<any> {
-  //   const id = localStorage.getItem("ID_WALLET");
-  //   return this.httpClient.get(API + `find-all-income-6month/${id}`);
-  // }
-  //
-  // findAllTransactionsExpenseFor6Months(): Observable<any> {
-  //   const id = localStorage.getItem("ID_WALLET");
-  //   return this.httpClient.get(API + `find-all-expense-6month/${id}`);
-  // }
-  //
-  // findAllTransactions(startTime: any, endTime: any, status: any, from: any, to: any): Observable<any> {
-  //   const id = localStorage.getItem("ID_WALLET");
-  //   return this.httpClient.get(API + `find-all-transaction?startTime=${startTime}&endTime=${endTime}&status=${status}&from=${from}&to=${to}&id=${id}`);
-  // }
-  // findAllTransactionsByCategoryID(id: any): Observable<any> {
-  //   return this.httpClient.get(API + 'find-by-category/'+ id);
-  // }
-  findAllPaymentByCategoryID(id: any): Observable<any> {
-    return this.httpClient.get(API + 'find-by-category/' + id);
-  }
+
 
   showpaymentintime(startDate: Date, endDate: Date, wallet_id: number): Observable<Payment[]> {
     let apicall = API + 'find-All-Transactions-during-time?startDate=' + startDate + '&endDate=' + endDate + '&wallet_id=' + wallet_id;
@@ -71,7 +42,4 @@ export class PaymentService {
     return this.httpClient.get<Payment[]>(API + 'find-All-Transactions-during-time-by-wallet?startDate=' + startDate + '&endDate=' + endDate + '&wallet_id=' + wallet_id)
   }
 
-// showPaymentInTimeByWallet(startDate:Date, endDate:Date):Observable<Payment[]>{
-//     return this.httpClient.get<Payment[]>(API + 'find-All-Transactions-during-time-by-wallet?startDate=' + startDate + '&endDate=' + endDate + '$walletid=' + en)
-// }
 }

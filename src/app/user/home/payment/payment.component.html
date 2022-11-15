@@ -1,32 +1,31 @@
 <!-- Add Payment-->
 <div class="form-group">
-<label >Select Your Wallet</label>
-  <div class="col-sm-1">
-    <select class="form-control"  #wallet_id (change)="getWalletid(wallet_id.value);getPaymentList()" >
-      <option [value]="wallet.id"
-              *ngFor="let wallet of listWallet,index as i">{{wallet.name}}</option>
-    </select>
-  </div>
+
   <form [formGroup]="dateForm">
+    <label>Select Your Wallet</label>
+    <div class="col-sm-1">
+      <select class="selectpicker" #wallet_id (change)="getWalletid(wallet_id.value);getPaymentList()">
+        <option [value]="wallet.id"
+                *ngFor="let wallet of listWallet,index as i">{{wallet.name}}</option>
+      </select>
+    </div>
     <tr><input type="date" formControlName="startDate"></tr>
 
-    <input type="date" formControlName="endDate">
-    <button type="submit" class="btn btn-gradient-info btn-fw" (click)="showlistpayment()">show</button>
+    <tr><input type="date" formControlName="endDate"></tr>
+    <tr>
+      <button type="submit" class="btn btn-gradient-success btn-fw" (click)="showlistpayment()">show</button>
+    </tr>
   </form>
+
+
 
 
 </div>
 
-<select class="selectpicker" multiple>
-  <option>Mustard</option>
-  <option>Ketchup</option>
-  <option>Relish</option>
-</select>
-
 
 <div class="content-wrapper"><br>
   <br>
-  <button type="button" class="btn btn-gradient-primary me-2" data-toggle="modal" data-target="#createPayment">
+  <button type="button" class="btn btn-gradient-success btn-fw" data-toggle="modal" data-target="#createPayment">
     <i class="mdi mdi-checkbox-marked-outline"></i> Add Payment
   </button>
 
@@ -39,7 +38,6 @@
             <table class="table">
               <thead>
               <tr>
-<!--                <th>Payment ID</th>-->
                 <th> Name</th>
                 <th> Date</th>
                 <th> Money</th>
@@ -56,7 +54,7 @@
               <td>{{payment.category.name}}</td>
               <td>{{payment.description}}</td>
               <td>
-                <button (click)="deletePayment(payment.id)" class="btn btn-gradient-success btn-fw" >Delete</button>
+                <button (click)="deletePayment(payment.id)" class="btn btn-gradient-success btn-fw">Delete</button>
               </td>
               <td>
                 <button (click)="updatePayment(payment.id)" class="btn btn-gradient-success btn-fw" data-toggle="modal"
@@ -66,7 +64,7 @@
               </tbody>
             </table>
             <!---->
-<!--            modal add payment-->
+            <!--            modal add payment-->
             <div class="modal fade" id="createPayment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
               <div class="modal-dialog" role="document">
@@ -82,7 +80,7 @@
                       <div class="card">
                         <div class="card-body">
                           <h4 class="card-title">Add Payment Form</h4>
-                          <form class="forms-sample"  [formGroup]="paymentForm" (ngSubmit)="addPayment()">
+                          <form class="forms-sample" [formGroup]="paymentForm" (ngSubmit)="addPayment()">
 
                             <div class="form-group">
                               <label for="exampleInputUsername1">Name</label>
@@ -123,7 +121,7 @@
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                       <button type="button" class="btn btn-primary" (click)="addPayment()"
-                              >Add Payment
+                      >Add Payment
                       </button>
                     </div>
                   </div>
@@ -131,7 +129,6 @@
               </div>
             </div>
           </div>
-
 
 
           <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
