@@ -114,7 +114,7 @@ export class PaymentComponent implements OnInit {
   deletePayment(id: number) {
     Swal.fire({
       title: 'Are You Sure?',
-      text: "You Won't Be Able To Revert This!",
+      text: "",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -131,7 +131,7 @@ export class PaymentComponent implements OnInit {
           });
           Swal.fire(
             'Deleted!',
-            'Your Payment Has Been Deleted.',
+            '',
             'success'
           )
         }
@@ -171,7 +171,7 @@ export class PaymentComponent implements OnInit {
     this.paymentService.update(data.id, data).subscribe(data => {
       console.log(data)
       Swal.fire('Success',
-        'You Update Your Wallet Successful',
+        '',
         'success');
       this.paymentForm.reset();
       this.getPaymentList();
