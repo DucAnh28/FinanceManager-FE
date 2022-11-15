@@ -6,6 +6,7 @@ import {ProfileDetailComponent} from "./home/profile/profile-detail/profile-deta
 import {CommonModule} from "@angular/common";
 import {PaymentComponent} from "./home/payment/payment.component";
 import {CategoryComponent} from "./home/category/category.component";
+import {ReportComponent} from "./home/report/report.component";
 
 let routes: Routes = [
   {
@@ -27,6 +28,10 @@ let routes: Routes = [
       {
         path: "category",
         component: CategoryComponent
+      },
+      {
+        path: "report",
+        component: ReportComponent
       },
     ]
   }
