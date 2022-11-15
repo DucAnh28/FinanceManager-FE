@@ -31,7 +31,10 @@ export class CategoryService {
     return this.httpClient.put(API + `/${id}`, category);
   }
 
-  delete(id: number):Observable<any>{
+  delete(id: number): Observable<any> {
+    return this.httpClient.delete(API + `${id}`);
+  }
+  edit(id: number, category: any): Observable<any> {
     return this.httpClient.delete(API + `${id}`);
   }
 

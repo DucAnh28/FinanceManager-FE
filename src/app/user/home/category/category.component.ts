@@ -14,6 +14,7 @@ import Swal from "sweetalert2";
 export class CategoryComponent implements OnInit {
   categoryList: Category[];
   deleteID: number;
+  editID: number;
   appUser: AppUser;
   createForm: FormGroup;
 
@@ -53,11 +54,25 @@ export class CategoryComponent implements OnInit {
   getDeleteCateId(id: number) {
     this.deleteID = id;
   }
+  getEditCateId(id: number) {
+    this.editID = id;
+  }
 
   deleteCategory(id: number) {
     this.categoryService.delete(id).subscribe(data => {
       Swal.fire("Succes", "Delete Successful", "success");
       this.getAllCate();
     })
+  }
+  editCategory(id: number) {
+    // @ts-ignore
+    this.categoryService.edit(id).subscribe(data => {
+      Swal.fire("Succes", "edit Successful", "success");
+      this.getAllCate();
+    })
+  }
+
+  edit() {
+    return 0;
   }
 }
