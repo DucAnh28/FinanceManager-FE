@@ -90,6 +90,7 @@ export class WalletListComponent implements OnInit {
           'You Update Your Wallet Successful',
           'success')
       }
+
       this.getAll();
       this.getAllMoney();
 
@@ -98,21 +99,23 @@ export class WalletListComponent implements OnInit {
 
   addMoney(addFrom: NgForm) {
     console.log(addFrom)
-    console.log(this.addMoney123)
+
     this.walletService.addMoney(this.walletCurrent.id, this.addMoney123).subscribe(data => {
+      console.log(this.addMoney123)
       console.log(data)
-      if (data !== null) {
+      if (data !== null ) {
         Swal.fire('Success',
           'You Have Successfully Added Money To Your Wallet',
           'success')
 
       }
-      if (this.addMoney123 == 0) {
+      if (this.addMoney123 == 0 ) {
         Swal.fire("Fail",
           "Some Thing Wrong",
           "error")
 
       }
+      addFrom.reset()
       this.getAll();
       this.getAllMoney();
     });
@@ -127,7 +130,6 @@ export class WalletListComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      cancelButtonText: 'No Keep It',
       confirmButtonText: 'Yes, Delete It!',
     }).then((result) => {
       if (result.isConfirmed) {
@@ -213,6 +215,7 @@ export class WalletListComponent implements OnInit {
     console.log(this.selectedImage2);
     this.submitFileEdit();
   }
+
 
   numberWithCommas(money: any): string {
     let parts = money.toString().split(".");
