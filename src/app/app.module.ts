@@ -5,10 +5,12 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AppRoutingModule} from './app-routing.module';
 import {ReactiveFormsModule} from "@angular/forms";
 import {JwtInterceptor} from "./helper/jwt-interceptor";
+import { ReportComponent } from './user/home/report/report.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ReportComponent,
   ],
   imports: [
     BrowserModule,
