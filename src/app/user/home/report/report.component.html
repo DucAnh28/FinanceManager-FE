@@ -1,4 +1,14 @@
 
+<div style="width: 300px; margin-left: 15px" class="col-md-4 stretch-card grid-margin  ">
+  <div class="card bg-gradient-success card-img-holder text-white">
+    <div class="card-body">
+      <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+      <h4 class="font-weight-normal mb-3">Total Spent Today <i class="mdi mdi-diamond mdi-24px float-right"></i>
+      </h4>
+      <h2 style="color: whitesmoke">{{numberWithCommas(sumMoney.total)}} đ</h2>
+    </div>
+  </div>
+</div>
 <div class="col">
   <div class="card shadow">
     <div class="card-header border-0">
@@ -22,7 +32,7 @@
           <td>{{payment.id}}</td>
           <td>{{payment.payment}}</td>
           <td>{{payment.date}}</td>
-          <td>{{payment.money}}</td>
+          <td>{{numberWithCommas(payment.money)}}</td>
           <td>{{payment.description}}</td>
           <td>{{payment.walletName}}</td>
         </tr>
@@ -31,3 +41,5 @@
     </div>
   </div>
 </div>
+<br>
+
