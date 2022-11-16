@@ -17,7 +17,8 @@
         <td>{{i+1}}</td>
         <td>{{category.name}}</td>
         <td>
-          <button class="btn btn-gradient-danger" style="width: 120px;height: 50px">Edit</button>
+          <button class="btn btn-gradient-danger" data-toggle="modal" data-target="#edit" style="width: 120px;height: 50px" (click)="getCategoryById(category.id)">Edit
+          </button>
         </td>
         <td>
           <button class="btn btn-gradient-danger" data-toggle="modal" data-target="#delete" style="width: 120px;height: 50px"
@@ -36,7 +37,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel2" style="width: 210px;height: 50px">Create New Category</h5>
+        <h5 class="modal-title" id="exampleModalLabel2" style="width: 210px;height: 50px">Create Category</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -84,6 +85,41 @@
         <button type="button" class="btn btn-primary" (click)="deleteCategory(deleteID)" style="min-width: 100px" data-dismiss="modal">Delete
         </button>
       </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Category</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="editForm" (ngSubmit)="editCategory()" *ngIf="editForm">
+      <div class="modal-body">
+        <div class="col-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+
+              <div class="form-group">
+                <label for="oldPassword">Name</label>
+                <input type="text" class="form-control" placeholder="name"
+                       formControlName="name">
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="editCategory()" style="min-width: 100px" data-dismiss="modal">Edit
+        </button>
+      </div>
+      </form>
     </div>
   </div>
 </div>

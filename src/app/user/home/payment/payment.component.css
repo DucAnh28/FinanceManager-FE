@@ -1,16 +1,24 @@
 .selectpicker {
   width: 150px;
-  height: 30px;
+  height: 40px;
   overflow: hidden;
   background:  no-repeat right #ddd;
   border: 1px solid #ccc;
 }
 .date{
   width: 150px;
-  height: 30px;
+  height: 40px;
+  overflow: hidden;
+  background:  no-repeat right #ddd;
+  border: 1px solid #ccc;
 }
 th{
   font-size: 15px;
+}
+.btn btn-gradient-success btn-fw{
+  overflow: hidden;
+  background:  no-repeat right #ddd;
+  border: 1px solid #ccc;
 }
 
 
