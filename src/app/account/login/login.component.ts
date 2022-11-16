@@ -66,6 +66,7 @@ export class LoginComponent implements OnInit {
       } else {
         localStorage.setItem("user", JSON.stringify(data))
         localStorage.setItem("token", JSON.stringify(data.token));
+        Swal.fire("Success","Welcome to our website","success");
         location.reload();
       }
     })

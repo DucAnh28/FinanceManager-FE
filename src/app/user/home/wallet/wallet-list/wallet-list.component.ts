@@ -33,7 +33,7 @@ export class WalletListComponent implements OnInit {
   });
 
   walletsshare: Wallet[] = [];
-  money: number = null;
+  money: number = 0;
 
   constructor(private walletService: WalletService,
               private router: Router,
@@ -54,7 +54,6 @@ export class WalletListComponent implements OnInit {
   addMoneyForm(id: number) {
     this.walletService.findWalletById(id).subscribe(dates => {
       this.walletCurrent = dates;
-
     })
   }
 
@@ -167,13 +166,14 @@ export class WalletListComponent implements OnInit {
   getAll() {
     this.walletService.getAll().subscribe(wallets => {
       this.walletList = wallets;
-
     })
   }
 
   getAllMoney() {
     this.walletService.getAllMoneyByUser().subscribe(totalmoney => {
       this.money = totalmoney;
+    },error => {
+      console.log("Chua co vi nao ca")
     })
   }
 

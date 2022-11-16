@@ -8,6 +8,8 @@ import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {AccountService} from "../../../account/service/account.service";
 import {AppUser} from "../../model/appUser";
 import {ShareWalletService} from "../../service/share-wallet.service";
+import {PaymentService} from "../../service/payment.service";
+import {Payment} from "../../model/payment";
 @Component({
   selector: 'app-share-wallet',
   templateUrl: './share-wallet.component.html',
@@ -29,7 +31,7 @@ export class ShareWalletComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private storage: AngularFireStorage,
               private shareService: ShareWalletService,
-
+              private paymentService : PaymentService,
               private accountService: AccountService) {
     this.appUserWallet.id = accountService.currentUserValue.id
 
@@ -106,5 +108,12 @@ export class ShareWalletComponent implements OnInit {
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return parts.join(".");
   }
+  paymentList : Payment[] ;
 
+  getPaymentList(id : number) {
+    this.paymentService.findAllByWallet(id).subscribe(data => {
+      this.paymentList = data;
+      console.log("paymentList", this.paymentList);
+    })
+  }
 }
