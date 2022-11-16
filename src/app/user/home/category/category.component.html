@@ -17,15 +17,12 @@
         <td>{{category.id}}</td>
         <td>{{category.name}}</td>
         <td>
-          <button class="btn btn-gradient-primary" data-toggle="modal" data-target="#edit"
-                  (click)="getEditCateId(category.id)">Edit
-          </button>
+          <button class="btn btn-gradient-primary" data-toggle="modal" data-target="#edit" (click)="getCategory(category.id)" >Edit</button>
         </td>
         <td>
           <button class="btn btn-gradient-primary" data-toggle="modal" data-target="#delete"
                   (click)="getDeleteCateId(category.id)">Delete
           </button>
-
         </td>
       </tr>
       </tbody>
@@ -88,33 +85,44 @@
         <button type="button" class="btn btn-primary" (click)="deleteCategory(deleteID)" data-dismiss="modal">Delete
         </button>
       </div>
-
     </div>
   </div>
 </div>
 
-----------------------------------------------------------------
 <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="bannerClose">Confirm Edit</h5>
+        <h5 class="modal-title" >Edit Category</h5>
+
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <p class="mdi mdi-alert btn-icon-prepend"> Are You Sure You Want To Edit This Category</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="editCategory(editID)" data-dismiss="modal">Edit
-        </button>
-      </div>
+        <div class="col-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <form class="forms-sample" >
 
+                <div class="form-group">
+                  <label for="exampleInputUsername1">Name</label>
+                  <input type="text" class="form-control" [(ngModel)]="category.name" placeholder="name" name="name"
+                         id="exampleInputUsername1">
+                </div>
+              </form>
+
+
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" (click)="editCategory()" data-dismiss="modal">Update</button>
+        </div>
+
+      </div>
     </div>
   </div>
 </div>
-
-

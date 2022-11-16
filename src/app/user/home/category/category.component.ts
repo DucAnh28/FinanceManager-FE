@@ -14,9 +14,9 @@ import Swal from "sweetalert2";
 export class CategoryComponent implements OnInit {
   categoryList: Category[];
   deleteID: number;
-  editID: number;
   appUser: AppUser;
   createForm: FormGroup;
+  category:Category ={};
 
   constructor(private categoryService: CategoryService,
               private accountService: AccountService) {
@@ -31,6 +31,9 @@ export class CategoryComponent implements OnInit {
       })
     })
   }
+  editForm:FormGroup=new FormGroup({
+    name:new FormControl()
+  })
 
   createCategory() {
     const temp = this.createForm.value;
@@ -54,9 +57,6 @@ export class CategoryComponent implements OnInit {
   getDeleteCateId(id: number) {
     this.deleteID = id;
   }
-  getEditCateId(id: number) {
-    this.editID = id;
-  }
 
   deleteCategory(id: number) {
     this.categoryService.delete(id).subscribe(data => {
@@ -64,15 +64,17 @@ export class CategoryComponent implements OnInit {
       this.getAllCate();
     })
   }
-  editCategory(id: number) {
-    // @ts-ignore
-    this.categoryService.edit(id).subscribe(data => {
-      Swal.fire("Succes", "edit Successful", "success");
-      this.getAllCate();
+
+  getCategory(id:number){
+    this.categoryService.findById(id).subscribe(data=>{
+      this.category=data;
     })
   }
+  editCategory(){
+    this.categoryService.update(this.category.id,this.category).subscribe(()=>{
+      console.log(this.category)
 
-  edit() {
-    return 0;
+      this.getAllCate();
+    })
   }
 }
