@@ -37,6 +37,7 @@ export class CategoryComponent implements OnInit {
       console.log(data);
       this.getAllCate();
       Swal.fire("Successful", "Create OK", "success")
+      this.createForm.reset();
     })
   }
 
