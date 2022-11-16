@@ -1,37 +1,25 @@
-
-
 <div class="content-wrapper"><br>
-
-  <div class="col-md-6 stretch-card grid-margin">
+  <div class="col-md-4 stretch-card grid-margin">
     <div class="card bg-gradient-danger card-img-holder text-white">
       <div class="card-body">
-        <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+        <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>
         <h4 class="font-weight-normal mb-3">Sum Money <i class="mdi mdi-chart-line mdi-24px  float-right"></i>
         </h4>
         <h2 class="mb-5">{{numberWithCommas(money)}} đ</h2>
         <h6 class="card-text"></h6>
       </div>
     </div>
-<!--    <div class="card bg-gradient-danger card-img-holder text-white">-->
-<!--      <div class="card-body">-->
-<!--        <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />-->
-<!--        <h4 class="font-weight-normal mb-3">Time <i class="mdi mdi-chart-line mdi-24px  float-right"></i>-->
-<!--        </h4>-->
-<!--        <h2 class="mb-5"> </h2>-->
-<!--        <h6 class="card-text"></h6>-->
-<!--      </div>-->
-<!--    </div>-->
   </div>
 
   <button type="button" class="btn btn-gradient-primary me-2" data-toggle="modal" data-target="#createWallet">
     <i class="mdi mdi-checkbox-marked-outline"></i> Add New Wallet
   </button>
 
-    <button type="button" class="btn btn-gradient-primary me-2" data-toggle="modal"
-            data-target="#shareWallet"
-            >
-      <i class="mdi mdi-checkbox-marked-outline"></i> Share Wallet
-    </button>
+  <button type="button" class="btn btn-gradient-primary me-2" data-toggle="modal"
+          data-target="#shareWallet"
+  >
+    <i class="mdi mdi-checkbox-marked-outline"></i> Share Wallet
+  </button>
 
   <div class="row">
     <div class="col-12 grid-margin">
@@ -105,7 +93,8 @@
                           <div></div>
                           <div class="form-group">
                             <label for="add_money"></label>
-                            <input type="number" class="form-control form-group" name="money1" id="add_money" [(ngModel)]="addMoney123"
+                            <input type="number" class="form-control form-group" name="money1" id="add_money"
+                                   [(ngModel)]="addMoney123"
                                    [(ngModel)]="addMoney123"
                                    placeholder="Enter the amount you want to add to your wallet"
                                    name="recruitNumber"
@@ -113,9 +102,10 @@
                                    required
                                    min="1"
 
-                                   >
+                            >
                           </div>
-                          <div class="text-danger" *ngIf="!recruitNumber?.valid   && (recruitNumber?.dirty ||recruitNumber?.touched)">
+                          <div class="text-danger"
+                               *ngIf="!recruitNumber?.valid   && (recruitNumber?.dirty ||recruitNumber?.touched)">
                             <p style="color: red"> Please Enter The Amount You Want To Add Or Number Wrong </p> <br>
                           </div>
                         </form>
@@ -125,7 +115,9 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary"  (click)="addMoney(addFrom)" [disabled]="!addFrom.valid " data-dismiss="modal"  >Add Money</button>
+                    <button type="button" class="btn btn-primary" (click)="addMoney(addFrom)"
+                            [disabled]="!addFrom.valid " data-dismiss="modal">Add Money
+                    </button>
 
                   </div>
                 </div>
@@ -148,8 +140,8 @@
                     <div class="card">
                       <div class="card-body">
                         <form [formGroup]="shareForm" (ngSubmit)="share()">
-                          <select class="form-control"  formControlName="wallet">
-<!--                            <option [value]="null" selected >chon vi</option>-->
+                          <select class="form-control" formControlName="wallet">
+                            <!--                            <option [value]="null" selected >chon vi</option>-->
                             <option *ngFor="let wallet of walletByUser" [value]="wallet.id">{{wallet.name}}</option>
 
                           </select>
@@ -157,14 +149,15 @@
                             <span style="color: red" role="alert" *ngIf="(shareForm)">Vui lòng chọn ví</span>
                           </div>
 
-<!--                          <div>-->
-<!--                            <button type="submit" class="btn btn-primary" [disabled]="shareForm.invalid">Share</button>-->
-<!--                          </div>-->
+                          <!--                          <div>-->
+                          <!--                            <button type="submit" class="btn btn-primary" [disabled]="shareForm.invalid">Share</button>-->
+                          <!--                          </div>-->
 
-                          <input class="form-control" (change)="usernameCheck($event)" type="text" formControlName="user" placeholder="Nhập ten vi">
+                          <input class="form-control" (change)="usernameCheck($event)" type="text"
+                                 formControlName="user" placeholder="Nhập ten vi">
 
                           <div>
-                            <span style="color: red"  role="alert" *ngIf="(shareForm) && !checkUser">Tên đăng nhập không tồn tại</span>
+                            <span style="color: red" role="alert" *ngIf="(shareForm) && !checkUser">Tên đăng nhập không tồn tại</span>
                           </div>
                         </form>
                       </div>
@@ -174,9 +167,11 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-<!--                    <button type="submit" class="btn btn-primary" (click)="submitCreate()" data-dismiss="modal">Create-->
-<!--                    </button>-->
-                    <button type="button" class="btn btn-primary"  (click)="share()" data-dismiss="modal" [disabled]="shareForm.invalid">Share</button>
+                    <!--                    <button type="submit" class="btn btn-primary" (click)="submitCreate()" data-dismiss="modal">Create-->
+                    <!--                    </button>-->
+                    <button type="button" class="btn btn-primary" (click)="share()" data-dismiss="modal"
+                            [disabled]="shareForm.invalid">Share
+                    </button>
 
                   </div>
                 </div>
@@ -282,7 +277,7 @@
               </div>
             </div>
           </div>
-<!---->
+          <!---->
 
 
         </div>
