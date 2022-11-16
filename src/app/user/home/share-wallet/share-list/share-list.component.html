@@ -1,0 +1,33 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Ví được chia sẻ của tôi</h1>
+      </div>
+
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 col-sm-6 col-12" *ngFor="let wallet of wallets" >
+        <div class="info-box" >
+          <span class="info-box-icon bg-info"><a routerLink="/wallet/detail/{{wallet.id}}"><img src="{{wallet.icon}}" style="width: 60px"></a></span>
+          <div class="info-box-content">
+            <span class="info-box-text">{{wallet.appUser}}</span>
+            <span class="info-box-text">{{wallet.name}}</span>
+            <span class="info-box-number">Số dư: {{wallet}} {{wallet.name}}</span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+      <!-- /.col -->
+    </div>
+  </div>
+</section>
+
+

@@ -28,6 +28,7 @@ let routes: Routes = [
         path: "category",
         component: CategoryComponent
       },
+
     ]
   }
 ]

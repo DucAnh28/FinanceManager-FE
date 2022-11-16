@@ -14,6 +14,7 @@ import {MdbModalModule} from 'mdb-angular-ui-kit/modal';
 import {WalletListComponent} from "./home/wallet/wallet-list/wallet-list.component";
 import {PaymentComponent} from "./home/payment/payment.component";
 import {CategoryComponent} from './home/category/category.component';
+import {ShareWalletModule} from "./home/share-wallet/share-wallet.module";
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import {CategoryComponent} from './home/category/category.component';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     SharesModule,
-    MdbModalModule
+    MdbModalModule,
+    ShareWalletModule
   ]
 })
 export class UserModule {

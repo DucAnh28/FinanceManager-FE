@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ShareWallet} from "../model/share-wallet";
-const API = 'http://localhost:8080/share/';
+const API = 'http://localhost:8080/share';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +14,7 @@ export class ShareWalletService {
 
   addNewShare(walletId: number, username:string): Observable<ShareWallet> {
 
-      // @ts-ignore
+    // @ts-ignore
     return this.http.post<ShareWallet>(`${API}/create/${walletId}?username=${username}`)
   }
 
