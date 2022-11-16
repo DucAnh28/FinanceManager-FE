@@ -15,7 +15,7 @@ import {WalletListComponent} from "./home/wallet/wallet-list/wallet-list.compone
 import {PaymentComponent} from "./home/payment/payment.component";
 import {CategoryComponent} from './home/category/category.component';
 import {ReportComponent} from "./home/report/report.component";
-import { DatepickerComponent } from './home/datepicker/datepicker.component';
+import { DatepickerComponent } from "./home/datepicker/datepicker.component";
 
 
 @NgModule({
