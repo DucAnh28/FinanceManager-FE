@@ -15,10 +15,11 @@ import {WalletListComponent} from "./home/wallet/wallet-list/wallet-list.compone
 import {PaymentComponent} from "./home/payment/payment.component";
 import {CategoryComponent} from './home/category/category.component';
 import {ReportComponent} from "./home/report/report.component";
+import { DatepickerComponent } from './home/datepicker/datepicker.component';
 
 
 @NgModule({
-  declarations: [UserHomeComponent, ProfileDetailComponent, WalletListComponent, PaymentComponent, CategoryComponent,ReportComponent],
+  declarations: [UserHomeComponent, ProfileDetailComponent, WalletListComponent, PaymentComponent, CategoryComponent, DatepickerComponent, ReportComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
