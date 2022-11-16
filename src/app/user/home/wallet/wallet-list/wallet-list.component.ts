@@ -1,13 +1,15 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, NgModule, OnInit, ViewChild} from '@angular/core';
 import {Wallet} from "../../../model/wallet";
 import {WalletService} from "../../../service/wallet.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {finalize, Subscription} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
-import {FormControl, FormGroup, NgForm} from "@angular/forms";
+import {FormControl, FormGroup, NgForm, NgModel, Validators} from "@angular/forms";
 import {AppUser} from "../../../model/appUser";
 import {AccountService} from "../../../../account/service/account.service";
 import Swal from "sweetalert2";
+import {ShareWalletService} from "../../../service/share-wallet.service";
+
 
 @Component({
   selector: 'app-wallet-list',
@@ -30,15 +32,24 @@ export class WalletListComponent implements OnInit {
     appUser: new FormControl()
   });
 
+  walletsshare: Wallet[] = [];
   money: number = null;
 
   constructor(private walletService: WalletService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
               private storage: AngularFireStorage,
+              private shareService: ShareWalletService,
               private accountService: AccountService) {
     this.appUserWallet.id = accountService.currentUserValue.id
+
+    if (accountService.currentUserValue != null) {
+      this.userId = accountService.currentUserValue.id;
+    }
   }
+
+
+
 
   addMoneyForm(id: number) {
     this.walletService.findWalletById(id).subscribe(dates => {
@@ -69,7 +80,7 @@ export class WalletListComponent implements OnInit {
       this.formCreat.reset();
       if (data !== null) {
         Swal.fire('Success',
-          '',
+          'You Have Successfully Added A New Wallet',
           'success')
       }
       this.getAll();
@@ -80,6 +91,9 @@ export class WalletListComponent implements OnInit {
   ngOnInit(): void {
     this.getAllMoney();
     this.getAll();
+
+    // create share wallet
+    this.getALlWallet();
   }
 
   updateWallet() {
@@ -87,7 +101,7 @@ export class WalletListComponent implements OnInit {
     this.walletService.editWallet(this.walletCurrent.id, this.walletCurrent).subscribe(data => {
       if (data !== null) {
         Swal.fire('Success',
-          '',
+          'You Update Your Wallet Successful',
           'success')
       }
 
@@ -103,15 +117,15 @@ export class WalletListComponent implements OnInit {
     this.walletService.addMoney(this.walletCurrent.id, this.addMoney123).subscribe(data => {
       console.log(this.addMoney123)
       console.log(data)
-      if (data !== null) {
+      if (data !== null ) {
         Swal.fire('Success',
-          '',
+          'You Have Successfully Added Money To Your Wallet',
           'success')
 
       }
-      if (this.addMoney123 == 0) {
+      if (this.addMoney123 == 0 ) {
         Swal.fire("Fail",
-          "",
+          "Some Thing Wrong",
           "error")
 
       }
@@ -125,7 +139,7 @@ export class WalletListComponent implements OnInit {
   deleteWallet() {
     Swal.fire({
       title: 'Are You Sure?',
-      text: "",
+      text: "You Won't Be Able To Revert This!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -141,7 +155,7 @@ export class WalletListComponent implements OnInit {
         });
         Swal.fire(
           'Deleted!',
-          '',
+          'Your Wallet Has Been Deleted.',
           'success'
         )
       }
@@ -153,16 +167,13 @@ export class WalletListComponent implements OnInit {
   getAll() {
     this.walletService.getAll().subscribe(wallets => {
       this.walletList = wallets;
-    },error => {
-      console.log("Chua co vi nao");
+
     })
   }
 
   getAllMoney() {
     this.walletService.getAllMoneyByUser().subscribe(totalmoney => {
-        this.money = totalmoney;
-    },error => {
-      this.money = 0;
+      this.money = totalmoney;
     })
   }
 
@@ -219,10 +230,75 @@ export class WalletListComponent implements OnInit {
     this.submitFileEdit();
   }
 
+
   numberWithCommas(money: any): string {
     let parts = money.toString().split(".");
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return parts.join(".");
   }
+
+
+
+// viet share wallet
+  select: string= "Chọn ví";
+  userId: number = 0;
+  // checkMail = false;
+  walletByUser: Wallet[] =[];
+  checkUser: boolean;
+  username: string;
+  submitted = false;
+
+
+  shareForm: FormGroup = new FormGroup({
+    wallet: new FormControl('', Validators.required),
+    user: new FormControl('', Validators.required)
+  })
+
+  getALlWallet() {
+    this.walletService.getAll().subscribe(wallets => {
+      this.walletByUser = wallets;
+    });
+  }
+
+  share() {
+    this.submitted = true;
+    console.log(this.shareForm.value)
+    if (this.shareForm.valid) {
+      this.shareService.addNewShare(this.shareForm.get('wallet').value, this.shareForm.get('user').value).subscribe((data) => {
+        console.log(data)
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Gửi thành công!',
+          showConfirmButton: false,
+          timer: 1500});
+      },err => {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'Ví này dã được chia sẻ cho người dùng!',
+          showConfirmButton: false,
+          timer: 1500});
+      })
+    } else {
+      // @ts-ignore
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'Vui lòng nhập đúng định dạng!',
+        showConfirmButton: false,
+        timer: 1500});
+    }
+  }
+
+  usernameCheck($event: any) {
+    this.username = $event.value;
+    // @ts-ignore
+    this.accountService.getUserById(this.username).subscribe((check:boolean) => {
+      this.checkUser = check;
+    });
+  }
+
+
 
 }

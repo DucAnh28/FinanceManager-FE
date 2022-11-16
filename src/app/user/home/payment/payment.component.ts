@@ -185,7 +185,7 @@ export class PaymentComponent implements OnInit {
     console.log(this.startDate)
     console.log(this.endDate)
     console.log(this.wallet_id)
-    this.paymentService.showpaymentintime(this.startDate, this.endDate,this.wallet_id).subscribe(date => {
+    this.paymentService.showpaymentintime(this.startDate, this.endDate, this.wallet_id).subscribe(date => {
       this.paymentList = date;
       console.log(this.wallet_id)
       console.log(date)
