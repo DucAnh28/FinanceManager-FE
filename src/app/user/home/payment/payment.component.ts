@@ -23,22 +23,22 @@ export class PaymentComponent implements OnInit {
     description: new FormControl(),
     status: new FormControl(1),
     wallet: new FormControl(),
+    appUser: new FormControl()
   })
-  showpayment: Payment[] = [];
   startDate: Date
   endDate: Date
+  id:number
 
   dateForm = new FormGroup({
     startDate: new FormControl(),
-    endDate: new FormControl()
+    endDate: new FormControl(),
+    wallet_id:new FormControl
   })
 
   listCategory: Category[] = [];
-  nameCategory: string = 'Danh mục giao dich';
-  expenseCategories: Category[] = [];
-  incomeCategories: Category[] = [];
   listWallet: Wallet[] = [];
   wallet_id: number = 0;
+  appUser_id: number = 0;
 
   constructor(
     private paymentService: PaymentService,
@@ -54,6 +54,7 @@ export class PaymentComponent implements OnInit {
       console.log("wallet", this.listWallet);
       this.wallet_id = this.listWallet[0].id;
       console.log("wallet_id", this.wallet_id);
+      this.appUser_id = this.listWallet[0].appUser.id
       this.getPaymentList();
     })
 
@@ -85,6 +86,11 @@ export class PaymentComponent implements OnInit {
     data.wallet = {
       id: this.wallet_id
     }
+
+    data.appUser={
+      id: this.appUser_id
+    }
+
     this.paymentService.save(data).subscribe(data => {
       Swal.fire('Sucess',
         'Please choose date',
@@ -108,7 +114,7 @@ export class PaymentComponent implements OnInit {
   deletePayment(id: number) {
     Swal.fire({
       title: 'Are You Sure?',
-      text: "You Won't Be Able To Revert This!",
+      text: "",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -125,7 +131,7 @@ export class PaymentComponent implements OnInit {
           });
           Swal.fire(
             'Deleted!',
-            'Your Payment Has Been Deleted.',
+            '',
             'success'
           )
         }
@@ -165,7 +171,7 @@ export class PaymentComponent implements OnInit {
     this.paymentService.update(data.id, data).subscribe(data => {
       console.log(data)
       Swal.fire('Success',
-        'You Update Your Wallet Successful',
+        '',
         'success');
       this.paymentForm.reset();
       this.getPaymentList();
@@ -175,12 +181,19 @@ export class PaymentComponent implements OnInit {
   showlistpayment() {
     this.startDate = this.dateForm.value.startDate;
     this.endDate = this.dateForm.value.endDate;
+    this.id=this.wallet_id
     console.log(this.startDate)
     console.log(this.endDate)
-    this.paymentService.showpaymentintime(this.startDate, this.endDate).subscribe(date => {
-      this.showpayment = date;
+    console.log(this.wallet_id)
+    this.paymentService.showpaymentintime(this.startDate, this.endDate,this.wallet_id).subscribe(date => {
+      this.paymentList = date;
+      console.log(this.wallet_id)
+      console.log(date)
     })
   }
+
+
+
 }
 
 
