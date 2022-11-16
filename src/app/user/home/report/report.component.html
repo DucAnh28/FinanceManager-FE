@@ -1,0 +1,45 @@
+
+<div style="width: 300px; margin-left: 15px" class="col-md-4 stretch-card grid-margin  ">
+  <div class="card bg-gradient-success card-img-holder text-white">
+    <div class="card-body">
+      <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+      <h4 class="font-weight-normal mb-3">Total Spent Today <i class="mdi mdi-diamond mdi-24px float-right"></i>
+      </h4>
+      <h2 style="color: whitesmoke">{{numberWithCommas(sumMoney.total)}} đ</h2>
+    </div>
+  </div>
+</div>
+<div class="col">
+  <div class="card shadow">
+    <div class="card-header border-0">
+      <h3 class="mb-0">Transactions Today!</h3>
+    </div>
+    <div class="table-responsive">
+      <table class="table align-items-center table-flush">
+        <thead class="thead-light">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Date</th>
+          <th scope="col">Money</th>
+          <th scope="col">Description</th>
+          <th scope="col">Wallet</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody *ngFor="let payment of payment">
+        <tr>
+          <td>{{payment.id}}</td>
+          <td>{{payment.payment}}</td>
+          <td>{{payment.date}}</td>
+          <td>{{numberWithCommas(payment.money)}}</td>
+          <td>{{payment.description}}</td>
+          <td>{{payment.walletName}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<br>
+
