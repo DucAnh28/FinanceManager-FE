@@ -28,7 +28,7 @@
                 <div class="col-6 mb-3">
                   <h6>Edit Profile</h6>
                   <p class="text-muted">
-                    <button type="button" style="width: 100px;height: 45px"
+                    <button type="button" style="width: 90px;height: 45px"
                             class="btn btn-gradient-success btn-rounded btn-fw btn-icon-text" data-toggle="modal"
                             data-target="#editProfile">Edit
                     </button>
@@ -36,8 +36,8 @@
                 </div>
                 <div class="col-6 mb-3">
                   <h6>Change Password</h6>
-                  <p class="text-muted">
-                    <button type="button" style="width: 100px;height: 45px"
+                  <p class="text-muted" >
+                    <button type="button" style="width: 90px;height: 45px"
                             class="btn btn-gradient-success btn-rounded btn-fw btn-icon-text" data-toggle="modal"
                             data-target="#changePass">Change
                     </button>
@@ -69,7 +69,7 @@
               <form class="forms-sample" [formGroup]="editForm" (ngSubmit)="editProfile()" *ngIf="editForm">
                 <div class="form-group">
                   <label for="username">Username</label>
-                  <input type="text" class="form-control" id="username" placeholder="Username"
+                  <input type="text" [readOnly]="true" class="form-control" id="username" placeholder="Username"
                          formControlName="username">
                 </div>
                 <div class="form-group">
@@ -97,7 +97,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" (click)="editProfile()">Edit</button>
+        <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="editProfile()">Edit</button>
       </div>
     </div>
   </div>

@@ -75,7 +75,9 @@ export class ProfileDetailComponent implements OnInit {
         Swal.fire('Success',
           '',
           'success')
-        location.reload();
+        this.accountService.getUserById().subscribe(data => {
+          this.appUser = data;
+        })
       }
     })
   }
