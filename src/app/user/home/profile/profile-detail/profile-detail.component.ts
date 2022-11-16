@@ -73,9 +73,11 @@ export class ProfileDetailComponent implements OnInit {
     this.accountService.editUserById(this.appUser.id, updateUser).subscribe(data => {
       if (data !== null) {
         Swal.fire('Success',
-          'You Update Your Profile Successful',
+          '',
           'success')
-        location.reload();
+        this.accountService.getUserById().subscribe(data => {
+          this.appUser = data;
+        })
       }
     })
   }
@@ -111,7 +113,7 @@ export class ProfileDetailComponent implements OnInit {
 
   checkOldPassword() {
     if (this.oldPassword.value !== this.appUser.password) {
-      Swal.fire("Not Good","Your Old Password Is Wrong","warning")
+      Swal.fire("Not Good","","warning")
     }
   }
 
@@ -121,7 +123,7 @@ export class ProfileDetailComponent implements OnInit {
     this.accountService.changePassword(this.appUser.id, changePass).subscribe(data => {
       if (data !== null) {
         this.changePassForm.reset();
-        Swal.fire("Success","Change Your Password Successful !!","success")
+        Swal.fire("Success","","success")
       }
     })
   }

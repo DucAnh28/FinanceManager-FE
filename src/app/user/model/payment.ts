@@ -1,5 +1,3 @@
-import {Category} from "./category";
-import {Wallet} from "./wallet";
 export interface Payment {
   id?: number;
   name?: string;
@@ -9,4 +7,5 @@ export interface Payment {
   description?: string;
   category?: any;
   wallet?: any;
+  appUser?:any;
 }

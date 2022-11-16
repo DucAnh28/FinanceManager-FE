@@ -36,7 +36,7 @@ export class CategoryComponent implements OnInit {
     this.categoryService.save(temp).subscribe(data => {
       console.log(data);
       this.getAllCate();
-      Swal.fire("Successful","Create OK","success")
+      Swal.fire("Successful", "Create OK", "success")
     })
   }
 
@@ -56,8 +56,39 @@ export class CategoryComponent implements OnInit {
 
   deleteCategory(id: number) {
     this.categoryService.delete(id).subscribe(data => {
-      Swal.fire("Succes", "Delete Successful", "success");
-      this.getAllCate();
+      if (data == null) {
+        Swal.fire("Warning", "You can't delete this default category", "warning")
+      } else {
+        Swal.fire("Succes", "Delete Successful", "success");
+        this.getAllCate();
+      }
+    })
+  }
+
+  editForm: FormGroup ;
+
+  getCategoryById(id :number){
+    this.categoryService.findById(id).subscribe(data=>{
+      this.editForm = new FormGroup({
+        id: new FormControl(data.id),
+        name: new FormControl(data.name),
+        status: new FormControl(data.status),
+        appUser: new FormControl(data.appUser),
+      })
+      console.log(this.editForm.value);
+    })
+
+  }
+
+  editCategory() {
+    const temp = this.editForm.value;
+    this.categoryService.update(temp.id,temp).subscribe(data=>{
+      if (data == null) {
+        Swal.fire("Warning", "You can't edit this default category", "warning")
+      } else {
+        Swal.fire("Success", "", "success");
+        this.getAllCate();
+      }
     })
   }
 }

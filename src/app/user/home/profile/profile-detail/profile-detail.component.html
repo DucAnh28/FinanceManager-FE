@@ -28,7 +28,7 @@
                 <div class="col-6 mb-3">
                   <h6>Edit Profile</h6>
                   <p class="text-muted">
-                    <button type="button" style="min-width: 95px"
+                    <button type="button" style="width: 90px;height: 45px"
                             class="btn btn-gradient-success btn-rounded btn-fw btn-icon-text" data-toggle="modal"
                             data-target="#editProfile">Edit
                     </button>
@@ -36,8 +36,8 @@
                 </div>
                 <div class="col-6 mb-3">
                   <h6>Change Password</h6>
-                  <p class="text-muted">
-                    <button type="button" style="min-width: 95px"
+                  <p class="text-muted" >
+                    <button type="button" style="width: 90px;height: 45px"
                             class="btn btn-gradient-success btn-rounded btn-fw btn-icon-text" data-toggle="modal"
                             data-target="#changePass">Change
                     </button>
@@ -57,7 +57,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit Form</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Edit FroFile</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -66,7 +66,6 @@
         <div class="col-12 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Edit Form</h4>
               <form class="forms-sample" [formGroup]="editForm" (ngSubmit)="editProfile()" *ngIf="editForm">
                 <div class="form-group">
                   <label for="username">Username</label>
@@ -98,7 +97,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" (click)="editProfile()">Edit</button>
+        <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="editProfile()">Edit</button>
       </div>
     </div>
   </div>
@@ -110,7 +109,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel2">Edit Form</h5>
+        <h5 class="modal-title" id="exampleModalLabel2">Change PassWord</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -119,7 +118,6 @@
         <div class="col-12 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Edit Form</h4>
               <form class="forms-sample" [formGroup]="changePassForm" (ngSubmit)="changePassword()" *ngIf="editForm">
                 <div class="form-group">
                   <label for="oldPassword">Old Password</label>

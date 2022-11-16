@@ -18,8 +18,8 @@ export class CategoryService {
     return this.httpClient.get<Category[]>(API + this.accountService.currentUserValue.id);
   }
 
-  findById(id: number): Observable<any> {
-    return this.httpClient.get(API + 'find?cate_id=' + id);
+  findById(id: number): Observable<Category> {
+    return this.httpClient.get<Category>(API + 'find?cate_id=' + id);
   }
 
 
@@ -28,7 +28,7 @@ export class CategoryService {
   }
 
   update(id: number, category: any): Observable<any> {
-    return this.httpClient.put(API + `/${id}`, category);
+    return this.httpClient.put(API + `${id}`, category);
   }
 
   delete(id: number):Observable<any>{
