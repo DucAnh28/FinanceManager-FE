@@ -25,7 +25,7 @@
 
         </div>
         <div class="col-2">
-          <button type="submit" class="btn btn-gradient-success btn-fw" style="margin-top: 19px;width: 150px;height: 40px"
+          <button type="submit" class="btn btn-gradient-success btn-fw" style="margin-top: 22px;width: 150px;height: 40px"
                   (click)="showlistpayment()">Show
           </button>
         </div>
@@ -91,7 +91,7 @@
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="Add">Add Payment </h5>
+                      <h5 class="modal-title" id="Add">Create Payment </h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -108,17 +108,17 @@
                               </div>
                               <div class="form-group">
                                 <label for="exampleInputUsername2">Date</label>
-                                <input type="date" class="form-control" placeholder="name" formControlName="date"
+                                <input type="date" class="form-control"  formControlName="date"
                                        id="exampleInputUsername2">
                               </div>
                               <div class="form-group">
                                 <label for="exampleInputUsername3">Money</label>
-                                <input type="number" class="form-control" placeholder="name" formControlName="money"
+                                <input type="number" class="form-control" placeholder="money" formControlName="money"
                                        id="exampleInputUsername3">
                               </div>
                               <div class="form-group">
                                 <label for="exampleInputUsername4">Description</label>
-                                <input type="text" class="form-control" placeholder="name" formControlName="description"
+                                <input type="text" class="form-control" placeholder="description" formControlName="description"
                                        id="exampleInputUsername4">
                               </div>
                               <div class="form-group">
@@ -135,7 +135,7 @@
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" (click)="addPayment()"
-                        >Add Payment
+                        >Create
                         </button>
                       </div>
                     </div>
@@ -149,7 +149,7 @@
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update Payment</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Payment</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -187,14 +187,15 @@
                               </select>
                             </div>
                           </form>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" (click)="updatePaymentSubmit()">Update Payment
-                            </button>
-                          </div>
                         </div>
+
                       </div>
                     </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" (click)="updatePaymentSubmit()">Update
+                    </button>
+                  </div>
                   </div>
                 </div>
               </div>
