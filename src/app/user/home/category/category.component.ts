@@ -36,7 +36,7 @@ export class CategoryComponent implements OnInit {
     this.categoryService.save(temp).subscribe(data => {
       console.log(data);
       this.getAllCate();
-      Swal.fire("Successful","Create OK","success")
+      Swal.fire("Successful", "Create OK", "success")
     })
   }
 
@@ -56,8 +56,12 @@ export class CategoryComponent implements OnInit {
 
   deleteCategory(id: number) {
     this.categoryService.delete(id).subscribe(data => {
-      Swal.fire("Succes", "Delete Successful", "success");
-      this.getAllCate();
+      if (data == null) {
+        Swal.fire("Warning", "You can't delete this default category", "warning")
+      } else {
+        Swal.fire("Succes", "Delete Successful", "success");
+        this.getAllCate();
+      }
     })
   }
 }

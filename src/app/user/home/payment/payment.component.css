@@ -1,0 +1,16 @@
+.selectpicker {
+  width: 150px;
+  height: 30px;
+  overflow: hidden;
+  background:  no-repeat right #ddd;
+  border: 1px solid #ccc;
+}
+.date{
+  width: 150px;
+  height: 30px;
+}
+th{
+  font-size: 15px;
+}
+
+
