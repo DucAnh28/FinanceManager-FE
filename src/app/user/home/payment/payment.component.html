@@ -3,34 +3,44 @@
 <div class="content-wrapper"><br>
   <div class="form-group">
     <form [formGroup]="dateForm">
+      <div class="row">
+        <div class="col-2">
+          <b > Choose your wallet</b>
 
-      <div class="col-2">
-        <b> Choose your wallet</b>
+          <select style="margin-top: 5px" id="select" class="selectpicker" #wallet_id (change)="getWalletid(wallet_id.value);getPaymentList()">
+            <option [value]="wallet.id"
+                    *ngFor="let wallet of listWallet,index as i">{{wallet.name}}</option>
+          </select>
 
-         <select id="select" class="selectpicker" #wallet_id (change)="getWalletid(wallet_id.value);getPaymentList()">
-          <option [value]="wallet.id"
-                  *ngFor="let wallet of listWallet,index as i">{{wallet.name}}</option>
-        </select>
+        </div>
+
+        <div class="col-2">
+          <b >Start Date</b>
+          <input style="margin-top: 5px" class="date" type="date" formControlName="startDate">
+
+        </div>
+        <div class="col-2">
+          <b >End Date</b>
+          <input style="margin-top: 5px" class="date" type="date" formControlName="endDate">
+
+        </div>
+        <div class="col-2">
+          <button type="submit" class="btn btn-gradient-success btn-fw" style="margin-top: 19px;width: 150px;height: 40px"
+                  (click)="showlistpayment()">Show
+          </button>
+        </div>
+        <br>
+        <br>
+        <br>
 
       </div>
 
-      <div class="col-2">
-        <b>Start Date</b>
-        <input class="date" type="date" formControlName="startDate">
-
-      </div>
-      <div class="col-2">
-        <b>End Date</b>
-        <input class="date" type="date" formControlName="endDate">
-
-      </div>
-
-        <button type="submit" class="btn btn-gradient-success btn-fw" style="width: 150px;height: 40px"
-                (click)="showlistpayment()">Show
-        </button>
 
     </form>
 
+    <br>
+    <br>
+    <br>
 
     <button type="button" class="btn btn-gradient-success btn-fw" data-toggle="modal" style="width: 200px;height: 50px"
             data-target="#createPayment">
