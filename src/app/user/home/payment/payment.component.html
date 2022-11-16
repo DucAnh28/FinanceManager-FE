@@ -3,22 +3,45 @@
 <div class="content-wrapper"><br>
   <div class="form-group">
     <form [formGroup]="dateForm">
-      <div class="col-sm-1">
-        <select id="select" class="selectpicker" #wallet_id (change)="getWalletid(wallet_id.value);getPaymentList()">
-          <option [value]="wallet.id"
-                  *ngFor="let wallet of listWallet,index as i">{{wallet.name}}</option>
-        </select>
-      </div>
-      <tr><input class="date" type="date" formControlName="startDate"></tr>
+      <div class="row">
+        <div class="col-2">
+          <b > Choose your wallet</b>
 
-      <tr><input class="date" type="date" formControlName="endDate"></tr>
-      <tr>
-        <button type="submit" class="btn btn-gradient-success btn-fw" style="width: 150px;height: 40px"
-                (click)="showlistpayment()">Show
-        </button>
-      </tr>
+          <select style="margin-top: 5px" id="select" class="selectpicker" #wallet_id (change)="getWalletid(wallet_id.value);getPaymentList()">
+            <option [value]="wallet.id"
+                    *ngFor="let wallet of listWallet,index as i">{{wallet.name}}</option>
+          </select>
+
+        </div>
+
+        <div class="col-2">
+          <b >Start Date</b>
+          <input style="margin-top: 5px" class="date" type="date" formControlName="startDate">
+
+        </div>
+        <div class="col-2">
+          <b >End Date</b>
+          <input style="margin-top: 5px" class="date" type="date" formControlName="endDate">
+
+        </div>
+        <div class="col-2">
+          <button type="submit" class="btn btn-gradient-success btn-fw" style="margin-top: 22px;width: 150px;height: 40px"
+                  (click)="showlistpayment()">Show
+          </button>
+        </div>
+        <br>
+        <br>
+        <br>
+
+      </div>
+
+
     </form>
+
     <br>
+    <br>
+    <br>
+
     <button type="button" class="btn btn-gradient-success btn-fw" data-toggle="modal" style="width: 200px;height: 50px"
             data-target="#createPayment">
       <i class="mdi mdi-checkbox-marked-outline"></i> Add Payment
@@ -68,7 +91,7 @@
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="Add">Add Payment </h5>
+                      <h5 class="modal-title" id="Add">Create Payment </h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -85,17 +108,17 @@
                               </div>
                               <div class="form-group">
                                 <label for="exampleInputUsername2">Date</label>
-                                <input type="date" class="form-control" placeholder="name" formControlName="date"
+                                <input type="date" class="form-control"  formControlName="date"
                                        id="exampleInputUsername2">
                               </div>
                               <div class="form-group">
                                 <label for="exampleInputUsername3">Money</label>
-                                <input type="number" class="form-control" placeholder="name" formControlName="money"
+                                <input type="number" class="form-control" placeholder="money" formControlName="money"
                                        id="exampleInputUsername3">
                               </div>
                               <div class="form-group">
                                 <label for="exampleInputUsername4">Description</label>
-                                <input type="text" class="form-control" placeholder="name" formControlName="description"
+                                <input type="text" class="form-control" placeholder="description" formControlName="description"
                                        id="exampleInputUsername4">
                               </div>
                               <div class="form-group">
@@ -112,7 +135,7 @@
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" (click)="addPayment()"
-                        >Add Payment
+                        >Create
                         </button>
                       </div>
                     </div>
@@ -126,7 +149,7 @@
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update Payment</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Payment</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -164,14 +187,15 @@
                               </select>
                             </div>
                           </form>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" (click)="updatePaymentSubmit()">Update Payment
-                            </button>
-                          </div>
                         </div>
+
                       </div>
                     </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" (click)="updatePaymentSubmit()">Update
+                    </button>
+                  </div>
                   </div>
                 </div>
               </div>
