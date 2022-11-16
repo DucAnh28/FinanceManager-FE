@@ -93,7 +93,7 @@ export class PaymentComponent implements OnInit {
 
     this.paymentService.save(data).subscribe(data => {
       Swal.fire('Sucess',
-        'Please choose date',
+        '',
         'success');
       console.log(data)
       this.paymentForm.reset();
