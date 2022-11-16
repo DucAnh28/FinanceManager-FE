@@ -1,10 +1,10 @@
-import {Component, ElementRef, NgModule, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Wallet} from "../../../model/wallet";
 import {WalletService} from "../../../service/wallet.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {finalize, Subscription} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
-import {FormControl, FormGroup, NgForm, NgModel} from "@angular/forms";
+import {FormControl, FormGroup, NgForm} from "@angular/forms";
 import {AppUser} from "../../../model/appUser";
 import {AccountService} from "../../../../account/service/account.service";
 import Swal from "sweetalert2";
@@ -103,13 +103,13 @@ export class WalletListComponent implements OnInit {
     this.walletService.addMoney(this.walletCurrent.id, this.addMoney123).subscribe(data => {
       console.log(this.addMoney123)
       console.log(data)
-      if (data !== null ) {
+      if (data !== null) {
         Swal.fire('Success',
           'You Have Successfully Added Money To Your Wallet',
           'success')
 
       }
-      if (this.addMoney123 == 0 ) {
+      if (this.addMoney123 == 0) {
         Swal.fire("Fail",
           "Some Thing Wrong",
           "error")
@@ -153,13 +153,16 @@ export class WalletListComponent implements OnInit {
   getAll() {
     this.walletService.getAll().subscribe(wallets => {
       this.walletList = wallets;
-
+    },error => {
+      console.log("Chua co vi nao");
     })
   }
 
   getAllMoney() {
     this.walletService.getAllMoneyByUser().subscribe(totalmoney => {
-      this.money = totalmoney;
+        this.money = totalmoney;
+    },error => {
+      this.money = 0;
     })
   }
 
@@ -215,7 +218,6 @@ export class WalletListComponent implements OnInit {
     console.log(this.selectedImage2);
     this.submitFileEdit();
   }
-
 
   numberWithCommas(money: any): string {
     let parts = money.toString().split(".");
