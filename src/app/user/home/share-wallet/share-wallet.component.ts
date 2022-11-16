@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import {Wallet} from "../../model/wallet";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import Swal from "sweetalert2";
-import {Wallet} from "../../../model/wallet";
-import {WalletService} from "../../../service/wallet.service";
-import {ShareWalletService} from "../../../service/share-wallet.service";
-import {AccountService} from "../../../../account/service/account.service";
-
+import {WalletService} from "../../service/wallet.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {AngularFireStorage} from "@angular/fire/compat/storage";
+import {AccountService} from "../../../account/service/account.service";
+import {AppUser} from "../../model/appUser";
+import {ShareWalletService} from "../../service/share-wallet.service";
 @Component({
-  selector: 'app-share-create',
-  templateUrl: './share-create.component.html',
-  styleUrls: ['./share-create.component.css']
+  selector: 'app-share-wallet',
+  templateUrl: './share-wallet.component.html',
+  styleUrls: ['./share-wallet.component.css']
 })
-export class ShareCreateComponent implements OnInit {
+export class ShareWalletComponent implements OnInit {
+
   select: string= "Chọn ví";
   userId: number = 0;
   // checkMail = false;
@@ -20,21 +22,35 @@ export class ShareCreateComponent implements OnInit {
   checkUser: boolean;
   username: string;
   submitted = false;
-  constructor(
-    private accountService: AccountService,
-    private walletService: WalletService,
-    private router: Router,
-    private shareService: ShareWalletService
-  ) {
+  walletsshare: Wallet[] = [];
+  appUserWallet: AppUser = {}
+  constructor(private walletService: WalletService,
+              private router: Router,
+              private activatedRoute: ActivatedRoute,
+              private storage: AngularFireStorage,
+              private shareService: ShareWalletService,
+
+              private accountService: AccountService) {
+    this.appUserWallet.id = accountService.currentUserValue.id
+
     if (accountService.currentUserValue != null) {
       this.userId = accountService.currentUserValue.id;
     }
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.getAllWalletShare();
+
     this.getALlWallet();
   }
+// viet share wallet
 
+  getAllWalletShare() {
+    this.shareService.getAllShare(this.appUserWallet.id).subscribe((wallets) => {
+      this.walletsshare= wallets;
+      console.log(wallets)
+    });
+  }
   shareForm: FormGroup = new FormGroup({
     wallet: new FormControl('', Validators.required),
     user: new FormControl('', Validators.required)
@@ -48,8 +64,10 @@ export class ShareCreateComponent implements OnInit {
 
   share() {
     this.submitted = true;
+    console.log(this.shareForm.value)
     if (this.shareForm.valid) {
-      this.shareService.addNewShare(this.shareForm.get('wallet').value, this.shareForm.get('user').value).subscribe(() => {
+      this.shareService.addNewShare(this.shareForm.get('wallet').value, this.shareForm.get('user').value).subscribe((data) => {
+        console.log(data)
         Swal.fire({
           position: 'top-end',
           icon: 'success',
@@ -73,7 +91,7 @@ export class ShareCreateComponent implements OnInit {
         showConfirmButton: false,
         timer: 1500});
     }
-    }
+  }
 
   usernameCheck($event: any) {
     this.username = $event.value;
@@ -82,4 +100,11 @@ export class ShareCreateComponent implements OnInit {
       this.checkUser = check;
     });
   }
+
+  numberWithCommas(money: any): string {
+    let parts = money.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+  }
+
 }

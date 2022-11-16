@@ -10,6 +10,7 @@ import {AccountService} from "../../../../account/service/account.service";
 import Swal from "sweetalert2";
 import {ShareWalletService} from "../../../service/share-wallet.service";
 
+
 @Component({
   selector: 'app-wallet-list',
   templateUrl: './wallet-list.component.html',
@@ -39,7 +40,6 @@ export class WalletListComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private storage: AngularFireStorage,
               private shareService: ShareWalletService,
-
               private accountService: AccountService) {
     this.appUserWallet.id = accountService.currentUserValue.id
 
@@ -49,11 +49,7 @@ export class WalletListComponent implements OnInit {
   }
 
 
-  getAllWalletShare() {
-    this.shareService.getAllShare(this.appUserWallet.id).subscribe((wallets) => {
-      this.walletsshare= wallets;
-    });
-  }
+
 
   addMoneyForm(id: number) {
     this.walletService.findWalletById(id).subscribe(dates => {
@@ -95,7 +91,6 @@ export class WalletListComponent implements OnInit {
   ngOnInit(): void {
     this.getAllMoney();
     this.getAll();
-    this.getAllWalletShare();
 
     // create share wallet
     this.getALlWallet();
@@ -267,8 +262,10 @@ export class WalletListComponent implements OnInit {
 
   share() {
     this.submitted = true;
+    console.log(this.shareForm.value)
     if (this.shareForm.valid) {
-      this.shareService.addNewShare(this.shareForm.get('wallet').value, this.shareForm.get('user').value).subscribe(() => {
+      this.shareService.addNewShare(this.shareForm.get('wallet').value, this.shareForm.get('user').value).subscribe((data) => {
+        console.log(data)
         Swal.fire({
           position: 'top-end',
           icon: 'success',
@@ -301,5 +298,7 @@ export class WalletListComponent implements OnInit {
       this.checkUser = check;
     });
   }
+
+
 
 }

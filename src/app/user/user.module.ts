@@ -14,11 +14,11 @@ import {MdbModalModule} from 'mdb-angular-ui-kit/modal';
 import {WalletListComponent} from "./home/wallet/wallet-list/wallet-list.component";
 import {PaymentComponent} from "./home/payment/payment.component";
 import {CategoryComponent} from './home/category/category.component';
-import {ShareWalletModule} from "./home/share-wallet/share-wallet.module";
+import { ShareWalletComponent } from './home/share-wallet/share-wallet.component';
 
 
 @NgModule({
-  declarations: [UserHomeComponent, ProfileDetailComponent, WalletListComponent, PaymentComponent, CategoryComponent],
+  declarations: [UserHomeComponent, ProfileDetailComponent, WalletListComponent, PaymentComponent, CategoryComponent, ShareWalletComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
@@ -31,7 +31,6 @@ import {ShareWalletModule} from "./home/share-wallet/share-wallet.module";
     AngularFireDatabaseModule,
     SharesModule,
     MdbModalModule,
-    ShareWalletModule
   ]
 })
 export class UserModule {

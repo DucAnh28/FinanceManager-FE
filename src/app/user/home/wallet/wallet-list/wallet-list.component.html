@@ -1,11 +1,3 @@
-<!--<table *ngFor="let wl of walletsshare;index as i">-->
-<!--<td>{{wl.id}}</td>-->
-<!--<td>{{wl.icon}}</td>-->
-<!--<td>{{wl.name}}</td>-->
-<!--<td>{{wl.money}}</td>-->
-<!--<td>{{wl.appUser.id}}</td>-->
-
-
 
 
 <div class="content-wrapper"><br>
@@ -34,6 +26,12 @@
   <button type="button" class="btn btn-gradient-primary me-2" data-toggle="modal" data-target="#createWallet">
     <i class="mdi mdi-checkbox-marked-outline"></i> Add New Wallet
   </button>
+
+    <button type="button" class="btn btn-gradient-primary me-2" data-toggle="modal"
+            data-target="#shareWallet"
+            >
+      <i class="mdi mdi-checkbox-marked-outline"></i> Share Wallet
+    </button>
 
   <div class="row">
     <div class="col-12 grid-margin">
@@ -78,13 +76,7 @@
                     <i class="mdi mdi-bookmark-remove"></i> Delete
                   </button>
                 </td>
-                <td>
-                  <button type="button" class="btn btn-gradient-primary me-2" style="min-width:30px" data-toggle="modal"
-                          data-target="#shareWallet"
-                          (click)="createForm(wallets.id)">
-                    <i class="mdi mdi-bookmark-remove"></i> Share Wallet
-                  </button>
-                </td>
+
               </tr>
               </tbody>
             </table>
@@ -141,12 +133,12 @@
             </div>
           </div>
           <!-- Modal -->
-          <div class="modal fade" id="createWallet" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          <div class="modal fade" id="shareWallet" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="Create">Create Form</h5>
+                  <h5 class="modal-title" id="share">Share Wallet</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -155,26 +147,24 @@
                   <div class="col-12 grid-margin stretch-card">
                     <div class="card">
                       <div class="card-body">
-                        <h4 class="card-title">Create Form</h4>
+                        <form [formGroup]="shareForm" (ngSubmit)="share()">
+                          <select class="form-control"  formControlName="wallet">
+<!--                            <option [value]="null" selected >chon vi</option>-->
+                            <option *ngFor="let wallet of walletByUser" [value]="wallet.id">{{wallet.name}}</option>
 
-                        <form class="forms-sample" [formGroup]="formCreat">
+                          </select>
+                          <div>
+                            <span style="color: red" role="alert" *ngIf="(shareForm)">Vui lòng chọn ví</span>
+                          </div>
 
-                          <div class="form-group">
-                            <label for="exampleInputUsername3">Name</label>
-                            <input type="text" class="form-control" placeholder="name" formControlName="name"
-                                   id="exampleInputUsername3">
-                          </div>
-                          <div class="form-group">
-                            <label for="exampleInputEmail3">Money</label>
-                            <input type="text" class="form-control" placeholder="money" formControlName="money"
-                                   id="exampleInputEmail3">
-                          </div>
-                          <div class="form-group">
-                            <label for="exampleInputEmail4"></label>
-                            <input type="file"
-                                   class="file-upload-browse btn btn-gradient-primary ng-untouched ng-pristine ng-valid"
-                                   formControlName="icon" #uploadFileCreat (change)="uploadFileImgCreate()"
-                                   id="exampleInputEmail4">
+<!--                          <div>-->
+<!--                            <button type="submit" class="btn btn-primary" [disabled]="shareForm.invalid">Share</button>-->
+<!--                          </div>-->
+
+                          <input class="form-control" (change)="usernameCheck($event)" type="text" formControlName="user" placeholder="Nhập ten vi">
+
+                          <div>
+                            <span style="color: red"  role="alert" *ngIf="(shareForm) && !checkUser">Tên đăng nhập không tồn tại</span>
                           </div>
                         </form>
                       </div>
@@ -184,8 +174,10 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" (click)="submitCreate()" data-dismiss="modal">Create
-                    </button>
+<!--                    <button type="submit" class="btn btn-primary" (click)="submitCreate()" data-dismiss="modal">Create-->
+<!--                    </button>-->
+                    <button type="button" class="btn btn-primary"  (click)="share()" data-dismiss="modal" [disabled]="shareForm.invalid">Share</button>
+
                   </div>
                 </div>
               </div>
@@ -291,11 +283,61 @@
               </div>
             </div>
           </div>
+<!---->
 
 
         </div>
         <!---->
+        <div class="modal fade" id="createWallet" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="Create">Create Form</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="col-12 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">Create Form</h4>
 
+                      <form class="forms-sample" [formGroup]="formCreat">
+
+                        <div class="form-group">
+                          <label for="exampleInputUsername3">Name</label>
+                          <input type="text" class="form-control" placeholder="name" formControlName="name"
+                                 id="exampleInputUsername3">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputEmail3">Money</label>
+                          <input type="text" class="form-control" placeholder="money" formControlName="money"
+                                 id="exampleInputEmail3">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputEmail4"></label>
+                          <input type="file"
+                                 class="file-upload-browse btn btn-gradient-primary ng-untouched ng-pristine ng-valid"
+                                 formControlName="icon" #uploadFileCreat (change)="uploadFileImgCreate()"
+                                 id="exampleInputEmail4">
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary" (click)="submitCreate()" data-dismiss="modal">Create
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
 
       </div>
@@ -304,25 +346,3 @@
 </div>
 
 <!-- share wallet-->
-  <form [formGroup]="shareForm" (ngSubmit)="share()">
-    <select class="form-control"  formControlName="wallet">
-      <option [value]="null" selected >chon vi</option>
-      <option *ngFor="let wallet of walletByUser" [value]="wallet.id">{{wallet.name}}</option>
-
-    </select>
-    <div>
-      <span style="color: red" role="alert" *ngIf="(shareForm)">Vui lòng chọn ví</span>
-    </div>
-
-    <div>
-      <button type="submit" class="btn btn-primary" [disabled]="shareForm.invalid">Share</button>
-    </div>
-
-    <input class="form-control" (change)="usernameCheck($event)" type="text" formControlName="user" placeholder="Nhập ten vi">
-
-    <div>
-      <span style="color: red"  role="alert" *ngIf="(shareForm) && !checkUser">Tên đăng nhập không tồn tại</span>
-    </div>
-    <button type="submit">gui</button>
-  </form>
-
