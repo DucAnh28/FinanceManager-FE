@@ -64,4 +64,31 @@ export class CategoryComponent implements OnInit {
       }
     })
   }
+
+  editForm: FormGroup ;
+
+  getCategoryById(id :number){
+    this.categoryService.findById(id).subscribe(data=>{
+      this.editForm = new FormGroup({
+        id: new FormControl(data.id),
+        name: new FormControl(data.name),
+        status: new FormControl(data.status),
+        appUser: new FormControl(data.appUser),
+      })
+      console.log(this.editForm.value);
+    })
+
+  }
+
+  editCategory() {
+    const temp = this.editForm.value;
+    this.categoryService.update(temp.id,temp).subscribe(data=>{
+      if (data == null) {
+        Swal.fire("Warning", "You can't edit this default category", "warning")
+      } else {
+        Swal.fire("Success", "", "success");
+        this.getAllCate();
+      }
+    })
+  }
 }
