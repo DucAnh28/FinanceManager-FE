@@ -79,6 +79,7 @@ export class WalletListComponent implements OnInit {
       this.formCreat.reset();
       if (data !== null) {
         Swal.fire('Success',
+          "",
           'success')
       }
       this.getAll()
@@ -100,6 +101,7 @@ export class WalletListComponent implements OnInit {
     this.walletService.editWallet(this.walletCurrent.id, this.walletCurrent).subscribe(data => {
       if (data !== null) {
         Swal.fire('Success',
+          "",
           'success')
       }
 
@@ -117,6 +119,7 @@ export class WalletListComponent implements OnInit {
       console.log(data)
       if (data !== null ) {
         Swal.fire('Success',
+          "",
           'success')
 
       }
@@ -152,8 +155,8 @@ export class WalletListComponent implements OnInit {
         });
         Swal.fire(
           'Deleted!',
-          'success'
-        )
+          "",
+          'success')
       }
     })
 

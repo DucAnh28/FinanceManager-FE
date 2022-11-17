@@ -92,7 +92,7 @@ export class PaymentComponent implements OnInit {
     }
 
     this.paymentService.save(data).subscribe(data => {
-      Swal.fire('Sucess',
+      Swal.fire('Success',
         '',
         'success');
       console.log(data)
