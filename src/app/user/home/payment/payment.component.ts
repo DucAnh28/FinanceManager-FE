@@ -110,7 +110,6 @@ export class PaymentComponent implements OnInit {
     })
   }
 
-
   deletePayment(id: number) {
     Swal.fire({
       title: 'Are You Sure?',
@@ -136,8 +135,6 @@ export class PaymentComponent implements OnInit {
           )
         }
       })
-
-
   }
 
 

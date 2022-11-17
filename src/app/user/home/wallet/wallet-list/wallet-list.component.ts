@@ -79,7 +79,6 @@ export class WalletListComponent implements OnInit {
       this.formCreat.reset();
       if (data !== null) {
         Swal.fire('Success',
-          'You Have Successfully Added A New Wallet',
           'success')
       }
       this.getAll()
@@ -101,7 +100,6 @@ export class WalletListComponent implements OnInit {
     this.walletService.editWallet(this.walletCurrent.id, this.walletCurrent).subscribe(data => {
       if (data !== null) {
         Swal.fire('Success',
-          'You Update Your Wallet Successful',
           'success')
       }
 
@@ -119,7 +117,6 @@ export class WalletListComponent implements OnInit {
       console.log(data)
       if (data !== null ) {
         Swal.fire('Success',
-          'You Have Successfully Added Money To Your Wallet',
           'success')
 
       }
@@ -155,7 +152,6 @@ export class WalletListComponent implements OnInit {
         });
         Swal.fire(
           'Deleted!',
-          'Your Wallet Has Been Deleted.',
           'success'
         )
       }
