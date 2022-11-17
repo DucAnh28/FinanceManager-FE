@@ -52,6 +52,7 @@ export class ProfileDetailComponent implements OnInit {
       this.storage.upload(avaPath, this.selectedImage).snapshotChanges().pipe(
         finalize(() => (avaRef.getDownloadURL().subscribe(url => {
           this.arrayPicture = url;
+          Swal.fire("Upload Avatar Success !")
           console.log(url)
         })))
       ).subscribe();
@@ -77,6 +78,7 @@ export class ProfileDetailComponent implements OnInit {
           'success')
         this.accountService.getUserById().subscribe(data => {
           this.appUser = data;
+          location.reload();
         })
       }
     })

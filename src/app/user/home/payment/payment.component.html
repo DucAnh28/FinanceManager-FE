@@ -68,7 +68,7 @@
                 <tbody *ngFor="let payment of paymentList">
                 <td>{{payment.name}}</td>
                 <td>{{payment.date}}</td>
-                <td>{{payment.money}}</td>
+                <td>{{numberWithCommas(payment.money)}}</td>
                 <td>{{payment.category.name}}</td>
                 <td>{{payment.description}}</td>
                 <td>

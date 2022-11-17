@@ -168,6 +168,9 @@ export class PaymentComponent implements OnInit {
     data.category = {
       id: data.category
     };
+    data.appUser = {
+      id: this.appUser_id
+    }
     this.paymentService.update(data.id, data).subscribe(data => {
       console.log(data)
       Swal.fire('Success',
@@ -187,12 +190,16 @@ export class PaymentComponent implements OnInit {
     console.log(this.wallet_id)
     this.paymentService.showpaymentintime(this.startDate, this.endDate, this.wallet_id).subscribe(date => {
       this.paymentList = date;
-      console.log(this.wallet_id)
+      // console.log(this.wallet_id)
       console.log(date)
     })
   }
 
-
+  numberWithCommas(money: any): string {
+    let parts = money.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+  }
 }
 
 

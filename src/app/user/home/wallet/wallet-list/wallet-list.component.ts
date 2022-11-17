@@ -193,6 +193,7 @@ export class WalletListComponent implements OnInit {
         finalize(() => (fileRef.getDownloadURL().subscribe(url => {
           this.arrayPicture1 = url;
           console.log(url)
+          Swal.fire("Upload Icon Success")
         })))
       ).subscribe();
     }
@@ -219,6 +220,7 @@ export class WalletListComponent implements OnInit {
       this.storage.upload(filePath, this.selectedImage2).snapshotChanges().pipe(
         finalize(() => (fileRef.getDownloadURL().subscribe(url => {
           this.arrayPicture2 = url;
+          Swal.fire("Upload Icon Success")
           console.log(url)
         })))
       ).subscribe();
@@ -237,8 +239,6 @@ export class WalletListComponent implements OnInit {
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return parts.join(".");
   }
-
-
 
 // viet share wallet
   select: string= "Chọn ví";
