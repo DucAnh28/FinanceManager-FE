@@ -82,7 +82,8 @@ export class WalletListComponent implements OnInit {
           'You Have Successfully Added A New Wallet',
           'success')
       }
-      this.getAll();
+      this.getAll()
+      this.getALlWallet();
       this.getAllMoney();
     })
   }

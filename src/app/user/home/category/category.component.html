@@ -1,27 +1,30 @@
 <div class="card">
   <div class="card-body">
-    <button type="button" class="btn btn-gradient-danger" style="width: 200px;height: 50px" data-toggle="modal" data-target="#createCategory">
-      <i class="mdi mdi-checkbox-marked-outline" ></i> Add Category
+    <button type="button" class="btn btn-gradient-danger" style="width: 200px;height: 50px" data-toggle="modal"
+            data-target="#createCategory">
+      <i class="mdi mdi-checkbox-marked-outline"></i> Add Category
     </button>
     <table class="table table-hover">
       <thead>
       <tr>
         <th>#</th>
         <th>Name</th>
-        <th  style="marker-mid: none">Edit</th>
-        <th  style="marker-mid: none">Delete</th>
+        <th style="marker-mid: none">Edit</th>
+        <th style="marker-mid: none">Delete</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let category of categoryList, index as i">
-        <td>{{i+1}}</td>
+        <td>{{i + 1}}</td>
         <td>{{category.name}}</td>
         <td>
-          <button class="btn btn-gradient-danger" data-toggle="modal" data-target="#edit" style="width: 120px;height: 50px" (click)="getCategoryById(category.id)">Edit
+          <button class="btn btn-gradient-danger" data-toggle="modal" data-target="#edit"
+                  style="width: 120px;height: 50px" (click)="getCategoryById(category.id)">Edit
           </button>
         </td>
         <td>
-          <button class="btn btn-gradient-danger" data-toggle="modal" data-target="#delete" style="width: 120px;height: 50px"
+          <button class="btn btn-gradient-danger" data-toggle="modal" data-target="#delete"
+                  style="width: 120px;height: 50px"
                   (click)="getDeleteCateId(category.id)">Delete
           </button>
         </td>
@@ -47,20 +50,18 @@
           <div class="col-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-
                 <div class="form-group">
                   <label for="oldPassword">Name</label>
                   <input type="text" class="form-control" id="oldPassword" placeholder="name"
                          formControlName="name">
                 </div>
-
               </div>
             </div>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary" data-dismiss="modal">Create
+          <button type="submit" class="btn btn-primary" (click)="createCategory()" data-dismiss="modal">Create
           </button>
         </div>
       </form>
@@ -82,7 +83,8 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="deleteCategory(deleteID)" style="min-width: 100px" data-dismiss="modal">Delete
+        <button type="button" class="btn btn-primary" (click)="deleteCategory(deleteID)" style="min-width: 100px"
+                data-dismiss="modal">Delete
         </button>
       </div>
     </div>
@@ -99,26 +101,27 @@
         </button>
       </div>
       <form [formGroup]="editForm" (ngSubmit)="editCategory()" *ngIf="editForm">
-      <div class="modal-body">
-        <div class="col-12 grid-margin stretch-card">
-          <div class="card">
-            <div class="card-body">
+        <div class="modal-body">
+          <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
 
-              <div class="form-group">
-                <label for="oldPassword">Name</label>
-                <input type="text" class="form-control" placeholder="name"
-                       formControlName="name">
+                <div class="form-group">
+                  <label for="oldPassword">Name</label>
+                  <input type="text" class="form-control" placeholder="name"
+                         formControlName="name">
+                </div>
+
               </div>
-
             </div>
           </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="editCategory()" style="min-width: 100px" data-dismiss="modal">Edit
-        </button>
-      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="editCategory()" style="min-width: 100px"
+                  data-dismiss="modal">Edit
+          </button>
+        </div>
       </form>
     </div>
   </div>
