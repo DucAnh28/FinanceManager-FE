@@ -27,9 +27,9 @@
           <th scope="col"></th>
         </tr>
         </thead>
-        <tbody *ngFor="let payment of payment">
+        <tbody *ngFor="let payment of payment,index as i">
         <tr>
-          <td>{{payment.id}}</td>
+          <td>{{i+1}}</td>
           <td>{{payment.payment}}</td>
           <td>{{payment.date}}</td>
           <td>{{numberWithCommas(payment.money)}}</td>
