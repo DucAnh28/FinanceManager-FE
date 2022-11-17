@@ -16,8 +16,7 @@
   </button>
 
   <button type="button" class="btn btn-gradient-primary me-2" data-toggle="modal"
-          data-target="#shareWallet"
-  >
+          data-target="#shareWallet">
     <i class="mdi mdi-checkbox-marked-outline"></i> Share Wallet
   </button>
 
@@ -140,25 +139,21 @@
                     <div class="card">
                       <div class="card-body">
                         <form [formGroup]="shareForm" (ngSubmit)="share()">
-                          <select class="form-control" formControlName="wallet">
+                          <p>Choose your wallet</p>
+                          <select class="form-control" formControlName="wallet" #walletShare >
                             <!--                            <option [value]="null" selected >chon vi</option>-->
                             <option *ngFor="let wallet of walletByUser" [value]="wallet.id">{{wallet.name}}</option>
-
                           </select>
                           <div>
-                            <span style="color: red" role="alert" *ngIf="(shareForm)">Vui lòng chọn ví</span>
+<!--                            <span style="color: red" role="alert"-->
+<!--                                  *ngIf="(shareForm.value)">Vui lòng chọn ví</span>-->
                           </div>
-
-                          <!--                          <div>-->
-                          <!--                            <button type="submit" class="btn btn-primary" [disabled]="shareForm.invalid">Share</button>-->
-                          <!--                          </div>-->
-
+                          <p>Who to share</p>
                           <input class="form-control" (change)="usernameCheck($event)" type="text"
-                                 formControlName="user" placeholder="Nhập ten vi">
-
-                          <div>
-                            <span style="color: red" role="alert" *ngIf="(shareForm) && !checkUser">Tên đăng nhập không tồn tại</span>
-                          </div>
+                                 formControlName="user" placeholder="User">
+<!--                          <div>-->
+<!--                            <span style="color: red" role="alert" *ngIf="(shareForm) && !checkUser">Tên đăng nhập không tồn tại</span>-->
+<!--                          </div>-->
                         </form>
                       </div>
                     </div>
